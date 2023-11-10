@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import gray from "/gray.jpg";
 import Carousel from "../../components/Carousel";
+
 const Home = () => {
   return (
     <main className="w-full h-screen mt-20 ">

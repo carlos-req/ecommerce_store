@@ -1,5 +1,4 @@
-import React from "react";
-
+/* eslint-disable react/prop-types */
 const Carousel = (props) => {
   const { title, secTitle, toggleOne, toggleTwo } = props;
   return (

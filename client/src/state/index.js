@@ -1,21 +1,6 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { createSlice } from "@reduxjs/toolkit";
 
-type InitStateType = {
-  isCartOpen: boolean;
-  items: MyItemType[];
-  cart: Array<any>;
-  isSearchOpen: boolean;
-  search: string;
-};
-
-type MyItemType = {
-  id: number;
-  name: string;
-  count: number;
-};
-
-const initialState: InitStateType = {
+const initialState = {
   isCartOpen: false,
   items: [],
   cart: [],
