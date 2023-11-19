@@ -1,8 +1,21 @@
-// aka where most of our callbacks will be for our routes.
-
 // POST/public
-const registerUser = (req, res) => {
+const userRegister = (req, res) => {
   res.status(200).json({ message: "User Registered" });
 };
 
-export { registerUser };
+// POST/public
+const userLogin = (req, res) => {
+  res.status(200).json({ message: "User logged in" });
+};
+
+// GET/private
+const userProfile = (req, res) => {
+  res.status(200).json({ message: "User profile found" });
+};
+
+// PUT/private
+const updateProfile = (req, res) => {
+  res.status(200).json({ message: "User profile Updated" });
+};
+
+export { userRegister, userLogin, userProfile, updateProfile };
