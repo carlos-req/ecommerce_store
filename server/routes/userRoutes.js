@@ -4,11 +4,15 @@ import {
   userLogin,
   userProfile,
   updateProfile,
+  usersProfile,
 } from "../controllers/userController.js";
 
 const router = express.Router();
 
 // All the routes related to user
+
+//Get All User Profiles
+router.get("/", usersProfile);
 
 //Register User Route
 router.post("/register", userRegister);
@@ -17,9 +21,9 @@ router.post("/register", userRegister);
 router.post("/login", userLogin);
 
 //Get User Profile
-router.get("/profile", userProfile);
+router.get("/profile/:id", userProfile);
 
 //Update user profile
-router.put("/profile", updateProfile);
+router.put("/profile/:id", updateProfile);
 
 export default router;

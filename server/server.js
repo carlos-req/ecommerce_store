@@ -4,6 +4,7 @@ dotenv.config();
 const PORT = process.env.PORT || 3500;
 import userRoutes from "./routes/userRoutes.js";
 import productRoutes from "./routes/productRoutes.js";
+import orderRoutes from "./routes/orderRoutes.js";
 
 const app = express();
 
@@ -13,8 +14,11 @@ app.use(express.json());
 //using userRoutes
 app.use("/api/users", userRoutes);
 
-//using profileRoutes
+//using productRoutes
 app.use("/api/products", productRoutes);
+
+//using orderRoutes
+app.use("/api/orders", orderRoutes);
 
 //initial route
 app.get("/api", (req, res) => {

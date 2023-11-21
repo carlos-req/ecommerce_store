@@ -1,3 +1,8 @@
+// GET/private
+const usersProfile = (req, res) => {
+  res.status(200).json({ message: "Users profiles" });
+};
+
 // POST/public
 const userRegister = (req, res) => {
   res.status(200).json({ message: "User Registered" });
@@ -18,4 +23,4 @@ const updateProfile = (req, res) => {
   res.status(200).json({ message: "User profile Updated" });
 };
 
-export { userRegister, userLogin, userProfile, updateProfile };
+export { userRegister, userLogin, userProfile, updateProfile, usersProfile };
