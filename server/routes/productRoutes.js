@@ -9,6 +9,8 @@ import {
 
 const router = express.Router();
 
+// All the routes related to product
+
 //Get Products route
 router.get("/", getProducts);
 
