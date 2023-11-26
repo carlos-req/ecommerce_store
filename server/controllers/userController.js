@@ -1,3 +1,7 @@
+import jwt from "jsonwebtoken";
+import bcrypt from "bcryptjs";
+import { UserModel } from "../models/userModel.js";
+
 // GET/private
 const usersProfile = (req, res) => {
   //GET all users
@@ -5,9 +9,26 @@ const usersProfile = (req, res) => {
 };
 
 // POST/public
-const userRegister = (req, res) => {
-  //register user
-  res.status(200).json({ message: "User Registered" });
+const userRegister = async (req, res) => {
+  const { email, password, role } = req.body;
+  try {
+    const user = await UserModel.findOne({ email });
+
+    if (user) {
+      return res.status(400).json({ message: "User Already Exists" });
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    //creating new user in DB
+    const newUser = new UserModel({ email, password: hashedPassword, role });
+    console.log(newUser);
+    await newUser.save();
+
+    res.status(201).json({ message: "User Registered  Successfully" });
+  } catch (error) {
+    res.status(500).json({ message: error });
+  }
 };
 
 // POST/public

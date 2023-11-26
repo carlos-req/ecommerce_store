@@ -7,14 +7,24 @@ const orderItemSchema = new Schema({
     ref: "Product",
     required: true,
   },
-  quantity: { type: Number, required: true },
+  quantity: {
+    type: Number,
+    required: true,
+  },
 });
 
 const OrderSchema = new Schema(
   {
-    user: { type: Schema.Types.ObjectId, ref: "User", required: true },
+    user: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
     items: [orderItemSchema],
-    total: { type: Number, required: true },
+    total: {
+      type: Number,
+      required: true,
+    },
   },
   { timestamps: true }
 );
