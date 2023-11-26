@@ -3,9 +3,14 @@ import bcrypt from "bcryptjs";
 import { UserModel } from "../models/userModel.js";
 
 // GET/private
-const usersProfile = (req, res) => {
-  //GET all users
-  res.status(200).json({ message: "Users profiles" });
+const usersProfile = async (req, res) => {
+  const users = await UserModel.find({});
+
+  if (!users) {
+    return res.status(400).json({ message: "No Users found" });
+  }
+
+  res.status(200).json(users);
 };
 
 // POST/public
@@ -32,9 +37,29 @@ const userRegister = async (req, res) => {
 };
 
 // POST/public
-const userLogin = (req, res) => {
+const userLogin = async (req, res) => {
   //login user
-  res.status(200).json({ message: "User logged in" });
+  const { email, password } = req.body;
+
+  try {
+    const user = await UserModel.findOne({ email });
+
+    if (!user) {
+      return res.status(400).json({ message: "User does not exist" });
+    }
+
+    const isPasswordValid = bcrypt.compare(password, user.password);
+
+    if (!isPasswordValid) {
+      return res.status(400).json({ message: "Incorrect Credentials" });
+    }
+
+    const token = jwt.sign({ id: user._id }, "ec2025mern");
+
+    res.status(200).json({ token, userID: user._id });
+  } catch (err) {
+    res.status(200).json({ message: "User logged in" });
+  }
 };
 
 // GET/private
