@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
 import gray from "/gray.jpg";
-import Carousel from "../../components/Carousel";
+import TabsComponent from "../../components/TabsComponent";
 
 const Home = () => {
   return (
     <main className="w-full h-screen mt-20 ">
-      <div>
-        <section className="relative max-w-lg px-5 mx-auto ">
+      <div className="flex flex-wrap items-center justify-center gap-8">
+        <section className="relative max-w-lg">
           <h3 className="absolute z-10 text-5xl font-bold bottom-36 left-12 text-slate-100">
             New
             <br />
@@ -31,13 +31,19 @@ const Home = () => {
             alt="gray shirt"
           />
         </section>
-        <Carousel
-          title="Men's"
-          secTitle="Fall Collection"
-          toggleOne="Men's"
-          toggleTwo="Women's"
-        />
+        <section className="relative max-w-lg">
+          <img
+            className="drop-shadow-xl rounded-3xl"
+            src={gray}
+            alt="gray shirt"
+          />
+        </section>
       </div>
+      <TabsComponent
+        items={["Men's", "Women's"]}
+        title="Fall Collection"
+        secTitle="All"
+      />
     </main>
   );
 };

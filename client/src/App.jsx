@@ -1,7 +1,10 @@
 import { useEffect } from "react";
-import { BrowserRouter, useLocation, Routes, Route } from "react-router-dom";
-import Home from "./scenes/home/Home";
-import Navbar from "./scenes/global/Navbar";
+import {
+  useLocation,
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
+import { routes } from "./routes/routeConfig";
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -10,17 +13,16 @@ const ScrollToTop = () => {
   }, [pathname]);
   return null;
 };
+
+const router = createBrowserRouter(routes);
+
 function App() {
   return (
-    <div className="app">
-      <BrowserRouter>
+    <body className="app">
+      <RouterProvider router={router}>
         <ScrollToTop />
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-        </Routes>
-      </BrowserRouter>
-    </div>
+      </RouterProvider>
+    </body>
   );
 }
 

@@ -18,9 +18,11 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: #fff;
+  background-color: #111111;
 }
 
 .app {
   margin: auto;
+  max-width: 1440px;
+  padding: 0 1.25rem;
 }

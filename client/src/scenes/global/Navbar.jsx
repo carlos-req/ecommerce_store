@@ -1,33 +1,34 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { FaSearch, FaShoppingCart } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { FaSearch, FaShoppingCart, FaUser } from "react-icons/fa";
+import { NavLink, useNavigate } from "react-router-dom";
 import { setIsCartOpen, setIsSearchOpen } from "../../state";
 
 const Navbar = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const cart = useSelector((state) => state.cart.cart);
   console.log(cart.isCartOpen);
   return (
     <React.Fragment>
       <header className=" z-10 fixed flex justify-center items-center w-full h-[80px] top-0 left-0 p-2">
-        <nav className=" flex justify-items-center items-center justify-between h-[50px] w-4/6 rounded-[2rem] bg-stone-950 px-5 bg-opacity-50 backdrop-blur-md drop-shadow-lg">
+        <nav className=" flex justify-items-center items-center justify-between h-[50px] md:w-7/8 w-full rounded-[2rem] max-w-[1440px] bg-zinc-900 px-5 bg-opacity-20 backdrop-saturate-200 backdrop-blur-md drop-shadow-xl">
           <section>
-            <Link to="/">
+            <NavLink to="/">
               <p className="font-bold text-slate-50 ">MENTALITY</p>
-            </Link>
+            </NavLink>
           </section>
           <section className="hidden gap-5 md:flex">
-            <Link to="/">
+            <NavLink to="/womens">
               <p className="font-bold text-slate-200 hover:border-b-slate-100 hover:border-b-4 hover:transition-transform hover:scale-110">
                 Women
               </p>
-            </Link>
-            <Link to="/">
+            </NavLink>
+            <NavLink to="/mens">
               <p className="font-bold text-slate-200 hover:border-b-slate-100 hover:border-b-4 hover:transition-transform hover:scale-110">
                 Men
               </p>
-            </Link>
+            </NavLink>
           </section>
           <section className="flex gap-5 cursor-pointer">
             <FaSearch
@@ -35,6 +36,13 @@ const Navbar = () => {
               size={20}
               onClick={() => {
                 dispatch(setIsSearchOpen());
+              }}
+            />
+            <FaUser
+              color="#e2e8f0"
+              size={20}
+              onClick={() => {
+                navigate("/login");
               }}
             />
             <FaShoppingCart

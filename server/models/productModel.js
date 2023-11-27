@@ -22,6 +22,14 @@ const ProductSchema = new Schema({
     type: String,
     required: true,
   },
+  collection: {
+    type: String,
+  },
+  group: {
+    type: String,
+    enum: ["men", "women", "both"],
+    default: "both",
+  },
 });
 
 export const Product = model("Product", ProductSchema);
