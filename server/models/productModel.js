@@ -22,7 +22,7 @@ const ProductSchema = new Schema({
     type: String,
     required: true,
   },
-  collection: {
+  clothingColl: {
     type: String,
   },
   group: {
@@ -32,4 +32,4 @@ const ProductSchema = new Schema({
   },
 });
 
-export const Product = model("Product", ProductSchema);
+export const ProductModel = model("products", ProductSchema);
