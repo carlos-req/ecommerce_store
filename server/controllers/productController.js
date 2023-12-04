@@ -1,6 +1,7 @@
 import { ProductModel } from "../models/productModel.js";
 
 // GET/public
+
 const getProducts = async (req, res) => {
   try {
     const products = await ProductModel.find({});
@@ -46,8 +47,8 @@ const newProduct = async (req, res) => {
     await newProduct.save();
 
     res.status(201).json({ message: "Product added successfully" });
-  } catch (error) {
-    res.status(500).json({ message: error });
+  } catch (err) {
+    res.status(500).json({ message: err });
   }
 };
 

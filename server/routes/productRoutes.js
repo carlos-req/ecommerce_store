@@ -6,24 +6,25 @@ import {
   updateProduct,
   deleteProduct,
 } from "../controllers/productController.js";
+import { isAdmin } from "../middleware/isAdmin.js";
 
 const router = express.Router();
 
 // All the routes related to product
 
-//Get Products route
+//Get Products - Public
 router.get("/", getProducts);
 
-//Add new product
-router.post("/", newProduct);
+//Add product - Private
+router.post("/", isAdmin, newProduct);
 
-//Get individual product
+//Get product - Public
 router.get("/:id", getProduct);
 
-//Update individual product
+//Update product - Private
 router.put("/:id", updateProduct);
 
-//delete individual product
+//delete product - Private
 router.delete("/:id", deleteProduct);
 
 export default router;
