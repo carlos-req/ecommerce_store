@@ -15,7 +15,7 @@ const usersProfile = async (req, res) => {
 
 // POST/public
 const userRegister = async (req, res) => {
-  const { email, password, role } = req.body;
+  const { email, password, firstName, lastName, role } = req.body;
   try {
     const user = await UserModel.findOne({ email });
 
@@ -26,7 +26,13 @@ const userRegister = async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, 10);
 
     //creating new user in DB
-    const newUser = new UserModel({ email, password: hashedPassword, role });
+    const newUser = new UserModel({
+      email,
+      password: hashedPassword,
+      firstName,
+      lastName,
+      role,
+    });
     console.log(newUser);
     await newUser.save();
 
