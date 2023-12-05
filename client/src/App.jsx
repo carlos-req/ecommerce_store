@@ -18,11 +18,11 @@ const router = createBrowserRouter(routes);
 
 function App() {
   return (
-    <body className="app">
+    <main className="app">
       <RouterProvider router={router}>
         <ScrollToTop />
       </RouterProvider>
-    </body>
+    </main>
   );
 }
 

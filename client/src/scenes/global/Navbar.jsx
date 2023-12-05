@@ -2,13 +2,12 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FaSearch, FaShoppingCart, FaUser } from "react-icons/fa";
 import { NavLink, useNavigate } from "react-router-dom";
-import { setIsCartOpen, setIsSearchOpen } from "../../state";
+import { setIsCartOpen, setIsSearchOpen } from "../../features/cart/cartSlice";
 
 const Navbar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const cart = useSelector((state) => state.cart.cart);
-  console.log(cart.isCartOpen);
   return (
     <React.Fragment>
       <header className=" z-10 fixed flex justify-center items-center w-full h-[80px] top-0 left-0 p-2">

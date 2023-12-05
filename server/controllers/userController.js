@@ -16,6 +16,10 @@ const usersProfile = async (req, res) => {
 // POST/public
 const userRegister = async (req, res) => {
   const { email, password, firstName, lastName, role } = req.body;
+
+  if (!email || !password) {
+    res.status(400).json({ message: "Please fill out all fields" });
+  }
   try {
     const user = await UserModel.findOne({ email });
 
@@ -33,10 +37,24 @@ const userRegister = async (req, res) => {
       lastName,
       role,
     });
+
+    const token = jwt.sign({ id: newUser._id }, process.env.JWT_KEY, {
+      expiresIn: "30d",
+    });
+
+    if (newUser) {
+      res.status(201).json({
+        token: generateToken(newUser._id),
+        _id: newUser._id,
+        firstName: newUser.firstName,
+        lastName: newUser.lastName,
+        email: newUser.email,
+        role: newUser.role,
+      });
+    }
+
     console.log(newUser);
     await newUser.save();
-
-    res.status(201).json({ message: "User Registered  Successfully" });
   } catch (error) {
     res.status(500).json({ message: error });
   }
@@ -60,9 +78,14 @@ const userLogin = async (req, res) => {
       return res.status(400).json({ message: "Incorrect Credentials" });
     }
 
-    const token = jwt.sign({ id: user._id }, "ec2025mern");
-
-    res.status(200).json({ token, userID: user._id });
+    res.status(200).json({
+      token: generateToken(user._id),
+      _id: user._id,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
+      role: user.role,
+    });
   } catch (err) {
     res.status(200).json({ message: "User logged in" });
   }
@@ -78,6 +101,12 @@ const userProfile = (req, res) => {
 const updateProfile = (req, res) => {
   //update user profile
   res.status(200).json({ message: "User profile Updated" });
+};
+
+const generateToken = (id) => {
+  return jwt.sign({ id }, process.env.JWT_KEY, {
+    expiresIn: "30d",
+  });
 };
 
 export { userRegister, userLogin, userProfile, updateProfile, usersProfile };
