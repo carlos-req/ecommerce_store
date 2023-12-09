@@ -1,6 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { login, reset } from "../../features/auth/authSlice";
+import { toast } from "react-toastify";
+import Spinner from "../../components/Spinner";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -8,8 +11,27 @@ const Login = () => {
     password: "",
   });
 
+  const { email, password } = formData;
+
   const navigate = useNavigate();
-  const API_URL = "http://localhost:5080/api/users/login";
+  const dispatch = useDispatch();
+
+  const { user, isLoading, isError, isSuccess, message } = useSelector(
+    (state) => state.auth
+  );
+
+  useEffect(() => {
+    if (isError) {
+      toast.error(message);
+    }
+
+    if (isSuccess || user) {
+      navigate("/");
+    }
+
+    dispatch(reset());
+  }, [user, isError, isSuccess, message, navigate, dispatch]);
+
   const handleChange = (e) => {
     setFormData((prevFormData) => {
       return {
@@ -19,23 +41,20 @@ const Login = () => {
     });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    try {
-      const result = await axios.post(API_URL, { ...formData });
-      const data = result.data;
-      console.log(data);
-      setFormData({
-        email: "",
-        password: "",
-      });
-      setTimeout(() => {
-        navigate("/");
-      }, 1000);
-    } catch (err) {
-      return console.log(err);
-    }
+    const userData = {
+      email,
+      password,
+    };
+    dispatch(login(userData));
   };
+
+  //return a spinner if loading
+  if (isLoading) {
+    return <Spinner />;
+  }
+
   return (
     <section className="absolute left-0 w-full top-1/4">
       <form
@@ -55,7 +74,7 @@ const Login = () => {
             placeholder="Email"
             name="email"
             onChange={handleChange}
-            value={formData.email}
+            value={email}
           ></input>
         </div>
         <div className="flex flex-col w-full px-20 form-item">
@@ -66,7 +85,7 @@ const Login = () => {
             placeholder="Password"
             name="password"
             onChange={handleChange}
-            value={formData.password}
+            value={password}
           ></input>
         </div>
         <div className="w-full px-20 form-item">

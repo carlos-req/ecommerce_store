@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { register, reset } from "../../features/auth/authSlice";
+import { toast } from "react-toastify";
 import Spinner from "../../components/Spinner";
 
 const Register = () => {
@@ -24,8 +25,7 @@ const Register = () => {
 
   useEffect(() => {
     if (isError) {
-      //make this toast.error
-      console.log(message);
+      toast.error(message);
     }
 
     if (isSuccess || user) {
@@ -43,8 +43,6 @@ const Register = () => {
       };
     });
   };
-
-  console.log(formData);
 
   const handleSubmit = (e) => {
     e.preventDefault();

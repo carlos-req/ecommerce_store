@@ -7,7 +7,18 @@ import { setIsCartOpen, setIsSearchOpen } from "../../features/cart/cartSlice";
 const Navbar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const cart = useSelector((state) => state.cart.cart);
+  //state of app
+  const { cart } = useSelector((state) => state.cart);
+  const { user } = useSelector((state) => state.auth);
+
+  const handleClick = () => {
+    if (user) {
+      navigate("/profile");
+    } else {
+      navigate("login");
+    }
+  };
+
   return (
     <React.Fragment>
       <header className=" z-10 fixed flex justify-center items-center w-full h-[80px] top-0 left-0 p-2">
@@ -37,13 +48,7 @@ const Navbar = () => {
                 dispatch(setIsSearchOpen());
               }}
             />
-            <FaUser
-              color="#e2e8f0"
-              size={20}
-              onClick={() => {
-                navigate("/login");
-              }}
-            />
+            <FaUser color="#e2e8f0" size={20} onClick={handleClick} />
             <FaShoppingCart
               color="#e2e8f0"
               size={20}
