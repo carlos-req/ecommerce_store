@@ -1,17 +1,16 @@
+import { useSelector } from "react-redux";
+import ButtonOutlined from "../../components/ButtonOutlined";
 const ProfilePage = () => {
-  let fName = "johhny";
-  let date = "2023-12-10";
-  return (
-    <main className="w-full h-screen mt-24 ">
-      <section>
-        <h1 className="text-4xl font-bold text-slate-100">
-          Welcome back, {fName}! 👋
-        </h1>
-        <p className="font-bold text-slate-400">customer since {date}</p>
+  const { user } = useSelector((state) => state.auth);
 
-        <div>
-          <button className="uppercase">logout</button>
-        </div>
+  const { firstName } = user;
+  return (
+    <main className="w-full h-screen mx-auto mt-32">
+      <section className="flex flex-col items-center justify-between gap-4 md:px-20 lg:flex-row ">
+        <h1 className="text-2xl font-bold uppercase text-slate-100 ">
+          Welcome back, {firstName}! 👋
+        </h1>
+        <ButtonOutlined width="20rem" title="Logout" textSize="md" />
       </section>
 
       <section className="flex flex-wrap items-center justify-center gap-8">
