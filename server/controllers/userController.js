@@ -53,7 +53,6 @@ const userRegister = async (req, res) => {
       });
     }
 
-    console.log(newUser);
     await newUser.save();
   } catch (error) {
     res.status(500).json({ message: error });
@@ -71,8 +70,7 @@ const userLogin = async (req, res) => {
     if (!user) {
       return res.status(400).json({ message: "User does not exist" });
     }
-
-    const isPasswordValid = bcrypt.compare(password, user.password);
+    const isPasswordValid = await bcrypt.compare(password, user.password);
 
     if (!isPasswordValid) {
       return res.status(400).json({ message: "Incorrect Credentials" });

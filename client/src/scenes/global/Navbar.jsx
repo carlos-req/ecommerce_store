@@ -7,10 +7,10 @@ import { setIsCartOpen, setIsSearchOpen } from "../../features/cart/cartSlice";
 const Navbar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  //state of app
   const { cart } = useSelector((state) => state.cart);
   const { user } = useSelector((state) => state.auth);
 
+  //handle behavior of user icon
   const handleClick = () => {
     if (user) {
       navigate("/profile");
