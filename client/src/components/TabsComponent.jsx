@@ -38,8 +38,8 @@ const TabsComponent = ({ items, title, secTitle }) => {
                 ref={index === 0 ? firstBtnRef : null}
                 key={index}
                 onClick={() => setSelectedTab(index)}
-                className={`outline-none w-full py-1 rounded-3xl text-center uppercase ${
-                  selectedTab === index ? " bg-red-800 text-slate-100" : ""
+                className={`outline-none w-full py-1 rounded-3xl text-center uppercase ease-in-out  transition-all duration-500${
+                  selectedTab === index ? " bg-red-800 text-slate-100 " : ""
                 } `}
               >
                 {item}

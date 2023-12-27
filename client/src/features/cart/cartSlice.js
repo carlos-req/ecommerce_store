@@ -4,8 +4,6 @@ const initialState = {
   isCartOpen: false,
   items: [],
   cart: [],
-  isSearchOpen: false,
-  search: "",
 };
 
 export const cartSlice = createSlice({
@@ -35,9 +33,6 @@ export const cartSlice = createSlice({
     },
     setIsCartOpen: (state) => {
       state.isCartOpen = !state.isCartOpen;
-    },
-    setIsSearchOpen: (state) => {
-      state.isSearchOpen = !state.isSearchOpen;
     },
   },
 });
