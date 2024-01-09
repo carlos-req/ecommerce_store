@@ -16,7 +16,7 @@ Checkout Mentality Ecommerce Store for all fitness appearel
 Mentality Landing Page.🙂
 
 <p align="center">
-    <img alt="CC Cleaners landing page" src="public/LandingPage.png">
+    <img alt="CC Cleaners landing page" src="client/public/LandingPage.png">
 </p>
 
 ### Setup
@@ -25,7 +25,7 @@ Git, Node.js, and NPM are required to run this project. Install Git by [followin
 
 1. Click the green code button:
 
-<img alt="Screenshot showing the green code button on GitHub" src="public/Clone.png">
+<img alt="Screenshot showing the green code button on GitHub" src="client/public/github_clone.png">
 
 2. From there, click the button to the right of the URL under HTTPS. This will copy the URL of the repository.
 
@@ -33,13 +33,13 @@ Git, Node.js, and NPM are required to run this project. Install Git by [followin
 
 4. If you've got a folder where you keep projects, change directories into that folder. After that type this command:
 
-`git clone https://github.com/carlos-req/cccleaning.git `
+`git clone https://github.com/carlos-req/ecommerce_store.git`
 
-This clones the repository to your local machine. It has a root directory called `cccleaning` to store all the files.
+This clones the repository to your local machine. It has a root directory called `mentality` to store all the files.
 
 5. Change directories into that folder:
 
-`cd cccleaning`
+`cd mentality`
 
 After that you can open the project in your text editor of choice. I use Visual Studio Code and launch it from the command line. [Learn how here](https://code.visualstudio.com/docs/setup/mac).
 
@@ -53,8 +53,10 @@ After that you can open the project in your text editor of choice. I use Visual 
 
 ### Technologies
 
-- [Next.Js](https://nextjs.org/docs)
+- [Vite](https://vitejs.dev/guide/)
+- [React](https://react.dev/learn)
 - [TailwindCSS](https://tailwindcss.com/docs/installation)
+- [NodeJS](https://nodejs.org/en/learn/getting-started/introduction-to-nodejs)
+- [Express.JS](https://expressjs.com/en/starter/installing.html)
+- [MongoDB](https://www.mongodb.com/docs/)
 - JavaScript
-
-### Attributions
