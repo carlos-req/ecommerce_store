@@ -1,6 +1,12 @@
 Todo
 [] Profile Page
-[] Orders Page
 [] Admin Page
 [] Display Products
-[] Products Page
+[] Products Page - Filter and all products
+[] Mens Page
+[] Womens Page
+[] Footer
+[] Checkout
+[] Cart Page
+[] Fix scroll to top functionality
+[x] 404 Page

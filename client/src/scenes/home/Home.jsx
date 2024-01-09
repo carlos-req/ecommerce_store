@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import gray from "/gray.jpg";
+import whiteTop from "/gym_whitetop.jpg";
+import gym from "/gym.jpg";
 import TabsComponent from "../../components/TabsComponent";
 
 const Home = () => {
@@ -26,16 +28,16 @@ const Home = () => {
             </button>
           </Link>
           <img
-            className="drop-shadow-xl rounded-3xl"
+            className="drop-shadow-md rounded-3xl"
             src={gray}
             alt="gray shirt"
           />
         </section>
         <section className="relative max-w-lg">
           <img
-            className="drop-shadow-xl rounded-3xl"
-            src={gray}
-            alt="gray shirt"
+            className="drop-shadow-md rounded-3xl brightness-90"
+            src={whiteTop}
+            alt="female in white workout top"
           />
         </section>
       </div>
@@ -44,6 +46,32 @@ const Home = () => {
         title="Fall Collection"
         secTitle="All"
       />
+
+      <section className="flex flex-wrap items-center justify-center">
+        {/*gym*/}
+        <section className="relative w-full h-auto">
+          <img
+            className=" drop-shadow-md rounded-3xl brightness-75"
+            src={gym}
+            alt="Mentality gym"
+          />
+          <section className="absolute left-0 flex-col items-center content-center w-full h-full text-center lg:flex top-1/4 drop-shadow-lg">
+            <h3 className="text-5xl font-bold lg:text-8xl z-100 text-slate-100 drop-shadow-lg">
+              Visit
+              <br />
+              Our Gym
+            </h3>
+            <p className="z-10 mb-2 text-sm font-bold lg:text-lg text-slate-100">
+              An oasis where gym lovers can be found
+            </p>
+            <Link to="/gym">
+              <button className="lg:text-xl px-3 py-1 uppercase font-bold bg-[#ffffff6b] drop-shadow-lg rounded-3xl text-slate-100 z-10">
+                Learn more
+              </button>
+            </Link>
+          </section>
+        </section>
+      </section>
     </main>
   );
 };

@@ -9,7 +9,6 @@ Checkout Mentality Ecommerce Store for all fitness appearel
 - [Screenshots](#screenshots)
 - [Setup](#setup)
 - [Technologies](#technologies)
-- [Attributions](#attributions)
 
 ### Screenshots
 
