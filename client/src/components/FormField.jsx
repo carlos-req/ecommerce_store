@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 export const FormField = ({ label, type, name, value, onChange }) => (
   <div className="flex flex-col w-full px-20 form-item">
     <label htmlFor={name} className="text-xs font-black text-slate-200">
@@ -14,3 +16,11 @@ export const FormField = ({ label, type, name, value, onChange }) => (
     />
   </div>
 );
+
+FormField.propTypes = {
+  label: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+};
