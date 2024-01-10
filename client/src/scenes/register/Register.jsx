@@ -1,9 +1,10 @@
-import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
-import { register, reset } from "../../features/auth/authSlice";
-import { toast } from "react-toastify";
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { register } from "../../features/auth/authSlice";
 import Spinner from "../../components/Spinner";
+import { useAuthEffect } from "../../hooks/useAuthEffect";
+import { FormField } from "../../components/FormField";
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -12,28 +13,11 @@ const Register = () => {
     email: "",
     password: "",
   });
+  const { isLoading } = useAuthEffect();
+  const dispatch = useDispatch();
 
   //destructure form data
   const { firstName, lastName, email, password } = formData;
-
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-
-  const { user, isLoading, isError, isSuccess, message } = useSelector(
-    (state) => state.auth
-  );
-
-  useEffect(() => {
-    if (isError) {
-      toast.error(message);
-    }
-
-    if (isSuccess || user) {
-      navigate("/");
-    }
-
-    dispatch(reset());
-  }, [user, isError, isSuccess, message, navigate, dispatch]);
 
   const handleChange = (e) => {
     setFormData((prevFormData) => {
@@ -52,6 +36,7 @@ const Register = () => {
       email,
       password,
     };
+    console.log(userData);
     dispatch(register(userData));
   };
 
@@ -69,70 +54,34 @@ const Register = () => {
         <h1 className="text-3xl font-black tracking-tight uppercase text-slate-100">
           Register
         </h1>
-        <div className="flex flex-col w-full px-20 form-item">
-          <label
-            htmlFor="firstName"
-            className="text-xs font-black text-slate-200"
-          >
-            First Name:
-          </label>
-          <input
-            className="w-full px-6 py-3 my-4 text-xs duration-200 ease-in-out bg-transparent border-2 border-solid outline-none border-slate-400 rounded-2xl caret-slate-100 text-slate-100 focus:border-slate-50"
-            type="text"
-            required
-            placeholder="First Name"
-            name="firstName"
-            onChange={handleChange}
-            value={firstName}
-          ></input>
-        </div>
-        <div className="flex flex-col w-full px-20 form-item">
-          <label
-            htmlFor="lastName"
-            className="text-xs font-black text-slate-200"
-          >
-            Last Name:
-          </label>
-          <input
-            className="w-full px-6 py-3 my-4 text-xs duration-200 ease-in-out bg-transparent border-2 border-solid outline-none border-slate-400 rounded-2xl caret-slate-100 text-slate-100 focus:border-slate-50"
-            type="text"
-            placeholder="Last Name"
-            name="lastName"
-            onChange={handleChange}
-            value={lastName}
-          ></input>
-        </div>
-        <div className="flex flex-col w-full px-20 form-item">
-          <label htmlFor="email" className="text-xs font-black text-slate-200">
-            Email Address:
-          </label>
-          <input
-            className="w-full px-6 py-3 my-4 text-xs duration-200 ease-in-out bg-transparent border-2 border-solid outline-none border-slate-400 rounded-2xl caret-slate-100 text-slate-100 focus:border-slate-50"
-            type="email"
-            required
-            placeholder="Email"
-            name="email"
-            onChange={handleChange}
-            value={email}
-          ></input>
-        </div>
-        <div className="flex flex-col w-full px-20 form-item">
-          <label
-            htmlFor="password"
-            className="text-xs font-black text-slate-200"
-          >
-            Password:
-          </label>
-          <input
-            className="w-full px-6 py-3 my-4 text-xs duration-200 ease-in-out bg-transparent border-2 border-solid outline-none border-slate-400 rounded-2xl caret-slate-100 text-slate-100 focus:border-slate-50"
-            type="password"
-            required
-            placeholder="Password"
-            name="password"
-            onChange={handleChange}
-            value={password}
-          ></input>
-        </div>
+        <FormField
+          label="First Name"
+          type="text"
+          name="firstName"
+          value={formData.firstName}
+          onChange={handleChange}
+        />
+        <FormField
+          label="Last Name"
+          type="text"
+          name="lastName"
+          value={formData.lastName}
+          onChange={handleChange}
+        />
+        <FormField
+          label="Email Address"
+          type="email"
+          name="email"
+          value={formData.email}
+          onChange={handleChange}
+        />
+        <FormField
+          label="Password"
+          type="password"
+          name="password"
+          value={formData.password}
+          onChange={handleChange}
+        />
         <div className="w-full px-20 form-item">
           <button
             type="submit"

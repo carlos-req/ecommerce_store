@@ -1,9 +1,10 @@
-import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { login, reset } from "../../features/auth/authSlice";
-import { toast } from "react-toastify";
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { login } from "../../features/auth/authSlice";
 import Spinner from "../../components/Spinner";
+import { useAuthEffect } from "../../hooks/useAuthEffect";
+import { FormField } from "../../components/FormField";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -13,24 +14,8 @@ const Login = () => {
 
   const { email, password } = formData;
 
-  const navigate = useNavigate();
+  const { isLoading } = useAuthEffect();
   const dispatch = useDispatch();
-
-  const { user, isLoading, isError, isSuccess, message } = useSelector(
-    (state) => state.auth
-  );
-
-  useEffect(() => {
-    if (isError) {
-      toast.error(message);
-    }
-
-    if (isSuccess || user) {
-      navigate("/");
-    }
-
-    dispatch(reset());
-  }, [user, isError, isSuccess, message, navigate, dispatch]);
 
   const handleChange = (e) => {
     setFormData((prevFormData) => {
@@ -64,30 +49,20 @@ const Login = () => {
         <h1 className="text-3xl font-black tracking-tight uppercase text-slate-100">
           log into my account
         </h1>
-        <div className="flex flex-col w-full px-20 form-item">
-          <label className="text-xs font-black text-slate-200">
-            Email Address:
-          </label>
-          <input
-            className="w-full px-6 py-3 my-4 text-xs ease-in-out bg-transparent border-2 border-solid outline-none border-slate-400 rounded-2xl caret-slate-100 text-slate-100 focus:border-slate-50"
-            type="email"
-            placeholder="Email"
-            name="email"
-            onChange={handleChange}
-            value={email}
-          ></input>
-        </div>
-        <div className="flex flex-col w-full px-20 form-item">
-          <label className="text-xs font-black text-slate-200">Password:</label>
-          <input
-            className="w-full px-6 py-3 my-4 text-xs ease-in-out bg-transparent border-2 border-solid outline-none border-slate-400 rounded-2xl caret-slate-100 text-slate-100 focus:border-slate-50"
-            type="password"
-            placeholder="Password"
-            name="password"
-            onChange={handleChange}
-            value={password}
-          ></input>
-        </div>
+        <FormField
+          label="Email Address"
+          type="email"
+          name="email"
+          value={formData.email}
+          onChange={handleChange}
+        />
+        <FormField
+          label="Password"
+          type="password"
+          name="password"
+          value={formData.password}
+          onChange={handleChange}
+        />
         <div className="w-full px-20 form-item">
           <button className="px-10 py-4 uppercase bg-slate-100 bg-opacity-80 text-[#0d0d0d] font-black  tracking-tighter text-md w-full rounded-2xl transation ease-in-out duration-200 hover:bg-opacity-100 hover:drop-shadow-md ">
             Log In
