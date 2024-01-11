@@ -6,7 +6,7 @@ import TabsComponent from "../../components/TabsComponent";
 
 const Home = () => {
   return (
-    <main className="w-full h-screen mt-20 ">
+    <main className="flex-1 w-full h-screen mt-20 mb-20">
       <div className="flex flex-wrap items-center justify-center gap-8">
         <section className="relative max-w-lg">
           <h3 className="absolute z-10 text-5xl font-bold bottom-36 left-12 text-slate-100">
@@ -46,8 +46,7 @@ const Home = () => {
         title="Fall Collection"
         secTitle="All"
       />
-
-      <section className="flex flex-wrap items-center justify-center">
+      <section className="flex flex-wrap items-center justify-center ">
         {/*gym*/}
         <section className="relative w-full h-auto">
           <img
@@ -55,8 +54,8 @@ const Home = () => {
             src={gym}
             alt="Mentality gym"
           />
-          <section className="absolute left-0 flex-col items-center content-center w-full h-full text-center lg:flex top-1/4 drop-shadow-lg">
-            <h3 className="text-5xl font-bold lg:text-8xl z-100 text-slate-100 drop-shadow-lg">
+          <section className="absolute left-0 flex flex-col items-center content-center justify-center w-full text-center top-1/4 drop-shadow-lg">
+            <h3 className="text-xl font-bold md:text-5xl lg:text-8xl z-100 text-slate-100 drop-shadow-lg">
               Visit
               <br />
               Our Gym
@@ -65,7 +64,7 @@ const Home = () => {
               An oasis where gym lovers can be found
             </p>
             <Link to="/gym">
-              <button className="lg:text-xl px-3 py-1 uppercase font-bold bg-[#ffffff6b] drop-shadow-lg rounded-3xl text-slate-100 z-10">
+              <button className=" text-sm lg:text-xl px-3 py-1 uppercase font-bold bg-[#ffffff6b] drop-shadow-lg rounded-3xl text-slate-100 z-10">
                 Learn more
               </button>
             </Link>
