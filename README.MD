@@ -59,3 +59,84 @@ After that you can open the project in your text editor of choice. I use Visual 
 - [Express.JS](https://expressjs.com/en/starter/installing.html)
 - [MongoDB](https://www.mongodb.com/docs/)
 - JavaScript
+
+# 🏋️ Mentality - Ecommerce Store
+
+Mentality is a Ecommerce store with Vite, React, Redux, Node, Express, MongoDB and other technologies. This Ecommerce store is made to be a full stack application handling both client and server functionality.
+
+## 🚀 Features
+
+- 🗝 Sign in & Register using JWT
+- 👤 View your own profile, email, name, orders, etc.
+- 🗨 Selection of clothing
+- 📬 Admins can edit:
+  - 📁 Product Name
+  - 🖼 Product Images
+  - 📝 Product Description
+  - 👥 User roles
+- 🔎 Search for products
+- 📥 Drag and drop to upload files and images
+- 🌓 Toggle between light mode and dark mode
+
+## 🛠️ Main Technologies
+
+- `React`
+- `Redux`
+- `Node`
+- `Express`
+- `MongoBD`
+- `TailwindCSS`
+- `Vite`
+
+## 📝 Process
+
+I started with
+
+## 🤔 How Can It Be Improved?
+
+It would be amazing if users were able to send GIFs and stickers, just like on WhatsApp. Also, being able to send voice messages and videos to each other would greatly improve the project. Adding testing would be beneficial as well, something I definitely plan to do next time.
+
+## 🐛 Current Bug
+
+So far, I'm not really sure if there are any bugs. However, there might be some issues on the mobile version. I tested it out on my phone (iPhone 14 Pro Max), and so far it looks good there, but on smaller devices or Android phones, it might look a bit odd. I'm not sure from that side, but there might be some bugs to iron out.
+
+<details>
+<summary><h3> 📸 - Demo Images </h3></summary>
+
+#
+
+![Screenshot 2023-12-28 at 11 45 11](https://raw.githubusercontent.com/carlos-req/ecommerce_store/main/client/public/github_clone.png)
+
+#
+
+![Screenshot 2023-12-28 at 11 45 53]()
+
+#
+
+![Screenshot 2023-12-28 at 11 48 12]()
+
+#
+
+![Screenshot 2023-12-28 at 11 48 35]()
+
+#
+
+![Screenshot 2023-12-28 at 11 52 06]()
+
+#
+
+![Screenshot 2023-12-28 at 11 52 15]()
+
+#
+
+![Screenshot 2023-12-28 at 11 53 01]()
+
+#
+
+![Screenshot 2023-12-28 at 11 53 20]()
+
+#
+
+![Screenshot 2023-12-28 at 11 54 04]()
+
+</details>
