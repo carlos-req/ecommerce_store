@@ -62,3 +62,10 @@ body {
     transform: rotate(360deg);
   }
 }
+
+.footer--icon-hover {
+  color: #e2e8f0;
+}
+.footer--icon-hover:hover {
+  color: #b6b6b6;
+}
