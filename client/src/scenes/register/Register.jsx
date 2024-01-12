@@ -46,7 +46,7 @@ const Register = () => {
   }
 
   return (
-    <section className="absolute left-0 w-full top-[22%]">
+    <section className="w-full h-auto mt-52 ">
       <form
         onSubmit={handleSubmit}
         className="flex flex-col items-center gap-3 mx-auto w-[80vw] max-w-[30rem]"

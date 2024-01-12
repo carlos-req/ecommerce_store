@@ -18,7 +18,7 @@ export const FooterLinks = ({ name, path }) => {
 
 const Footer = () => {
   return (
-    <footer className="mt-auto mb-12 lg:px-8">
+    <footer className="mt-20 mb-12 lg:px-8">
       <section className="flex flex-col lg:flex-row-reverse lg:justify-between">
         {/*news letter/ social media*/}
         <section className="flex flex-col gap-6 px-8 mb-8 lg:gap-2">
