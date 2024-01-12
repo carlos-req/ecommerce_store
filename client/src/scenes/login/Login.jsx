@@ -41,7 +41,7 @@ const Login = () => {
   }
 
   return (
-    <section className="absolute left-0 w-full top-1/4">
+    <section className="w-full h-auto mb-20 mt-52">
       <form
         onSubmit={handleSubmit}
         className="flex flex-col items-center gap-3 mx-auto w-[80vw] max-w-[30rem]"
