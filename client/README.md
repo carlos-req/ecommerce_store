@@ -5,7 +5,7 @@ Todo
 [] Products Page - Filter and all products
 [] Mens Page
 [] Womens Page
-[] Footer
+[x] Footer
 [] Checkout
 [] Cart Page
 [] Fix scroll to top functionality
