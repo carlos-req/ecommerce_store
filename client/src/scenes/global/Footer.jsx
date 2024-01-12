@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
 export const FooterLinks = ({ name, path }) => {
   return (
     <Link to={path}>
-      <p>{name}</p>
+      <p className="my-3 text-xs text-slate-200 opacity-80">{name}</p>
     </Link>
   );
 };
@@ -12,6 +13,22 @@ const Footer = () => {
   return (
     <footer className="mt-auto mb-12">
       <section>
+        <section>
+          <h6 className="px-8 text-xl font-black tracking-tight text-center uppercase text-slate-100">
+            Sign up for Mentality newsletter
+          </h6>
+          <section className="px-8">
+            {/*This would be a form that handles submission for newsletter*/}
+            <input
+              className="w-full px-6 py-3 my-4 text-xs duration-200 ease-in-out bg-transparent border-2 border-solid outline-none border-[#ffffff6b] rounded-2xl caret-slate-100 text-slate-100 focus:border-slate-50"
+              type="email"
+              required
+              placeholder="Your Email Address"
+              name="email"
+            />
+          </section>
+          {/*news letter/ social media*/}
+        </section>
         <section className="flex flex-col gap-8 text-left text-slate-100 md:flex-row ">
           <section className="w-full px-4 py-4 border-2 border-[#ffffff6b] md:border-0 rounded-3xl">
             <h3 className="font-extrabold uppercase">Help</h3>
@@ -30,11 +47,13 @@ const Footer = () => {
             <FooterLinks path="/shows" name="Shows" />
           </section>
         </section>
-        <section>{/*news letter/ social media*/}</section>
       </section>
-      <section className="text-center">
+      <section className="mt-8 text-center ">
         {/*copyright section*/}
-        <p>&copy;2024|Mentality LLC|All Rights Reserved</p>
+        <p className="text-xs text-slate-200">
+          &copy;&nbsp;2024&nbsp;|&nbsp;Mentality LLC&nbsp;|&nbsp;All Rights
+          Reserved
+        </p>
         <p className="inline text-xs font-bold tracking-tighter text-center uppercase">
           <Link>
             <p className="inline text-slate-200">privacy policy</p>
@@ -58,3 +77,8 @@ const Footer = () => {
 };
 
 export default Footer;
+
+FooterLinks.propTypes = {
+  name: PropTypes.string.isRequired,
+  path: PropTypes.string.isRequired,
+};
