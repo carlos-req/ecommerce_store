@@ -8,5 +8,5 @@ Todo
 [x] Footer
 [] Checkout
 [] Cart Page
-[] Fix scroll to top functionality
+[x] Fix scroll to top functionality
 [x] 404 Page

@@ -1,10 +1,10 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { register } from "../../features/auth/authSlice";
+import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { register, reset } from "../../features/auth/authSlice";
 import Spinner from "../../components/Spinner";
-import { useAuthEffect } from "../../hooks/useAuthEffect";
 import { FormField } from "../../components/FormField";
+import { toast } from "react-toastify";
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -13,7 +13,6 @@ const Register = () => {
     email: "",
     password: "",
   });
-  const { isLoading } = useAuthEffect();
   const dispatch = useDispatch();
 
   //destructure form data
@@ -36,9 +35,25 @@ const Register = () => {
       email,
       password,
     };
-    console.log(userData);
     dispatch(register(userData));
   };
+
+  const navigate = useNavigate();
+  const { user, isLoading, isError, isSuccess, message } = useSelector(
+    (state) => state.auth
+  );
+
+  useEffect(() => {
+    if (isError) {
+      toast.error(message);
+    }
+
+    if (isSuccess || user) {
+      navigate("/");
+    }
+
+    dispatch(reset());
+  }, [user, isError, isSuccess, message, navigate, dispatch]);
 
   // return a spinner if loading
   if (isLoading) {

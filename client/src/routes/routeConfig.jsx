@@ -6,11 +6,9 @@ import Login from "../scenes/login/Login";
 import Register from "../scenes/register/Register";
 import Profile from "../scenes/profile/Profile";
 import Admin from "../scenes/admin/Admin";
-import { ScrollToTop } from "../components/ScrollToTop";
 
 export const routes = createRoutesFromElements(
   <Route>
-    <ScrollToTop />
     <Route path="/" element={<Layout />}>
       <Route index element={<Home />} />
       <Route path="/login" element={<Login />} />

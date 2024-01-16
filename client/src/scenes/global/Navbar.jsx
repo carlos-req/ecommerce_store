@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { FaSearch, FaShoppingCart, FaUser } from "react-icons/fa";
 import { NavLink, useNavigate } from "react-router-dom";
 import { setIsCartOpen, setIsSearchOpen } from "../../features/cart/cartSlice";
+import CartMenu from "./CartMenu";
 
 const Navbar = () => {
   const dispatch = useDispatch();
@@ -56,6 +57,7 @@ const Navbar = () => {
                 dispatch(setIsCartOpen());
               }}
             />
+
             {cart.length > 0 && (
               <section>
                 <p className="absolute px-1 text-xs rounded-full top-2.5 bg-opacity-70 bg-slate-500 right-8 text-slate-100">
@@ -64,6 +66,7 @@ const Navbar = () => {
               </section>
             )}
           </section>
+          <CartMenu />
         </nav>
       </header>
     </React.Fragment>
