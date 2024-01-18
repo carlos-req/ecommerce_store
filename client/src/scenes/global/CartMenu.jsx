@@ -6,7 +6,7 @@ const CartMenu = () => {
   const navigate = useNavigate();
 
   const { isCartOpen } = useSelector((state) => state.cart);
-  console.log(isCartOpen);
+
   return (
     <div>
       <ul
