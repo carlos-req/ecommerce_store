@@ -1,7 +1,13 @@
 import { useSelector } from "react-redux";
 import ButtonOutlined from "../../components/ButtonOutlined";
+import { logout } from "../../features/auth/authSlice";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+
 const ProfilePage = () => {
   const { user } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const { firstName } = user;
   return (
@@ -10,7 +16,15 @@ const ProfilePage = () => {
         <h1 className="text-2xl font-bold uppercase text-slate-100">
           Welcome back, {firstName}! 👋
         </h1>
-        <ButtonOutlined width="20rem" title="Logout" textSize="md" />
+        <ButtonOutlined
+          width="20rem"
+          title="Logout"
+          textSize="md"
+          onClick={() => {
+            dispatch(logout());
+            navigate("/");
+          }}
+        />
       </section>
 
       <section className="flex flex-wrap items-center justify-center gap-8">

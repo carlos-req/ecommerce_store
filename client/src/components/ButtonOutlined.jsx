@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-const ButtonOutlined = ({ title, width, textSize }) => {
+const ButtonOutlined = ({ title, width, textSize, onClick }) => {
   return (
     <div
       className={
@@ -7,6 +7,7 @@ const ButtonOutlined = ({ title, width, textSize }) => {
       }
     >
       <button
+        onClick={onClick}
         className={
           textSize
             ? `px-24 py-2 uppercase border-slate-100 border-solid border-2 text-slate-100 font-black  tracking-tight text-${textSize} w-full rounded-xl  ease-in-out duration-150 active:translate-y-1 active:scale-90 transition `
@@ -24,4 +25,5 @@ ButtonOutlined.propTypes = {
   title: PropTypes.string.isRequired,
   width: PropTypes.string,
   textSize: PropTypes.string,
+  onClick: PropTypes.func,
 };

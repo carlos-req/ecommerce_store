@@ -69,3 +69,7 @@ body {
 .footer--icon-hover:hover {
   color: #b6b6b6;
 }
+
+.cart--container {
+  width: 100vw !important;
+}
