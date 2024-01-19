@@ -39,13 +39,13 @@ const CartMenu = () => {
                       <ul className="">
                         <CartMenuItem
                           name="Blue Linen Shirt"
-                          price="32.99"
+                          price={32.99}
                           qty="2"
                         />
 
                         <CartMenuItem
                           name="Red Linen Shirt"
-                          price="33.99"
+                          price={33.99}
                           qty="4"
                         />
                       </ul>

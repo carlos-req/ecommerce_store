@@ -79,19 +79,19 @@ const Footer = () => {
         </p>
         <p className="inline text-xs font-bold tracking-tighter text-center uppercase">
           <Link>
-            <p className="inline text-slate-200">privacy policy</p>
+            <span className="inline text-slate-200">privacy policy</span>
           </Link>
-          <p className="inline text-slate-100">&nbsp;|&nbsp;</p>
+          <span className="inline text-slate-100">&nbsp;|&nbsp;</span>
           <Link>
-            <p className="inline text-slate-200">terms of service</p>
+            <span className="inline text-slate-200">terms of service</span>
           </Link>
-          <p className="inline text-slate-100">&nbsp;|&nbsp;</p>
+          <span className="inline text-slate-100">&nbsp;|&nbsp;</span>
           <Link>
-            <p className="inline text-slate-200">CCPA</p>
+            <span className="inline text-slate-200">CCPA</span>
           </Link>
-          <p className="inline text-slate-100">&nbsp;|&nbsp;</p>
+          <span className="inline text-slate-100">&nbsp;|&nbsp;</span>
           <Link>
-            <p className="inline text-slate-200">Sitemap</p>
+            <span className="inline text-slate-200">Sitemap</span>
           </Link>
         </p>
       </section>
