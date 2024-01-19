@@ -45,6 +45,7 @@ const Home = () => {
         items={["Men's", "Women's"]}
         title="Fall Collection"
         secTitle="All"
+        path="/catalog/fall"
       />
       <section className="flex flex-wrap items-center justify-center ">
         {/*gym*/}

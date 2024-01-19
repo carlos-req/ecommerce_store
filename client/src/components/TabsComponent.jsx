@@ -1,11 +1,23 @@
-/* eslint-disable react/prop-types */
+import PropTypes from "prop-types";
 import { useState, useEffect, useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { fetchAllProducts } from "../features/products/productsSlice";
 
-const TabsComponent = ({ items, title, secTitle }) => {
+const TabsComponent = ({ items, title, secTitle, path }) => {
   const [selectedTab, setSelectedTab] = useState(0);
   const firstBtnRef = useRef();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchAllProducts());
+  }, [dispatch]);
+
+  const { products } = useSelector((state) => state.products);
+
+  console.log(products);
+
   useEffect(() => {
     firstBtnRef.current.focus();
   }, []);
@@ -23,7 +35,7 @@ const TabsComponent = ({ items, title, secTitle }) => {
           <button
             className="px-3 py-1 text-xs font-black tracking-wider uppercase bg-slate-100 rounded-3xl"
             onClick={() => {
-              navigate("/catalog/fall");
+              navigate(`${path}`);
             }}
           >
             shop all
@@ -48,12 +60,12 @@ const TabsComponent = ({ items, title, secTitle }) => {
           </div>
 
           <div className="p-2 bg-white rounded-3xl">
-            {items.map((item, index) => (
+            {products.map((product, index) => (
               <div
-                key={item}
+                key={product._id}
                 className={`${selectedTab === index ? "" : "hidden"}`}
               >
-                {item.content}
+                {product.price}
               </div>
             ))}
           </div>
@@ -64,3 +76,10 @@ const TabsComponent = ({ items, title, secTitle }) => {
 };
 
 export default TabsComponent;
+
+TabsComponent.propTypes = {
+  items: PropTypes.array.isRequired,
+  title: PropTypes.string.isRequired,
+  secTitle: PropTypes.string.isRequired,
+  path: PropTypes.string.isRequired,
+};
