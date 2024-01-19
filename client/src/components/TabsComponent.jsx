@@ -16,8 +16,6 @@ const TabsComponent = ({ items, title, secTitle, path }) => {
 
   const { products } = useSelector((state) => state.products);
 
-  console.log(products);
-
   useEffect(() => {
     firstBtnRef.current.focus();
   }, []);

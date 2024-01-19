@@ -9,7 +9,7 @@ const getProducts = async (req, res) => {
     if (!products) {
       return res.status(400).json({ message: "No Products found" });
     }
-    res.status(200).json({ products });
+    res.status(200).json(products);
   } catch (error) {
     res.status(500).json({ message: error });
   }
