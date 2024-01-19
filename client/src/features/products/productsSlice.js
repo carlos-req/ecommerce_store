@@ -8,14 +8,18 @@ const initialState = {
     catalog: "",
     gender: "",
   },
+  isError: false,
+  isSuccess: false,
+  isLoading: false,
+  message: "",
 };
 
 //fetch all products
 export const fetchAllProducts = createAsyncThunk(
   "products/fetchAllProducts",
-  async (products, thunkAPI) => {
+  async (thunkAPI) => {
     try {
-      return await productsService.fetchAllProducts(products);
+      return await productsService.fetchAllProducts();
     } catch (error) {
       const message =
         (error.response &&
@@ -27,12 +31,13 @@ export const fetchAllProducts = createAsyncThunk(
     }
   }
 );
+
 //fetch products by search options
 export const fetchProductsBySearch = createAsyncThunk(
-  "products/fetchAllProducts",
-  async (products, thunkAPI) => {
+  "products/fetchProductsBySearch",
+  async (searchOptions, thunkAPI) => {
     try {
-      return await productsService.fetchProductsBySearch(products);
+      return await productsService.fetchProductsBySearch(searchOptions);
     } catch (error) {
       const message =
         (error.response &&
@@ -49,8 +54,11 @@ const productsSlice = createSlice({
   name: "products",
   initialState,
   reducers: {
-    setProducts: (state, action) => {
-      state.products = action.payload;
+    reset: (state) => {
+      state.isLoading = false;
+      state.isSuccess = false;
+      state.isError = false;
+      state.message = "";
     },
     setSearchOptions: (state, action) => {
       state.searchOptions = action.payload;
@@ -59,19 +67,37 @@ const productsSlice = createSlice({
       state.searchOptions = initialState.searchOptions;
     },
   },
-  /*
   extraReducers: (builder) => {
     builder
-      .addCase(fetchAllProducts.pending, (state) => {})
-      .addCase(fetchAllProducts.fulfilled, (state) => {})
-      .addCase(fetchAllProducts.rejected, (state) => {})
-      .addCase(fetchProductsBySearch.pending, (state) => {})
-      .addCase(fetchProductsBySearch.fulfilled, (state) => {})
-      .addCase(fetchProductsBySearch.rejected, (state) => {});
-  }, */
+      .addCase(fetchAllProducts.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(fetchAllProducts.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.products = action.payload;
+      })
+      .addCase(fetchAllProducts.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
+      .addCase(fetchProductsBySearch.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(fetchProductsBySearch.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.products = action.payload;
+      })
+      .addCase(fetchProductsBySearch.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      });
+  },
 });
 
-export const { setProducts, setSearchOptions, resetSearchOptions } =
-  productsSlice.actions;
+export const { setSearchOptions, resetSearchOptions } = productsSlice.actions;
 
 export default productsSlice.reducer;

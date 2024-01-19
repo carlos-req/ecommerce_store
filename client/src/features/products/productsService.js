@@ -10,8 +10,8 @@ const fetchAllProducts = async () => {
 };
 
 // Fetch products using search options
-const fetchProductsBySearch = async () => {
-  const response = await axios.get(API_URL);
+const fetchProductsBySearch = async (searchOptions) => {
+  const response = await axios.get(API_URL, searchOptions);
 
   return response.data;
 };
