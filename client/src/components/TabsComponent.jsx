@@ -1,12 +1,12 @@
 import PropTypes from "prop-types";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { fetchAllProducts } from "../features/products/productsSlice";
 
 const TabsComponent = ({ items, title, secTitle, path }) => {
-  const [selectedTab, setSelectedTab] = useState(0);
-  const firstBtnRef = useRef();
+  const [selectedTab, setSelectedTab] = useState(items[0]);
+  const [focusedButton, setFocusedButton] = useState(items[0]);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -17,8 +17,8 @@ const TabsComponent = ({ items, title, secTitle, path }) => {
   const { products } = useSelector((state) => state.products);
 
   useEffect(() => {
-    firstBtnRef.current.focus();
-  }, []);
+    setFocusedButton(selectedTab);
+  }, [selectedTab]);
 
   return (
     <section className="w-full max-w-6xl px-2 py-10 mx-auto lg:px-12">
@@ -43,13 +43,15 @@ const TabsComponent = ({ items, title, secTitle, path }) => {
       <div className="flex items-start pt-3 pb-12 text-xs">
         <div className="flex flex-col w-full max-w-[13rem] gap-y-2">
           <div className="flex items-center justify-between p-1 font-bold text-white border-2 border-red-800 rounded-3xl gap-x-2">
-            {items.map((item, index) => (
+            {items.map((item) => (
               <button
-                ref={index === 0 ? firstBtnRef : null}
-                key={index}
-                onClick={() => setSelectedTab(index)}
+                key={item}
+                onClick={() => {
+                  setSelectedTab(item);
+                  setFocusedButton(item);
+                }}
                 className={`outline-none w-full py-1 rounded-3xl text-center uppercase ease-in-out  transition-all duration-500${
-                  selectedTab === index ? " bg-red-800 text-slate-100 " : ""
+                  focusedButton === item ? " bg-red-800 text-slate-100 " : ""
                 } `}
               >
                 {item}
@@ -57,13 +59,24 @@ const TabsComponent = ({ items, title, secTitle, path }) => {
             ))}
           </div>
 
-          <div className="p-2 bg-white rounded-3xl">
-            {products.map((product, index) => (
+          <div className="flex flex-row w-full gap-3">
+            {products.map((product) => (
               <div
                 key={product._id}
-                className={`${selectedTab === index ? "" : "hidden"}`}
+                className={`${
+                  (selectedTab.toLowerCase() === "men's" &&
+                    (product.group === "men" || product.group === "both")) ||
+                  (selectedTab.toLowerCase() === "women's" &&
+                    (product.group === "women" || product.group === "both"))
+                    ? ""
+                    : "hidden"
+                }`}
               >
-                {product.price}
+                <div className="w-32">
+                  <img src={product.imageURL} />
+                </div>
+
+                <p className="text-lg text-slate-100">{product.price}</p>
               </div>
             ))}
           </div>
