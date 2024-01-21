@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { fetchAllProducts } from "../features/products/productsSlice";
+import { FaPlusSquare } from "react-icons/fa";
 
 const TabsComponent = ({ items, title, secTitle, path }) => {
   const [selectedTab, setSelectedTab] = useState(items[0]);
@@ -72,11 +73,24 @@ const TabsComponent = ({ items, title, secTitle, path }) => {
                     : "hidden"
                 }`}
               >
-                <div className="w-32">
-                  <img src={product.imageURL} />
+                <div
+                  onClick={() => {
+                    navigate(`/catalog/${product._id}`);
+                  }}
+                  className="relative w-32 cursor-pointer rounded-xl group"
+                >
+                  <p className="absolute z-30 hidden text-lg font-black transform -translate-x-1/2 bottom-4 left-1/2 text-slate-100 group-hover:block">
+                    {product.price}
+                  </p>
+                  <button className="absolute z-30 hidden transform -translate-x-1/2 -translate-y-1/2 top-1/3 left-1/2 group-hover:block">
+                    <FaPlusSquare size={40} color="#fff" />
+                  </button>
+                  <div className="absolute z-20 hidden w-32 h-full py-20 transform -translate-x-1/2 -translate-y-1/2 opacity-80 rounded-2xl top-1/2 left-1/2 group-hover:block bg-gray-950"></div>
+                  <img
+                    className="shadow-xl rounded-2xl "
+                    src={product.imageURL}
+                  />
                 </div>
-
-                <p className="text-lg text-slate-100">{product.price}</p>
               </div>
             ))}
           </div>
