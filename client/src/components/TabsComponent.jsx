@@ -1,15 +1,15 @@
 import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { fetchAllProducts } from "../features/products/productsSlice";
-import { FaPlusSquare } from "react-icons/fa";
+import ProductThumbnail from "../scenes/global/ProductThumbnail";
+import { useNavigate } from "react-router-dom";
 
 const TabsComponent = ({ items, title, secTitle, path }) => {
   const [selectedTab, setSelectedTab] = useState(items[0]);
   const [focusedButton, setFocusedButton] = useState(items[0]);
-  const navigate = useNavigate();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(fetchAllProducts());
@@ -62,36 +62,11 @@ const TabsComponent = ({ items, title, secTitle, path }) => {
 
           <div className="flex flex-row flex-wrap gap-3 product--thumbnail-container">
             {products.map((product) => (
-              <div
+              <ProductThumbnail
                 key={product._id}
-                className={`${
-                  (selectedTab.toLowerCase() === "men's" &&
-                    (product.group === "men" || product.group === "both")) ||
-                  (selectedTab.toLowerCase() === "women's" &&
-                    (product.group === "women" || product.group === "both"))
-                    ? ""
-                    : "hidden"
-                }`}
-              >
-                <div
-                  onClick={() => {
-                    navigate(`/catalog/${product._id}`);
-                  }}
-                  className="relative cursor-pointer w-28 md:w-44 rounded-xl group"
-                >
-                  <p className="absolute z-30 hidden text-lg font-black transform -translate-x-1/2 bottom-4 left-1/2 text-slate-100 group-hover:block">
-                    {product.price}
-                  </p>
-                  <button className="absolute z-30 hidden transform -translate-x-1/2 -translate-y-1/2 top-1/3 left-1/2 group-hover:block">
-                    <FaPlusSquare size={40} color="#fff" />
-                  </button>
-                  <div className="absolute z-20 hidden md:h-[13.75rem] py-20 transform -translate-x-1/2 -translate-y-1/2 w-[7.1em] md:w-[11.1rem] opacity-80 rounded-2xl top-1/2 left-1/2 group-hover:block bg-gray-950"></div>
-                  <img
-                    className="shadow-xl rounded-2xl "
-                    src={product.imageURL}
-                  />
-                </div>
-              </div>
+                product={product}
+                selectedTab={selectedTab}
+              />
             ))}
           </div>
         </div>

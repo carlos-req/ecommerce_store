@@ -15,7 +15,7 @@ export const routes = createRoutesFromElements(
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/profile" element={<Profile />} />
-      <Route path="/catalog/:id" element={<Product />} />
+      <Route path="/:id" element={<Product />} />
       <Route path="/admin" element={<Admin />} />
     </Route>
     <Route path="*" element={<Error />} />
