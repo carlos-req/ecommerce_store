@@ -60,7 +60,7 @@ const TabsComponent = ({ items, title, secTitle, path }) => {
             ))}
           </div>
 
-          <div className="flex flex-row w-full gap-3">
+          <div className="flex flex-row flex-wrap gap-3 product--thumbnail-container">
             {products.map((product) => (
               <div
                 key={product._id}
@@ -77,7 +77,7 @@ const TabsComponent = ({ items, title, secTitle, path }) => {
                   onClick={() => {
                     navigate(`/catalog/${product._id}`);
                   }}
-                  className="relative w-32 cursor-pointer rounded-xl group"
+                  className="relative cursor-pointer w-28 md:w-44 rounded-xl group"
                 >
                   <p className="absolute z-30 hidden text-lg font-black transform -translate-x-1/2 bottom-4 left-1/2 text-slate-100 group-hover:block">
                     {product.price}
@@ -85,7 +85,7 @@ const TabsComponent = ({ items, title, secTitle, path }) => {
                   <button className="absolute z-30 hidden transform -translate-x-1/2 -translate-y-1/2 top-1/3 left-1/2 group-hover:block">
                     <FaPlusSquare size={40} color="#fff" />
                   </button>
-                  <div className="absolute z-20 hidden w-32 h-full py-20 transform -translate-x-1/2 -translate-y-1/2 opacity-80 rounded-2xl top-1/2 left-1/2 group-hover:block bg-gray-950"></div>
+                  <div className="absolute z-20 hidden md:h-[13.75rem] py-20 transform -translate-x-1/2 -translate-y-1/2 w-[7.1em] md:w-[11.1rem] opacity-80 rounded-2xl top-1/2 left-1/2 group-hover:block bg-gray-950"></div>
                   <img
                     className="shadow-xl rounded-2xl "
                     src={product.imageURL}

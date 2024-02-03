@@ -73,3 +73,7 @@ body {
 .cart--container {
   width: 100vw !important;
 }
+
+.product--thumbnail-container {
+  width: calc(100vw - 2rem) !important;
+}

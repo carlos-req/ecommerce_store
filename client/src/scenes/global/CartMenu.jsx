@@ -89,28 +89,6 @@ const CartMenu = () => {
         </div>
       </div>
     </div>
-
-    /*<div className="cart--container">
-      <div
-        className={
-          isCartOpen
-            ? " absolute top-0 right-0 md:w-1/4 h-lvh bg-[#2b2b2b] flex flex-col justify-center items-center z-20 drop-shadow-md"
-            : "hidden"
-        }
-      >
-        <div
-          onClick={() => {
-            dispatch(setIsCartOpen());
-          }}
-          className="z-20"
-        >
-          <FaTimes color="#fff" />
-        </div>
-        <ul>
-          <li> list of products</li>
-        </ul>
-      </div>
-        </div> */
   );
 };
 
