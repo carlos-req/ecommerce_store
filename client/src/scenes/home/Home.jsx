@@ -49,7 +49,7 @@ const Home = () => {
       />
       <section className="flex flex-wrap items-center justify-center ">
         {/*gym*/}
-        <section className="relative w-full h-auto">
+        <section className="relative w-full h-auto lg:w-11/12">
           <img
             className=" drop-shadow-md rounded-3xl brightness-75"
             src={gym}

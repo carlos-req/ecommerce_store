@@ -21,7 +21,7 @@ const Navbar = () => {
 
   return (
     <React.Fragment>
-      <header className=" z-10 fixed flex justify-center items-center w-full h-[80px] top-0 left-0 p-2">
+      <header className=" z-30 fixed flex justify-center items-center w-full h-[80px] top-0 left-0 p-2">
         <nav className=" flex justify-items-center items-center justify-between h-[50px] md:w-7/8 w-full rounded-[2rem] max-w-[1440px] bg-zinc-900 px-5 bg-opacity-20 backdrop-saturate-200 backdrop-blur-md drop-shadow-xl">
           <section>
             <NavLink to="/">
