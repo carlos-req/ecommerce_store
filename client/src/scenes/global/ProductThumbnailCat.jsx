@@ -1,23 +1,12 @@
 import PropTypes from "prop-types";
 import { FaPlus } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
-//import { useDispatch } from "react-redux";
 
-const ProductThumbnail = ({ product, selectedTab }) => {
+const ProductThumbnail = ({ product }) => {
   const navigate = useNavigate();
-  //const dispatch = useDispatch();
+
   return (
-    <div
-      key={product._id}
-      className={`${
-        (selectedTab.toLowerCase() === "men's" &&
-          (product.group === "men" || product.group === "both")) ||
-        (selectedTab.toLowerCase() === "women's" &&
-          (product.group === "women" || product.group === "both"))
-          ? ""
-          : "hidden"
-      }`}
-    >
+    <div key={product._id}>
       <div
         onClick={() => {
           navigate(`/${product._id}`);
@@ -43,5 +32,4 @@ export default ProductThumbnail;
 
 ProductThumbnail.propTypes = {
   product: PropTypes.object.isRequired,
-  selectedTab: PropTypes.string.isRequired,
 };
