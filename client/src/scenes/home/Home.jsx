@@ -9,21 +9,21 @@ const Home = () => {
     <main className="flex-1 w-full h-screen mt-20 mb-20">
       <div className="flex flex-wrap items-center justify-center gap-8">
         <section className="relative max-w-lg">
-          <h3 className="absolute z-10 text-5xl font-bold bottom-36 left-12 text-slate-100">
+          <h3 className="absolute z-10 text-5xl font-bold bottom-36 left-12 text-primary">
             New
             <br />
             Arrivals
           </h3>
-          <p className="absolute z-10 mb-2 text-sm font-bold bottom-28 left-12 text-slate-100">
+          <p className="absolute z-10 mb-2 text-sm font-bold bottom-28 left-12 text-primary">
             Introducing Aura, AirTech, and more...
           </p>
           <Link to="/women">
-            <button className="absolute px-3 py-1 uppercase font-bold bg-[#ffffff4d] left-12 bottom-20 rounded-3xl text-slate-100 z-10">
+            <button className="absolute z-10 px-3 py-1 font-bold uppercase bg-ctabutton left-12 bottom-20 rounded-3xl text-primary">
               Shop Womens
             </button>
           </Link>
           <Link to="/men">
-            <button className="absolute px-3 py-1 uppercase font-bold bg-[#ffffff4d] left-12 bottom-10 rounded-3xl text-slate-100 z-10">
+            <button className="absolute z-10 px-3 py-1 font-bold uppercase bg-ctabutton left-12 bottom-10 rounded-3xl text-primary">
               Shop Mens
             </button>
           </Link>
@@ -56,16 +56,16 @@ const Home = () => {
             alt="Mentality gym"
           />
           <section className="absolute left-0 flex flex-col items-center content-center justify-center w-full text-center top-1/4 drop-shadow-lg">
-            <h3 className="text-xl font-bold md:text-5xl lg:text-8xl z-100 text-slate-100 drop-shadow-lg">
+            <h3 className="text-xl font-bold md:text-5xl lg:text-8xl z-100 text-primary drop-shadow-lg">
               Visit
               <br />
               Our Gym
             </h3>
-            <p className="z-10 mb-2 text-sm font-bold lg:text-lg text-slate-100">
+            <p className="z-10 mb-2 text-sm font-bold lg:text-lg text-primary">
               An oasis where gym lovers can be found
             </p>
             <Link to="/gym">
-              <button className=" text-sm lg:text-xl px-3 py-1 uppercase font-bold bg-[#ffffff6b] drop-shadow-lg rounded-3xl text-slate-100 z-10">
+              <button className="z-10 px-3 py-1 text-sm font-bold uppercase lg:text-xl bg-ctabutton drop-shadow-lg rounded-3xl text-primary">
                 Learn more
               </button>
             </Link>

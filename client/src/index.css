@@ -9,6 +9,14 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+
+  --background: rgb(26, 26, 26);
+  --primary: rgb(241 245 249);
+  --primary200: rgb(226 232 240);
+  --secondary: rgb(13 13 13);
+  --ctabutton: rgba(255, 255, 255, 0.302);
+  --ctaborder: rgb(255, 255, 255, 0.302);
+  --footersecondary: rgb(226 232 240);
 }
 
 * {
@@ -19,7 +27,7 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: #1a1a1a;
+  background-color: var(--background);
   height: 100vh;
   max-width: 100vw;
   overflow-x: hidden;

@@ -25,17 +25,17 @@ const Navbar = () => {
         <nav className=" flex justify-items-center items-center justify-between h-[50px] md:w-7/8 w-full rounded-[2rem] max-w-[1440px] bg-zinc-900 px-5 bg-opacity-20 backdrop-saturate-200 backdrop-blur-md drop-shadow-xl">
           <section>
             <NavLink to="/">
-              <p className="font-bold text-slate-50 ">MENTALITY</p>
+              <p className="font-bold text-primary ">MENTALITY</p>
             </NavLink>
           </section>
           <section className="hidden gap-5 md:flex">
             <NavLink to="/womens">
-              <p className="font-bold text-slate-200 hover:border-b-slate-100 hover:border-b-4 hover:transition-transform hover:scale-110">
+              <p className="font-bold text-primary200 hover:border-b-slate-100 hover:border-b-4 hover:transition-transform hover:scale-110">
                 Women
               </p>
             </NavLink>
             <NavLink to="/mens">
-              <p className="font-bold text-slate-200 hover:border-b-slate-100 hover:border-b-4 hover:transition-transform hover:scale-110">
+              <p className="font-bold text-primary200 hover:border-b-slate-100 hover:border-b-4 hover:transition-transform hover:scale-110">
                 Men
               </p>
             </NavLink>

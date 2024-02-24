@@ -2,7 +2,17 @@
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        background: "var(--background)",
+        primary: "var(--primary)",
+        primary200: "var(--primary200)",
+        secondary: "var(--secondary)",
+        ctabutton: "var(--ctabutton)",
+        ctaborder: "var(--ctaborder)",
+        footersecondary: "var(--footersecondary)",
+      },
+    },
   },
   plugins: [],
 };

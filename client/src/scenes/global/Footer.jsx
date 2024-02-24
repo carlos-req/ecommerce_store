@@ -11,7 +11,7 @@ import {
 export const FooterLinks = ({ name, path }) => {
   return (
     <Link to={path}>
-      <p className="my-3 text-xs text-slate-200 opacity-80">{name}</p>
+      <p className="my-3 text-xs text-primary200 opacity-80">{name}</p>
     </Link>
   );
 };
@@ -22,13 +22,13 @@ const Footer = () => {
       <section className="flex flex-col lg:flex-row-reverse lg:justify-between">
         {/*news letter/ social media*/}
         <section className="flex flex-col gap-6 px-8 mb-8 lg:gap-2">
-          <h6 className="px-8 text-xl font-black tracking-tight text-center uppercase text-slate-100 ">
+          <h6 className="px-8 text-xl font-black tracking-tight text-center uppercase text-primary ">
             Sign up for Mentality newsletter
           </h6>
           {/*This would be a form that handles submission for newsletter*/}
           <section className="flex flex-col items-center gap-6 lg:flex-row lg:gap-3">
             <input
-              className="w-full px-6 py-3  text-xs duration-200 ease-in-out bg-transparent border-2 border-solid outline-none border-[#ffffff6b] rounded-2xl caret-slate-100 text-slate-100 focus:border-slate-50  "
+              className="w-full px-6 py-3 text-xs duration-200 ease-in-out bg-transparent border-2 border-solid outline-none border-ctaborder rounded-2xl caret-primary text-primary focus:border-primary "
               type="email"
               required
               placeholder="Your Email Address"
@@ -37,13 +37,13 @@ const Footer = () => {
             <div className="w-full lg:w-36">
               <button
                 type="submit"
-                className="px-12 lg:px-4 py-4 lg:py-2 lg:rounded-lg  uppercase bg-slate-100 bg-opacity-80 text-[#0d0d0d] font-black  tracking-tighter text-xl lg:text-base w-full rounded-2xl transation ease-in-out duration-200 hover:bg-opacity-100 hover:drop-shadow-md "
+                className="w-full px-12 py-4 text-xl font-black tracking-tighter uppercase duration-200 ease-in-out lg:px-4 lg:py-2 lg:rounded-lg bg-primary bg-opacity-80 text-secondary lg:text-base rounded-2xl transation hover:bg-opacity-100 hover:drop-shadow-md"
               >
                 Sign Up
               </button>
             </div>
           </section>
-          <hr className="lg:hidden"></hr>
+          <hr className="lg:hidden bg-primary"></hr>
           <section className="flex flex-row items-center justify-between cursor-pointer lg:px-2 lg:mt-8 ">
             <FaInstagram className="footer--icon-hover" size={20} />
             <FaTiktok className="footer--icon-hover" size={20} />
@@ -52,8 +52,8 @@ const Footer = () => {
             <FaYoutube className="footer--icon-hover" size={20} />
           </section>
         </section>
-        <section className="flex flex-col gap-8 text-left text-slate-100 md:flex-row ">
-          <section className="w-full px-4 py-4 border-2 border-[#ffffff6b] md:border-0 rounded-3xl">
+        <section className="flex flex-col gap-8 text-left text-primary md:flex-row ">
+          <section className="w-full px-4 py-4 border-2 border-ctaborder md:border-0 rounded-3xl">
             <h3 className="font-extrabold uppercase">Help</h3>
             <FooterLinks path="/help" name="Help Center" />
             <FooterLinks path="/contactus" name="Contact us" />
@@ -61,7 +61,7 @@ const Footer = () => {
             <FooterLinks path="/track" name="Track My Order" />
             <FooterLinks path="/returns_exchanges" name="Returns & Exchanges" />
           </section>
-          <section className="w-full px-4 py-4 border-2 border-[#ffffff6b] md:border-0 rounded-3xl">
+          <section className="w-full px-4 py-4 border-2 border-ctaborder md:border-0 rounded-3xl">
             <h3 className="font-extrabold uppercase">More</h3>
             <FooterLinks path="/share" name="Share The Look" />
             <FooterLinks path="/about" name="About Us" />
@@ -73,25 +73,25 @@ const Footer = () => {
       </section>
       <section className="mt-8 text-center ">
         {/*copyright section*/}
-        <p className="text-xs text-slate-200">
+        <p className="text-xs text-primary200">
           &copy;&nbsp;2024&nbsp;|&nbsp;Mentality LLC&nbsp;|&nbsp;All Rights
           Reserved
         </p>
         <p className="inline text-xs font-bold tracking-tighter text-center uppercase">
           <Link>
-            <span className="inline text-slate-200">privacy policy</span>
+            <span className="inline text-primary200">privacy policy</span>
           </Link>
-          <span className="inline text-slate-100">&nbsp;|&nbsp;</span>
+          <span className="inline text-primary">&nbsp;|&nbsp;</span>
           <Link>
-            <span className="inline text-slate-200">terms of service</span>
+            <span className="inline text-primary200">terms of service</span>
           </Link>
-          <span className="inline text-slate-100">&nbsp;|&nbsp;</span>
+          <span className="inline text-primary">&nbsp;|&nbsp;</span>
           <Link>
-            <span className="inline text-slate-200">CCPA</span>
+            <span className="inline text-primary200">CCPA</span>
           </Link>
-          <span className="inline text-slate-100">&nbsp;|&nbsp;</span>
+          <span className="inline text-primary">&nbsp;|&nbsp;</span>
           <Link>
-            <span className="inline text-slate-200">Sitemap</span>
+            <span className="inline text-primary200">Sitemap</span>
           </Link>
         </p>
       </section>
