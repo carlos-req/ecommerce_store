@@ -9,15 +9,18 @@ import ProductThumbnailCat from "../global/ProductThumbnailCat";
 const Mens = () => {
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    // Dispatch action to set search options with gender as "mens"
-    dispatch(setSearchOptions({ group: "men" }));
+  const { products } = useSelector((state) => state.products);
+  const { searchOptions } = useSelector((state) => state.products);
 
-    // Dispatch action to fetch products by search options
-    dispatch(fetchProductsBySearch());
+  useEffect(() => {
+    // Dispatch action to set search options
+    dispatch(setSearchOptions({ group: ["men", "both"] }));
   }, [dispatch]);
 
-  const { products } = useSelector((state) => state.products);
+  useEffect(() => {
+    // Dispatch action to fetch products by search options
+    dispatch(fetchProductsBySearch(searchOptions));
+  }, [dispatch, searchOptions]);
 
   return (
     <main className="flex-1 w-full h-screen mt-20 mb-20">
@@ -33,9 +36,9 @@ const Mens = () => {
         </section>
       </section>
       <section className="my-3">
-        {products.map((product) => {
-          return <ProductThumbnailCat key={product._id} product={product} />;
-        })}
+        {products.map((product) => (
+          <ProductThumbnailCat key={product._id} product={product} />
+        ))}
       </section>
     </main>
   );

@@ -14,16 +14,15 @@ const getProducts = async (req, res) => {
   }
 };
 
-//GET /public
+//POST /public
 const getProductsBySearch = async (req, res) => {
-  const { name, catalog, group } = req.body;
   try {
+    const { name, catalog, group } = req.body;
     const query = {};
-    if (name) query.name = name;
+    if (name) query.name = { $in: name };
     if (catalog) query.catalog = catalog;
     if (group) query.group = group;
 
-    // Find products based on the constructed query
     const products = await ProductModel.find(query);
 
     if (!products) {

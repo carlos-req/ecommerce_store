@@ -20,7 +20,7 @@ router.get("/", getProducts);
 router.post("/", isAdmin, newProduct);
 
 //Get Products by Search - Public
-router.get("/search", getProductsBySearch);
+router.post("/search", getProductsBySearch);
 
 //Get product - Public
 router.get("/:id", getProduct);
