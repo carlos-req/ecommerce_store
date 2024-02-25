@@ -28,7 +28,7 @@ const Navbar = () => {
               <p className="font-bold text-primary ">MENTALITY</p>
             </NavLink>
           </section>
-          <section className="hidden gap-5 md:flex">
+          <section className="gap-5  md:flex">
             <NavLink to="/womens">
               <p className="font-bold text-primary200 hover:border-b-slate-100 hover:border-b-4 hover:transition-transform hover:scale-110">
                 Women

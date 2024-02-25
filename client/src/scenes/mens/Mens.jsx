@@ -1,13 +1,20 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchAllProducts } from "../../features/products/productsSlice";
+import {
+  fetchProductsBySearch,
+  setSearchOptions,
+} from "../../features/products/productsSlice";
 import ProductThumbnailCat from "../global/ProductThumbnailCat";
 
 const Mens = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchAllProducts());
+    // Dispatch action to set search options with gender as "mens"
+    dispatch(setSearchOptions({ group: "men" }));
+
+    // Dispatch action to fetch products by search options
+    dispatch(fetchProductsBySearch());
   }, [dispatch]);
 
   const { products } = useSelector((state) => state.products);

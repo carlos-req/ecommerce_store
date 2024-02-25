@@ -1,6 +1,7 @@
 import express from "express";
 import {
   getProducts,
+  getProductsBySearch,
   newProduct,
   getProduct,
   updateProduct,
@@ -17,6 +18,9 @@ router.get("/", getProducts);
 
 //Add product - Private
 router.post("/", isAdmin, newProduct);
+
+//Get Products by Search - Public
+router.get("/search", getProductsBySearch);
 
 //Get product - Public
 router.get("/:id", getProduct);

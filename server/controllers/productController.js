@@ -1,10 +1,30 @@
 import { ProductModel } from "../models/productModel.js";
 
 // GET/public
-
 const getProducts = async (req, res) => {
   try {
     const products = await ProductModel.find({});
+
+    if (!products) {
+      return res.status(400).json({ message: "No Products found" });
+    }
+    res.status(200).json(products);
+  } catch (error) {
+    res.status(500).json({ message: error });
+  }
+};
+
+//GET /public
+const getProductsBySearch = async (req, res) => {
+  const { name, catalog, group } = req.body;
+  try {
+    const query = {};
+    if (name) query.name = name;
+    if (catalog) query.catalog = catalog;
+    if (group) query.group = group;
+
+    // Find products based on the constructed query
+    const products = await ProductModel.find(query);
 
     if (!products) {
       return res.status(400).json({ message: "No Products found" });
@@ -67,4 +87,11 @@ const deleteProduct = (req, res) => {
   res.status(200).json({ message: "User profile Updated" });
 };
 
-export { getProducts, newProduct, getProduct, updateProduct, deleteProduct };
+export {
+  getProducts,
+  getProductsBySearch,
+  newProduct,
+  getProduct,
+  updateProduct,
+  deleteProduct,
+};

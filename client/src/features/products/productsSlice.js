@@ -6,7 +6,7 @@ const initialState = {
   searchOptions: {
     name: "",
     catalog: "",
-    gender: "",
+    group: "",
   },
   isError: false,
   isSuccess: false,
@@ -32,24 +32,6 @@ export const fetchAllProducts = createAsyncThunk(
   }
 );
 
-//fetch products by search options
-export const fetchProductsBySearch = createAsyncThunk(
-  "products/fetchProductsBySearch",
-  async (searchOptions, thunkAPI) => {
-    try {
-      return await productsService.fetchProductsBySearch(searchOptions);
-    } catch (error) {
-      const message =
-        (error.response &&
-          error.response.data &&
-          error.response.data.message) ||
-        error.message ||
-        error.toString();
-      return thunkAPI.rejectWithValue(message);
-    }
-  }
-);
-
 const productsSlice = createSlice({
   name: "products",
   initialState,
@@ -61,7 +43,10 @@ const productsSlice = createSlice({
       state.message = "";
     },
     setSearchOptions: (state, action) => {
-      state.searchOptions = action.payload;
+      state.searchOptions = {
+        ...state.searchOptions,
+        ...action.payload,
+      };
     },
     resetSearchOptions: (state) => {
       state.searchOptions = initialState.searchOptions;
@@ -97,6 +82,27 @@ const productsSlice = createSlice({
       });
   },
 });
+
+//fetch products by search options
+export const fetchProductsBySearch = createAsyncThunk(
+  "products/fetchProductsBySearch",
+  async (thunkAPI) => {
+    console.log(searchOptions);
+    const searchOptions = thunkAPI.getState().products.searchOptions;
+    console.log(searchOptions);
+    try {
+      return await productsService.fetchProductsBySearch(searchOptions);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
 
 export const { setSearchOptions, resetSearchOptions } = productsSlice.actions;
 
