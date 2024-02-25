@@ -13,7 +13,7 @@ const ProductThumbnail = ({ product }) => {
         }}
         className="relative cursor-pointer w-28 md:w-44 rounded-xl group"
       >
-        <p className="absolute z-10 hidden text-lg font-black transform -translate-x-1/2 bottom-4 left-1/2 text-slate-100 group-hover:block">
+        <p className="absolute z-10 hidden text-lg font-black transform -translate-x-1/2 bottom-4 left-1/2 text-primary group-hover:block">
           {product.price}
         </p>
         <button

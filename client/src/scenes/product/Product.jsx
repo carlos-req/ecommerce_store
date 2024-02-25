@@ -18,11 +18,11 @@ const Product = () => {
         }}
       >
         <FaAngleLeft color="#FFF" />
-        <p className="tracking-tighter uppercase text-md text-slate-100">
+        <p className="tracking-tighter uppercase text-md text-primary">
           All products
         </p>
       </button>
-      <p className="text-4xl font-bold text-zinc-200">
+      <p className="text-4xl font-bold text-primary200">
         {selectedProduct.productName}
       </p>
       <div className=" w-96">
@@ -31,12 +31,12 @@ const Product = () => {
           src={selectedProduct.imageURL}
         />
       </div>
-      <p className="text-xl text-slate-100">{selectedProduct.price}</p>
-      <p className="text-xl text-slate-100">{selectedProduct.description}</p>
-      <h3 className="text-lg font-black tracking-tighter uppercase text-slate-100">
+      <p className="text-xl text-primary">{selectedProduct.price}</p>
+      <p className="text-xl text-primary">{selectedProduct.description}</p>
+      <h3 className="text-lg font-black tracking-tighter uppercase text-primary">
         Collection:
       </h3>
-      <p className="text-sm uppercase text-slate-100">
+      <p className="text-sm uppercase text-primary">
         {selectedProduct.clothingColl}
       </p>
     </div>

@@ -13,7 +13,7 @@ const ProfilePage = () => {
   return (
     <main className="w-full h-screen mx-auto mt-32">
       <section className="flex flex-col items-center justify-between gap-4 md:px-20 lg:flex-row ">
-        <h1 className="text-2xl font-bold uppercase text-slate-100">
+        <h1 className="text-2xl font-bold uppercase text-primary">
           Welcome back, {firstName}! 👋
         </h1>
         <ButtonOutlined
@@ -28,7 +28,7 @@ const ProfilePage = () => {
       </section>
 
       <section className="flex flex-wrap items-center justify-center gap-8">
-        <h3 className="mt-10 text-xl uppercase text-slate-100">My orders</h3>
+        <h3 className="mt-10 text-xl uppercase text-primary">My orders</h3>
         {/* Table of ourders */}
       </section>
     </main>

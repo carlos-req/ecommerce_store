@@ -7,10 +7,12 @@ export default {
         background: "var(--background)",
         primary: "var(--primary)",
         primary200: "var(--primary200)",
+        subtitle: "var(--subtitle)",
         secondary: "var(--secondary)",
         ctabutton: "var(--ctabutton)",
         ctaborder: "var(--ctaborder)",
         footersecondary: "var(--footersecondary)",
+
       },
     },
   },

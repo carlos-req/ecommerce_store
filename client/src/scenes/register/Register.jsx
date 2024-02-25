@@ -51,7 +51,7 @@ const Register = () => {
         onSubmit={handleSubmit}
         className="flex flex-col items-center gap-3 mx-auto w-[80vw] max-w-[30rem]"
       >
-        <h1 className="text-3xl font-black tracking-tight uppercase text-slate-100">
+        <h1 className="text-3xl font-black tracking-tight uppercase text-primary">
           Register
         </h1>
         <FormField
@@ -85,15 +85,15 @@ const Register = () => {
         <div className="w-full px-20 form-item">
           <button
             type="submit"
-            className="px-12 py-4 uppercase bg-slate-100 bg-opacity-80 text-[#0d0d0d] font-black  tracking-tighter text-md w-full rounded-2xl transation ease-in-out duration-200 hover:bg-opacity-100 hover:drop-shadow-md"
+            className="w-full px-12 py-4 font-black tracking-tighter uppercase duration-200 ease-in-out bg-primary bg-opacity-80 text-secondary text-md rounded-2xl transation hover:bg-opacity-100 hover:drop-shadow-md"
           >
             create a new account
           </button>
         </div>
         <div className="form-item">
-          <h3 className="text-xs text-slate-200">
+          <h3 className="text-xs text-primary200">
             Already a Member?&nbsp;
-            <Link to="/login" className="font-bold text-white">
+            <Link to="/login" className="font-bold text-primary">
               Sign in here
             </Link>
           </h3>

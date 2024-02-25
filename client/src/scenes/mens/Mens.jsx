@@ -22,12 +22,12 @@ const Mens = () => {
   return (
     <main className="flex-1 w-full h-screen mt-20 mb-20">
       <section>
-        <h2 className="text-sm font-semibold  text-[#ffffffc0]">Mens</h2>
+        <h2 className="text-sm font-semibold text-subtitle">Mens</h2>
         <section className="flex flex-col">
-          <p className="text-3xl font-bold tracking-tighter uppercase text-slate-100">
+          <p className="text-3xl font-bold tracking-tighter uppercase text-primary">
             All Mens Products
           </p>
-          <p className="text-sm tracking-tight text-[#ffffffc0]">
+          <p className="text-sm tracking-tight text-subtitle">
             {products.length} Products
           </p>
         </section>
