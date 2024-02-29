@@ -1,11 +1,9 @@
 import PropTypes from "prop-types";
 import { FaPlus } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
-//import { useDispatch } from "react-redux";
 
 const ProductThumbnail = ({ product, selectedTab }) => {
   const navigate = useNavigate();
-  //const dispatch = useDispatch();
   return (
     <div
       key={product._id}

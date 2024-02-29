@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAllProducts } from "../features/products/productsSlice";
-import ProductThumbnail from "../scenes/global/ProductThumbnail";
+import ProductThumbnail from "../components/ProductThumbnail";
 import { useNavigate } from "react-router-dom";
 
 const TabsComponent = ({ items, title, secTitle, path }) => {

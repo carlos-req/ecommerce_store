@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setSearchOptions } from "../../features/products/productsSlice";
 import Spinner from "../../components/Spinner";
-import ProductThumbnailCat from "../global/ProductThumbnailCat";
+import ProductCard from "../../components/ProductCard";
 import { useFetchProductBySearch } from "../../hooks/useFetchProductBySearch";
 
 const Mens = () => {
@@ -36,7 +36,7 @@ const Mens = () => {
       </section>
       <section className="flex gap-3 mt-6">
         {products.map((product) => (
-          <ProductThumbnailCat key={product._id} product={product} />
+          <ProductCard key={product._id} product={product} />
         ))}
       </section>
     </main>

@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import { FaPlus } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 
-const ProductThumbnail = ({ product }) => {
+const ProductCard = ({ product }) => {
   const navigate = useNavigate();
 
   return (
@@ -28,8 +28,8 @@ const ProductThumbnail = ({ product }) => {
     </div>
   );
 };
-export default ProductThumbnail;
+export default ProductCard;
 
-ProductThumbnail.propTypes = {
+ProductCard.propTypes = {
   product: PropTypes.object.isRequired,
 };
