@@ -5,16 +5,16 @@ import { FaAngleLeft } from "react-icons/fa";
 const Product = () => {
   const { id } = useParams();
   const { products } = useSelector((state) => state.products);
-
   const navigate = useNavigate();
 
   const selectedProduct = products.find((product) => product._id === id);
 
+  console.log(selectedProduct);
   return (
     <div className="w-full h-screen mt-20 mb-24">
       <button
         onClick={() => {
-          navigate("/");
+          navigate(-1);
         }}
       >
         <FaAngleLeft color="#FFF" />

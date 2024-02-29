@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
 import { setSearchOptions } from "../../features/products/productsSlice";
 import Spinner from "../../components/Spinner";
@@ -34,12 +35,17 @@ const Mens = () => {
           </p>
         </section>
       </section>
-      <section className="flex gap-3 mt-6">
-        {products.map((product) => (
-          <ProductCard key={product._id} product={product} />
-        ))}
-      </section>
+      <div className="max-w-2xl px-4 py-16 mx-auto sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
+        <div className="grid grid-cols-1 gap-x-10 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-5">
+          {products.map((product) => (
+            <ProductCard key={product._id} product={product} />
+          ))}
+        </div>
+      </div>
     </main>
   );
 };
 export default Mens;
+Mens.propTypes = {
+  category: PropTypes.string.isRequired,
+};
