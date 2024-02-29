@@ -101,6 +101,7 @@ const productsSlice = createSlice({
   },
 });
 
-export const { setSearchOptions, resetSearchOptions } = productsSlice.actions;
+export const { reset, setSearchOptions, resetSearchOptions } =
+  productsSlice.actions;
 
 export default productsSlice.reducer;

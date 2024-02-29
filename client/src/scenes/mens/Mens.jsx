@@ -1,26 +1,25 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  fetchProductsBySearch,
-  setSearchOptions,
-} from "../../features/products/productsSlice";
+import { setSearchOptions } from "../../features/products/productsSlice";
+import Spinner from "../../components/Spinner";
 import ProductThumbnailCat from "../global/ProductThumbnailCat";
+import { useFetchProductBySearch } from "../../hooks/useFetchProductBySearch";
 
 const Mens = () => {
   const dispatch = useDispatch();
+  const { products, isLoading } = useSelector((state) => state.products);
 
-  const { products } = useSelector((state) => state.products);
-  const { searchOptions } = useSelector((state) => state.products);
-
+  // Setting search options
   useEffect(() => {
-    // Dispatch action to set search options
     dispatch(setSearchOptions({ group: ["men", "both"] }));
   }, [dispatch]);
 
-  useEffect(() => {
-    // Dispatch action to fetch products by search options
-    dispatch(fetchProductsBySearch(searchOptions));
-  }, [dispatch, searchOptions]);
+  // Call custom hook
+  useFetchProductBySearch();
+
+  if (isLoading) {
+    return <Spinner />;
+  }
 
   return (
     <main className="flex-1 w-full h-screen mt-20 mb-20">
@@ -35,7 +34,7 @@ const Mens = () => {
           </p>
         </section>
       </section>
-      <section className="my-3">
+      <section className="flex gap-3 mt-6">
         {products.map((product) => (
           <ProductThumbnailCat key={product._id} product={product} />
         ))}

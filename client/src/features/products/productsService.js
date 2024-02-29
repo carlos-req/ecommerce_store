@@ -10,7 +10,6 @@ const fetchAllProducts = async () => {
 
 // Fetch products using search options
 const fetchProductsBySearch = async (searchOptions) => {
-  console.log(searchOptions);
   const response = await axios.post(`${API_URL}search`, searchOptions);
 
   return response.data;
