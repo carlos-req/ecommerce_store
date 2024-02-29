@@ -28,13 +28,13 @@ const Navbar = () => {
               <p className="font-bold text-primary ">MENTALITY</p>
             </NavLink>
           </section>
-          <section className="gap-5  md:flex">
-            <NavLink to="/womens">
+          <section className="gap-5 md:flex">
+            <NavLink to="/women">
               <p className="font-bold text-primary200 hover:border-b-slate-100 hover:border-b-4 hover:transition-transform hover:scale-110">
                 Women
               </p>
             </NavLink>
-            <NavLink to="/mens">
+            <NavLink to="/men">
               <p className="font-bold text-primary200 hover:border-b-slate-100 hover:border-b-4 hover:transition-transform hover:scale-110">
                 Men
               </p>

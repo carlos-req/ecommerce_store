@@ -12,7 +12,6 @@ export default {
         ctabutton: "var(--ctabutton)",
         ctaborder: "var(--ctaborder)",
         footersecondary: "var(--footersecondary)",
-
       },
     },
   },
