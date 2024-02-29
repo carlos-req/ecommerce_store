@@ -1,6 +1,9 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchProductsBySearch } from "../features/products/productsSlice";
+import {
+  resetSearchOptions,
+  fetchProductsBySearch,
+} from "../features/products/productsSlice";
 //import { toast } from "react-toastify";
 
 export const useFetchProductBySearch = () => {
@@ -12,8 +15,9 @@ export const useFetchProductBySearch = () => {
 
   useEffect(() => {
     // Dispatch action to fetch products by search options
-    dispatch(fetchProductsBySearch(searchOptions));
-
-    return () => {};
+    if (!searchOptions.group == "") {
+      dispatch(fetchProductsBySearch(searchOptions));
+    }
+    setTimeout(() => dispatch(resetSearchOptions()), 1000);
   }, [dispatch, searchOptions, isError, message, isSuccess]);
 };

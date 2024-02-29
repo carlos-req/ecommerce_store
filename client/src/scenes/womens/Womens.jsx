@@ -1,9 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  resetSearchOptions,
-  setSearchOptions,
-} from "../../features/products/productsSlice";
+import { setSearchOptions } from "../../features/products/productsSlice";
 import Spinner from "../../components/Spinner";
 import ProductThumbnailCat from "../global/ProductThumbnailCat";
 import { useFetchProductBySearch } from "../../hooks/useFetchProductBySearch";
@@ -15,9 +12,6 @@ const Womens = () => {
   // Setting search options
   useEffect(() => {
     dispatch(setSearchOptions({ group: ["women", "both"] }));
-    return () => {
-      resetSearchOptions();
-    };
   }, [dispatch]);
 
   // Call custom hook
