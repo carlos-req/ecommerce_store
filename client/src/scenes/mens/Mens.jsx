@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
 import { setSearchOptions } from "../../features/products/productsSlice";
 import Spinner from "../../components/Spinner";
@@ -46,6 +45,3 @@ const Mens = () => {
   );
 };
 export default Mens;
-Mens.propTypes = {
-  category: PropTypes.string.isRequired,
-};

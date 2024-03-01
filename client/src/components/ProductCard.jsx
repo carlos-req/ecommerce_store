@@ -12,7 +12,7 @@ const ProductCard = ({ product }) => {
       key={product._id}
       className="cursor-pointer group"
     >
-      <div className="w-full overflow-hidden bg-gray-200 rounded-2xl ">
+      <div className="w-full overflow-hidden bg-secondary rounded-2xl ">
         <img
           src={product.imageURL}
           alt={product.imageAlt}
