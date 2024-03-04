@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { FaAngleLeft } from "react-icons/fa";
+import { addToCart } from "../../features/cart/cartSlice";
 
 const Product = () => {
   const { id } = useParams();
   const { products } = useSelector((state) => state.products);
   const navigate = useNavigate();
+
+  const dispatch = useDispatch();
+  const [count, setCount] = useState(1);
 
   const selectedProduct = products.find((product) => product._id === id);
 
@@ -31,7 +35,7 @@ const Product = () => {
             <p className="text-2xl font-black tracking-tight uppercase text-primary200">
               {selectedProduct.productName}
             </p>
-            <p className="text-primary"> Men's Performance Short Sleeve Tee</p>
+            <p className="text-primary"> Men Performance Short Sleeve Tee</p>
             <p className="text-primary"> White </p>
             <p className="text-sm text-primary">${selectedProduct.price}</p>
             <ul className="text-primary">
@@ -93,7 +97,12 @@ const Product = () => {
               </button>
             </section>
             <div className="w-full my-2">
-              <button className="w-full px-10 py-4 font-black tracking-tighter uppercase duration-200 ease-in-out bg-primary bg-opacity-80 text-secondary text-md rounded-2xl transation hover:bg-opacity-100 hover:drop-shadow-md ">
+              <button
+                onClick={() => {
+                  dispatch(addToCart({ ...selectedProduct, count }));
+                }}
+                className="w-full px-10 py-4 font-black tracking-tighter uppercase duration-200 ease-in-out bg-primary bg-opacity-80 text-secondary text-md rounded-2xl transation hover:bg-opacity-100 hover:drop-shadow-md "
+              >
                 Add to Bag
               </button>
             </div>

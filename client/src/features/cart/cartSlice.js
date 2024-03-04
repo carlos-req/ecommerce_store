@@ -2,7 +2,6 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   isCartOpen: false,
-  items: [],
   cart: [],
 };
 
@@ -10,25 +9,44 @@ export const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    setItems: (state, action) => {
-      state.items = action.payload;
-    },
     addToCart: (state, action) => {
-      state.cart.includes(action.payload.item)
-        ? increaseCount(action.payload.item)
-        : (state.cart = [...state.cart, action.payload.item]);
+      // Find product if exists in cart
+      const productExists = state.cart.find(
+        (product) => product._id === action.payload._id
+      );
+      if (productExists) {
+        //increase count if product already exists
+        state.cart = state.cart.map((product) => {
+          if (product._id === action.payload._id) {
+            return { ...product, count: product.count + 1 };
+          } else {
+            return product;
+          }
+        });
+      } else {
+        //Add product to cart
+        state.cart = [...state.cart, action.payload];
+      }
     },
     removeFromCart: (state, action) => {
-      state.cart = state.cart.filter((item) => item.id !== action.payload.id);
+      state.cart = state.cart.filter(
+        (product) => product._id !== action.payload._id
+      );
     },
     increaseCount: (state, action) => {
-      state.cart = state.cart.map((item) => {
-        item.id === action.payload.id ? item.count++ : item;
+      state.cart = state.cart.map((product) => {
+        if (product._id === action.payload._id) {
+          return { ...product, count: product.count + 1 };
+        } else {
+          return product;
+        }
       });
     },
     decreaseCount: (state, action) => {
-      state.cart = state.cart.map((item) => {
-        item.id === action.payload.id && item.count > 1 ? item.count-- : item;
+      state.cart = state.cart.map((product) => {
+        product._id === action.payload._id && product.count > 1
+          ? product.count--
+          : product;
       });
     },
     setIsCartOpen: (state) => {
