@@ -7,7 +7,9 @@ import { Link } from "react-router-dom";
 const CartMenu = () => {
   const dispatch = useDispatch();
 
-  const { isCartOpen } = useSelector((state) => state.cart);
+  const { isCartOpen, cart } = useSelector((state) => state.cart);
+  console.log(cart);
+
   return (
     <div className={isCartOpen ? "relative z-20" : "hidden"}>
       <div className="fixed inset-0 bg-opacity-20 bg-zinc-900 backdrop-saturate-125 backdrop-blur-md drop-shadow-xl"></div>
@@ -37,17 +39,13 @@ const CartMenu = () => {
                   <div className="mt-2">
                     <div className="flow-root">
                       <ul className="">
-                        <CartMenuItem
-                          name="Blue Linen Shirt"
-                          price={32.99}
-                          qty="2"
-                        />
-
-                        <CartMenuItem
-                          name="Red Linen Shirt"
-                          price={33.99}
-                          qty="4"
-                        />
+                        {cart.map((item) => {
+                          <CartMenuItem
+                            name={item.productName}
+                            price={item.price}
+                            count={item.count}
+                          />;
+                        })}
                       </ul>
                     </div>
                   </div>

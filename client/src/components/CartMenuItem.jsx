@@ -1,6 +1,5 @@
 import PropTypes from "prop-types";
-
-const CartMenuItem = ({ name, price, qty }) => {
+const CartMenuItem = ({ name, price, count }) => {
   return (
     <section className="flex px-3 py-3 my-2 border rounded-2xl">
       <div className="flex-shrink-0 w-24 h-24 overflow-hidden border border-gray-200 rounded-md">
@@ -22,7 +21,7 @@ const CartMenuItem = ({ name, price, qty }) => {
           <p className="mt-1 text-sm text-gray-200">Blue</p>
         </div>
         <div className="flex items-end justify-between flex-1 text-sm">
-          <p className="text-slate-50">Qty {qty} </p>
+          <p className="text-slate-50">Qty {count} </p>
 
           <div className="flex">
             <button
@@ -42,5 +41,5 @@ export default CartMenuItem;
 CartMenuItem.propTypes = {
   name: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
-  qty: PropTypes.string.isRequired,
+  count: PropTypes.number.isRequired,
 };

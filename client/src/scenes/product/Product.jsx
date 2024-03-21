@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { FaAngleLeft } from "react-icons/fa";
+import { FaAngleLeft, FaTimes, FaPlus } from "react-icons/fa";
 import { addToCart } from "../../features/cart/cartSlice";
 
 const Product = () => {
@@ -11,6 +11,7 @@ const Product = () => {
 
   const dispatch = useDispatch();
   const [count, setCount] = useState(1);
+  const [toggleDesc, setToggleDesc] = useState(false);
 
   const selectedProduct = products.find((product) => product._id === id);
 
@@ -29,31 +30,61 @@ const Product = () => {
             All products
           </p>
         </button>
-        <section className="flex items-center gap-6">
+        <section className="flex items-center gap-6 mt-20">
           {/* Left Section */}
           <section className="w-6/12">
-            <p className="text-2xl font-black tracking-tight uppercase text-primary200">
+            <p className="my-2 text-2xl font-black tracking-tight text-left uppercase text-primary200">
               {selectedProduct.productName}
             </p>
-            <p className="text-primary"> Men Performance Short Sleeve Tee</p>
-            <p className="text-primary"> White </p>
-            <p className="text-sm text-primary">${selectedProduct.price}</p>
-            <ul className="text-primary">
+            <p className="text-sm text-primary">
+              Men Performance Short Sleeve Tee
+            </p>
+            <p className="my-2 font-black text-primary"> White </p>
+            <div>
+              <p className=" p-0.5 text-xs font-black tracking-tighter uppercase rounded-sm  bg-primary text-secondary w-fit">
+                New style
+              </p>
+            </div>
+            <p className="my-2 text-sm font-black text-primary">
+              ${selectedProduct.price}
+            </p>
+            <hr className="my-2 opacity-30 bg-primary" />
+            <ul className="pl-4 text-sm list-disc text-primary">
               <li>Fitted short sleeve</li>
               <li>Sweat-wicking, breathable fabric</li>
               <li>Rubberized aplique on chest</li>
               <li>Soft stretch fabric</li>
               <li>Straight hemline style</li>
             </ul>
-            <p className="text-xl text-primary">
-              {selectedProduct.description}
-            </p>
-            <h3 className="text-lg font-black tracking-tighter uppercase text-primary">
-              Collection:
-            </h3>
-            <p className="text-sm uppercase text-primary">
-              {selectedProduct.clothingColl}
-            </p>
+            <hr className="my-2 opacity-30 bg-primary" />
+            <section>
+              <section className="flex justify-between">
+                <h3 className="text-sm text-primary">Description</h3>
+                {toggleDesc ? (
+                  <FaTimes
+                    className="cursor-pointer text-primary"
+                    onClick={() => {
+                      setToggleDesc(!toggleDesc);
+                    }}
+                  />
+                ) : (
+                  <FaPlus
+                    className="cursor-pointer text-primary"
+                    onClick={() => {
+                      setToggleDesc(!toggleDesc);
+                    }}
+                  />
+                )}
+              </section>
+              <p
+                className={`my-2 text-sm text-primary transition-transform transform ${
+                  toggleDesc ? "scale-100 opacity-100" : "scale-90 opacity-0"
+                } duration-300 ease-in`}
+                style={{ transitionProperty: "opacity, transform" }}
+              >
+                {selectedProduct.description}
+              </p>
+            </section>
           </section>
           {/* Middle Section */}
           <section className="flex-auto">
