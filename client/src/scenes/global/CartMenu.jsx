@@ -10,6 +10,8 @@ const CartMenu = () => {
   const { isCartOpen, cart } = useSelector((state) => state.cart);
   console.log(cart);
 
+  const subtotal = cart.reduce((acc, item) => acc + item.price * item.count, 0);
+
   return (
     <div className={isCartOpen ? "relative z-20" : "hidden"}>
       <div className="fixed inset-0 bg-opacity-20 bg-zinc-900 backdrop-saturate-125 backdrop-blur-md drop-shadow-xl"></div>
@@ -39,12 +41,8 @@ const CartMenu = () => {
                   <div className="mt-2">
                     <div className="flow-root">
                       <ul className="">
-                        {cart.map((item) => {
-                          <CartMenuItem
-                            name={item.productName}
-                            price={item.price}
-                            count={item.count}
-                          />;
+                        {cart?.map((item) => {
+                          return <CartMenuItem key={item._id} item={item} />;
                         })}
                       </ul>
                     </div>
@@ -54,7 +52,7 @@ const CartMenu = () => {
                 <div className="px-4 py-6 border-t border-gray-200 sm:px-6">
                   <div className="flex justify-between text-base font-medium text-slate-100">
                     <p>Subtotal</p>
-                    <p>$262.00</p>
+                    <p>${subtotal.toFixed(2)}</p>
                   </div>
                   <p className="mt-0.5 text-sm text-gray-500">
                     Shipping and taxes calculated at checkout.
