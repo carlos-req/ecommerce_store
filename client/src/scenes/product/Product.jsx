@@ -105,25 +105,25 @@ const Product = () => {
               </p>
             </section>
             <section className="flex flex-wrap gap-1 text-xs text-primary">
-              <button className="w-auto uppercase mr-[5px] mb-[5px] min-w-[3.5rem] min-h-[3.5rem] border rounded-2xl border-ctaborder transition-all active:scale-90  active:bg-secondary">
+              <button className="w-auto uppercase mr-[5px] mb-[5px] min-w-[3.5rem] min-h-[3.5rem] hover:bg-ctaborder border rounded-2xl border-ctaborder transition-all active:scale-90  active:bg-secondary">
                 xxs
               </button>
-              <button className="w-auto uppercase mr-[5px] mb-[5px] min-w-[3.5rem] min-h-[3.5rem]  border rounded-2xl border-ctaborder transition-all active:scale-90  active:bg-secondary">
+              <button className="w-auto uppercase mr-[5px] mb-[5px] min-w-[3.5rem] min-h-[3.5rem] hover:bg-ctaborder border rounded-2xl border-ctaborder transition-all active:scale-90  active:bg-secondary">
                 xs
               </button>
-              <button className="w-auto uppercase mr-[5px] mb-[5px] min-w-[3.5rem] min-h-[3.5rem]  border rounded-2xl border-ctaborder transition-all active:scale-90  active:bg-secondary">
+              <button className="w-auto uppercase mr-[5px] mb-[5px] min-w-[3.5rem] min-h-[3.5rem] hover:bg-ctaborder border rounded-2xl border-ctaborder transition-all active:scale-90  active:bg-secondary">
                 sm
               </button>
-              <button className="w-auto uppercase mr-[5px] mb-[5px] min-w-[3.5rem] min-h-[3.5rem]  border rounded-2xl border-ctaborder transition-all active:scale-90  active:bg-secondary">
+              <button className="w-auto uppercase mr-[5px] mb-[5px] min-w-[3.5rem] min-h-[3.5rem] hover:bg-ctaborder border rounded-2xl border-ctaborder transition-all active:scale-90  active:bg-secondary">
                 m
               </button>
-              <button className="w-auto uppercase mr-[5px] mb-[5px] min-w-[3.5rem] min-h-[3.5rem]  border rounded-2xl border-ctaborder transition-all active:scale-90  active:bg-secondary">
+              <button className="w-auto uppercase mr-[5px] mb-[5px] min-w-[3.5rem] min-h-[3.5rem] hover:bg-ctaborder border rounded-2xl border-ctaborder transition-all active:scale-90  active:bg-secondary">
                 l
               </button>
-              <button className="w-auto uppercase mr-[5px] mb-[5px] min-w-[3.5rem] min-h-[3.5rem]  border rounded-2xl border-ctaborder transition-all active:scale-90  active:bg-secondary">
+              <button className="w-auto uppercase mr-[5px] mb-[5px] min-w-[3.5rem] min-h-[3.5rem] hover:bg-ctaborder border rounded-2xl border-ctaborder transition-all active:scale-90  active:bg-secondary">
                 xl
               </button>
-              <button className="w-auto uppercase mr-[5px] mb-[5px] min-w-[3.5rem] min-h-[3.5rem]  border rounded-2xl border-ctaborder transition-all active:scale-90  active:bg-secondary">
+              <button className="w-auto uppercase mr-[5px] mb-[5px] min-w-[3.5rem] min-h-[3.5rem] hover:bg-ctaborder border rounded-2xl border-ctaborder transition-all active:scale-90  active:bg-secondary">
                 xxl
               </button>
             </section>
@@ -132,7 +132,7 @@ const Product = () => {
                 onClick={() => {
                   dispatch(addToCart({ ...selectedProduct, count }));
                 }}
-                className="w-full px-10 py-4 font-black tracking-tighter uppercase duration-200 ease-in-out bg-primary bg-opacity-80 text-secondary text-md rounded-2xl transation hover:bg-opacity-100 hover:drop-shadow-md "
+                className="w-full px-10 py-4 font-black tracking-tighter uppercase duration-200 ease-in-out bg-primary text-secondary text-md rounded-2xl transation hover:bg-subtitle hover:drop-shadow-md"
               >
                 Add to Bag
               </button>

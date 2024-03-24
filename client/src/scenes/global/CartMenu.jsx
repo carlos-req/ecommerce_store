@@ -8,7 +8,6 @@ const CartMenu = () => {
   const dispatch = useDispatch();
 
   const { isCartOpen, cart } = useSelector((state) => state.cart);
-  console.log(cart);
 
   const subtotal = cart.reduce((acc, item) => acc + item.price * item.count, 0);
 
@@ -19,48 +18,50 @@ const CartMenu = () => {
         <div className="absolute inset-0 flex overflow-hidden">
           <div className="fixed bottom-0 right-0 flex max-w-full pl-10 pointer-events-none top-24">
             <div className="w-screen max-w-md pointer-events-auto">
-              <div className="flex flex-col overflow-y-scroll border shadow-xl h-[90%] bg-zinc-900 border-slate-100 border-opacity-40 rounded-xl">
+              <div className="flex flex-col overflow-y-scroll border shadow-xl h-[90%] bg-background border-ctaborder border-opacity-40 rounded-xl">
                 <div className="flex-1 px-4 py-6 overflow-y-auto sm:px-6">
                   <div className="flex items-start justify-between">
                     <h2
-                      className="text-lg font-black uppercase text-slate-100"
+                      className="text-lg font-black uppercase text-primary"
                       id="slide-over-title"
                     >
                       Shopping cart
                     </h2>
                     <div
-                      className="flex items-center ml-3 cursor-pointer h-7"
+                      className="flex items-center px-2 py-1 ml-3 cursor-pointer h-7 hover:bg-gray-200 hover:bg-opacity-10 rounded-xl"
                       onClick={() => {
                         dispatch(setIsCartOpen());
                       }}
                     >
-                      <FaTimes color="#fff" />
+                      <FaTimes className="text-primary hover:text-primary200" />
                     </div>
                   </div>
 
                   <div className="mt-2">
                     <div className="flow-root">
                       <ul className="">
-                        {cart?.map((item) => {
-                          return <CartMenuItem key={item._id} item={item} />;
+                        {cart?.map((product) => {
+                          return (
+                            <CartMenuItem key={product._id} product={product} />
+                          );
                         })}
                       </ul>
                     </div>
                   </div>
                 </div>
 
-                <div className="px-4 py-6 border-t border-gray-200 sm:px-6">
-                  <div className="flex justify-between text-base font-medium text-slate-100">
+                <div className="px-4 py-6 border-t border-ctaborder sm:px-6">
+                  <div className="flex justify-between text-base font-medium text-primary">
                     <p>Subtotal</p>
                     <p>${subtotal.toFixed(2)}</p>
                   </div>
-                  <p className="mt-0.5 text-sm text-gray-500">
+                  <p className="mt-0.5 text-sm text-subtitle">
                     Shipping and taxes calculated at checkout.
                   </p>
                   <div className="mt-6">
                     <Link
                       to="/checkout"
-                      className="flex items-center justify-center px-6 py-3 text-base font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700"
+                      className="flex items-center justify-center px-6 py-3 text-base font-black uppercase border border-transparent rounded-md shadow-sm bg-primary text-secondary hover:bg-subtitle"
                     >
                       Checkout
                     </Link>
@@ -73,7 +74,7 @@ const CartMenu = () => {
                   >
                     <button
                       type="button"
-                      className="font-medium text-slate-100 hover:text-slate-200"
+                      className="font-medium text-primary hover:text-subtitle"
                     >
                       Continue Shopping
                     </button>
