@@ -9,6 +9,7 @@ import Admin from "../scenes/admin/Admin";
 import Product from "../scenes/product/Product";
 import Mens from "../scenes/mens/Mens";
 import Womens from "../scenes/womens/Womens";
+import Checkout from "../scenes/checkout/Checkout";
 
 export const routes = createRoutesFromElements(
   <Route>
@@ -21,6 +22,7 @@ export const routes = createRoutesFromElements(
       <Route path="/women" element={<Womens />} />
       <Route path="/:id" element={<Product />} />
       <Route path="/admin" element={<Admin />} />
+      <Route path="/checkout" element={<Checkout />} />
     </Route>
     <Route path="*" element={<Error />} />
   </Route>
