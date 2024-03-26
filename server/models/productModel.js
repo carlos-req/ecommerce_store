@@ -13,6 +13,18 @@ const productSizeSchema = new Schema({
   },
 });
 
+const imageDetailsSchema = new Schema({
+  size: {
+    type: String,
+    required: true,
+  },
+  stock: {
+    type: Number,
+    default: 0,
+    required: true,
+  },
+});
+
 const ProductSchema = new Schema({
   name: {
     type: String,
@@ -22,20 +34,25 @@ const ProductSchema = new Schema({
     type: Number,
     required: true,
   },
+  image: [imageDetailsSchema],
+  type: {
+    type: String,
+  },
   description: {
     type: String,
     required: true,
   },
-  imageURL: {
-    type: String,
-    required: true,
-  },
-  imageAlt: {
+  highlights: [String],
+  color: {
     type: String,
   },
-  clothingColl: {
+  collection: {
     type: String,
   },
+  materials: {
+    type: String,
+  },
+  tags: [String],
   group: {
     type: String,
     enum: ["men", "women", "both"],
