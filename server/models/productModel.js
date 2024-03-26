@@ -1,8 +1,20 @@
 //database model for products
 import { Schema, model } from "mongoose";
 
+const productSizeSchema = new Schema({
+  size: {
+    type: String,
+    required: true,
+  },
+  stock: {
+    type: Number,
+    default: 0,
+    required: true,
+  },
+});
+
 const ProductSchema = new Schema({
-  productName: {
+  name: {
     type: String,
     required: true,
   },
@@ -14,13 +26,12 @@ const ProductSchema = new Schema({
     type: String,
     required: true,
   },
-  stockQuantity: {
-    type: Number,
-    required: true,
-  },
   imageURL: {
     type: String,
     required: true,
+  },
+  imageAlt: {
+    type: String,
   },
   clothingColl: {
     type: String,
@@ -30,6 +41,7 @@ const ProductSchema = new Schema({
     enum: ["men", "women", "both"],
     default: "both",
   },
+  sizes: [productSizeSchema],
 });
 
 export const ProductModel = model("products", ProductSchema);
