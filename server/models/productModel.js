@@ -13,18 +13,6 @@ const productSizeSchema = new Schema({
   },
 });
 
-const imageDetailsSchema = new Schema({
-  size: {
-    type: String,
-    required: true,
-  },
-  stock: {
-    type: Number,
-    default: 0,
-    required: true,
-  },
-});
-
 const ProductSchema = new Schema({
   name: {
     type: String,
@@ -34,7 +22,13 @@ const ProductSchema = new Schema({
     type: Number,
     required: true,
   },
-  image: [imageDetailsSchema],
+  imageSrc: {
+    type: String,
+    required: true,
+  },
+  imageAlt: {
+    type: String,
+  },
   type: {
     type: String,
   },
@@ -46,7 +40,7 @@ const ProductSchema = new Schema({
   color: {
     type: String,
   },
-  collection: {
+  series: {
     type: String,
   },
   materials: {

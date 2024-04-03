@@ -17,7 +17,8 @@ const router = express.Router();
 router.get("/", getProducts);
 
 //Add product - Private
-router.post("/", isAdmin, newProduct);
+//router.post("/", isAdmin, newProduct);
+router.post("/", newProduct);
 
 //Get Products by Search - Public
 router.post("/search", getProductsBySearch);

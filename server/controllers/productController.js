@@ -37,30 +37,42 @@ const getProductsBySearch = async (req, res) => {
 // POST/private
 const newProduct = async (req, res) => {
   const {
-    productName,
+    name,
     price,
+    imageSrc,
+    imageAlt,
+    type,
     description,
-    stockQuantity,
-    imageURL,
-    clothingColl,
+    highlights,
+    color,
+    series,
+    materials,
+    tags,
     group,
+    sizes,
   } = req.body;
 
   try {
-    if (!productName || !price || !description || !stockQuantity || !imageURL) {
+    if (!name || !price || !description || !imageSrc || !sizes) {
       return res
         .status(400)
         .json({ message: "required fields are not present" });
     }
     //creating new product in DB
     const newProduct = new ProductModel({
-      productName,
+      name,
       price,
+      imageSrc,
+      imageAlt,
+      type,
       description,
-      stockQuantity,
-      imageURL,
-      clothingColl,
+      highlights,
+      color,
+      series,
+      materials,
+      tags,
       group,
+      sizes,
     });
     console.log(newProduct);
     await newProduct.save();
