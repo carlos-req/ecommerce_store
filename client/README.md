@@ -9,7 +9,9 @@
 7. [ ] Checkout
 8. [ ] Cart Page
 
-Click outside of CartMenu
+##Enchancements
+
+- Click outside of CartMenu to close
 
 ---
 

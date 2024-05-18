@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { removeFromCart } from "../features/cart/cartSlice";
 
 const CartMenuItem = ({ product }) => {
-  const { name, price, count, imageSrc, description } = product;
+  const { name, price, count, imageSrc, description, color } = product;
   const dispatch = useDispatch();
 
   return (
@@ -25,7 +25,7 @@ const CartMenuItem = ({ product }) => {
             </h3>
             <p className="pr-2 text-sm text-subtitle">${price}</p>
           </div>
-          <p className="mt-1 text-sm text-subtitle">Color</p>
+          <p className="mt-1 text-sm text-subtitle">{color}</p>
         </div>
         <div className="flex items-end justify-between flex-1 text-sm">
           <p className="text-slate-50">Qty: {count} </p>
