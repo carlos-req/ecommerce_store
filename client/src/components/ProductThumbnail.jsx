@@ -3,27 +3,30 @@ import { useNavigate } from "react-router-dom";
 
 const ProductThumbnail = ({ product, selectedTab }) => {
   const navigate = useNavigate();
+
+  const { imageSrc, imageAlt, group, _id } = product;
   return (
     <div
-      key={product._id}
+      key={_id}
       className={`${
         (selectedTab.toLowerCase() === "men's" &&
-          (product.group === "men" || product.group === "both")) ||
+          (group === "men" || group === "both")) ||
         (selectedTab.toLowerCase() === "women's" &&
-          (product.group === "women" || product.group === "both"))
+          (group === "women" || group === "both"))
           ? ""
           : "hidden"
       }`}
     >
       <div
         onClick={() => {
-          navigate(`/${product._id}`);
+          navigate(`/${_id}`);
         }}
         className="relative cursor-pointer bg-secondary w-28 md:w-44 rounded-xl group"
       >
         <img
           className="shadow-xl rounded-2xl group-hover:opacity-75"
-          src={product.imageURL}
+          src={imageSrc}
+          alt={imageAlt}
         />
       </div>
     </div>

@@ -73,6 +73,7 @@ body {
   max-width: 1440px;
   padding: 0 1.25rem;
   width: 100%;
+  overflow: hidden;
 }
 
 .loadingSpinnerContainer {
@@ -119,4 +120,5 @@ body {
 
 .product--thumbnail-container {
   width: calc(100vw - 2rem) !important;
+  margin-right: 0.5rem;
 }

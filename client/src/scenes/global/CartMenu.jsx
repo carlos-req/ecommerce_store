@@ -18,7 +18,7 @@ const CartMenu = () => {
         <div className="absolute inset-0 flex overflow-hidden">
           <div className="fixed bottom-0 right-0 flex max-w-full pl-10 pointer-events-none top-24">
             <div className="w-screen max-w-md pointer-events-auto">
-              <div className="flex flex-col overflow-y-scroll border shadow-xl h-[90%] bg-background border-ctaborder border-opacity-40 rounded-xl">
+              <div className="flex flex-col  border shadow-xl h-[90%] bg-background border-ctaborder border-opacity-40 rounded-xl">
                 <div className="flex-1 px-4 py-6 overflow-y-auto sm:px-6">
                   <div className="flex items-start justify-between">
                     <h2

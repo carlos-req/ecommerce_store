@@ -4,14 +4,14 @@ import { useDispatch } from "react-redux";
 import { removeFromCart } from "../features/cart/cartSlice";
 
 const CartMenuItem = ({ product }) => {
-  const { productName, price, count, imageURL, description } = product;
+  const { name, price, count, imageSrc, description } = product;
   const dispatch = useDispatch();
 
   return (
     <section className="flex px-3 py-2 my-2 border rounded-2xl">
       <div className="flex-shrink-0 w-16 h-16 overflow-hidden rounded-md">
         <img
-          src={imageURL}
+          src={imageSrc}
           alt={description}
           className="object-cover object-center w-full h-full"
         />
@@ -21,7 +21,7 @@ const CartMenuItem = ({ product }) => {
         <div>
           <div className="flex justify-between text-sm font-medium text-primary">
             <h3>
-              <a href="#">{productName}</a>
+              <a href="#">{name}</a>
             </h3>
             <p className="pr-2 text-sm text-subtitle">${price}</p>
           </div>

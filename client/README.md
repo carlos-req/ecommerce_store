@@ -6,8 +6,11 @@
 4. [ ] Products Page - Filter and all products
 5. [ ] Mens Page
 6. [] Womens Page
-7. [x] Footer
-8. [ ] Checkout
-9. [ ] Cart Page
-10. [x] Fix scroll to top functionality
-11. [x] 404 Page
+7. [ ] Checkout
+8. [ ] Cart Page
+
+Click outside of CartMenu
+
+---
+
+Test user: los@gmail.com - los
