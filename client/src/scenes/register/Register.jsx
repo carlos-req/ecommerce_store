@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Spinner from "../../components/Spinner";
 import { FormField } from "../../components/FormField";
 import { AuthContext } from "../../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -13,6 +14,7 @@ const Register = () => {
   });
 
   const { register, loading } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   //destructure form data
   const { firstName, lastName, email, password } = formData;
@@ -26,7 +28,7 @@ const Register = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const userData = {
       firstName,
@@ -34,7 +36,10 @@ const Register = () => {
       email,
       password,
     };
-    register(userData);
+    const success = await register(userData);
+    if (success) {
+      navigate("/");
+    }
   };
 
   // return a spinner if loading

@@ -32,6 +32,7 @@ export const AuthContextProvider = ({ children }) => {
       const response = await axios.post(`${API_URL}login`, userData);
       localStorage.setItem("user", JSON.stringify(response.data));
       setUser(response.data);
+      return response.data;
     } catch (err) {
       const errorMessage = err.response?.data?.message || "Login failed";
       toast.error(errorMessage);

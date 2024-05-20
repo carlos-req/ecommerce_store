@@ -1,13 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import { FaSearch, FaShoppingCart, FaUser } from "react-icons/fa";
 import { NavLink, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext";
 //import { setIsCartOpen, setIsSearchOpen } from "../../features/cart/cartSlice";
 
 const Navbar = () => {
   const navigate = useNavigate();
-  //const { cart } = useSelector((state) => state.cart);
-  //const { user } = useSelector((state) => state.auth);
-  const user = false;
+
+  const { user } = useContext(AuthContext);
   const cart = [];
 
   //handle behavior of user icon

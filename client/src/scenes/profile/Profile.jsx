@@ -1,12 +1,10 @@
-import { useSelector } from "react-redux";
 import ButtonOutlined from "../../components/ButtonOutlined";
-import { logout } from "../../features/auth/authSlice";
-import { useDispatch } from "react-redux";
+import { AuthContext } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
 
 const ProfilePage = () => {
-  const { user } = useSelector((state) => state.auth);
-  const dispatch = useDispatch();
+  const { user, logout } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const { firstName } = user;
@@ -21,7 +19,7 @@ const ProfilePage = () => {
           title="Logout"
           textSize="md"
           onClick={() => {
-            dispatch(logout());
+            logout();
             navigate("/");
           }}
         />
