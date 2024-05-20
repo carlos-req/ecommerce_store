@@ -6,7 +6,7 @@ import { useContext } from "react";
 import { ShopContext } from "../../context/ShopContext";
 
 const CartMenu = () => {
-  const { isCartOpen, cartItems, setIsCartOpen } = useContext(ShopContext);
+  const { isCartOpen, cartItems, setCartOpen } = useContext(ShopContext);
 
   const subtotal = cartItems.reduce(
     (acc, item) => acc + item.price * item.count,
@@ -32,7 +32,7 @@ const CartMenu = () => {
                     <div
                       className="flex items-center px-2 py-1 ml-3 cursor-pointer h-7 hover:bg-gray-200 hover:bg-opacity-10 rounded-xl"
                       onClick={() => {
-                        setIsCartOpen(!isCartOpen);
+                        setCartOpen();
                       }}
                     >
                       <FaTimes className="text-primary hover:text-primary200" />
@@ -70,7 +70,7 @@ const CartMenu = () => {
                   </div>
                   <div
                     onClick={() => {
-                      setIsCartOpen(!isCartOpen);
+                      setCartOpen();
                     }}
                     className="flex justify-center mt-6 text-sm text-center text-gray-500"
                   >
