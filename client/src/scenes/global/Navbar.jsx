@@ -2,13 +2,13 @@ import React, { useContext } from "react";
 import { FaSearch, FaShoppingCart, FaUser } from "react-icons/fa";
 import { NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
-//import { setIsCartOpen, setIsSearchOpen } from "../../features/cart/cartSlice";
+import { ShopContext } from "../../context/ShopContext";
 
 const Navbar = () => {
   const navigate = useNavigate();
 
   const { user } = useContext(AuthContext);
-  const cart = [];
+  const { isCartOpen, setIsCartOpen, cartItems } = useContext(ShopContext);
 
   //handle behavior of user icon
   const handleClick = () => {
@@ -43,12 +43,18 @@ const Navbar = () => {
           <section className="flex gap-5 cursor-pointer">
             <FaSearch color="#e2e8f0" size={20} onClick={() => {}} />
             <FaUser color="#e2e8f0" size={20} onClick={handleClick} />
-            <FaShoppingCart color="#e2e8f0" size={20} onClick={() => {}} />
+            <FaShoppingCart
+              color="#e2e8f0"
+              size={20}
+              onClick={() => {
+                setIsCartOpen(!isCartOpen);
+              }}
+            />
 
-            {cart.length > 0 && (
+            {cartItems?.length > 0 && (
               <section>
                 <p className="absolute px-1 text-xs rounded-full top-2.5 bg-opacity-70 bg-slate-500 right-8 text-slate-100">
-                  {cart.length}
+                  {cartItems?.length}
                 </p>
               </section>
             )}

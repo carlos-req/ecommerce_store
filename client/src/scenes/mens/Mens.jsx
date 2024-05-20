@@ -1,10 +1,15 @@
-import { useEffect } from "react";
 import Spinner from "../../components/Spinner";
 import ProductCard from "../../components/ProductCard";
+import { ShopContext } from "../../context/ShopContext";
+import { useContext } from "react";
 
 const Mens = () => {
-  const products = [];
-  const isLoading = true;
+  const { products, isLoading } = useContext(ShopContext);
+
+  const filteredProducts =
+    products?.filter(
+      (product) => product.group === "men" || product.group === "both"
+    ) || [];
 
   if (isLoading) {
     return <Spinner />;
@@ -19,13 +24,13 @@ const Mens = () => {
             All Mens Products
           </p>
           <p className="text-sm tracking-tight text-subtitle">
-            {products.length} Products
+            {filteredProducts.length} Products
           </p>
         </section>
       </section>
       <div className="max-w-2xl px-4 py-16 mx-auto sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
         <div className="grid grid-cols-1 gap-x-10 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-5">
-          {products.map((product) => (
+          {filteredProducts?.map((product) => (
             <ProductCard key={product._id} product={product} />
           ))}
         </div>

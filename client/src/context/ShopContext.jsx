@@ -6,8 +6,8 @@ export const ShopContext = createContext(null);
 
 export const ShopContextProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
-  const [cartItems, setCartItems] = useState({});
-  const [cartIsOpen, setCartIsOpen] = useState(false);
+  const [cartItems, setCartItems] = useState([]);
+  const [isCartOpen, setIsCartOpen] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -45,10 +45,10 @@ export const ShopContextProvider = ({ children }) => {
   const contextValue = {
     products,
     cartItems,
-    cartIsOpen,
+    isCartOpen,
     loading,
     error,
-    setCartIsOpen,
+    setIsCartOpen,
     addToCart,
     removeFromCart,
     fetchProducts,

@@ -2,16 +2,16 @@ import { FaTimes } from "react-icons/fa";
 // import { setIsCartOpen } from "../../features/cart/cartSlice";
 import CartMenuItem from "../../components/CartMenuItem";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { ShopContext } from "../../context/ShopContext";
 
 const CartMenu = () => {
-  //const dispatch = useDispatch();
+  const { isCartOpen, cartItems, setIsCartOpen } = useContext(ShopContext);
 
-  //const { isCartOpen, cart } = useSelector((state) => state.cart);
-
-  const cart = [];
-  const isCartOpen = false;
-
-  const subtotal = cart.reduce((acc, item) => acc + item.price * item.count, 0);
+  const subtotal = cartItems.reduce(
+    (acc, item) => acc + item.price * item.count,
+    0
+  );
 
   return (
     <div className={isCartOpen ? "relative z-20" : "hidden"}>
@@ -31,7 +31,9 @@ const CartMenu = () => {
                     </h2>
                     <div
                       className="flex items-center px-2 py-1 ml-3 cursor-pointer h-7 hover:bg-gray-200 hover:bg-opacity-10 rounded-xl"
-                      onClick={() => {}}
+                      onClick={() => {
+                        setIsCartOpen(!isCartOpen);
+                      }}
                     >
                       <FaTimes className="text-primary hover:text-primary200" />
                     </div>
@@ -40,7 +42,7 @@ const CartMenu = () => {
                   <div className="mt-2">
                     <div className="flow-root">
                       <ul className="">
-                        {cart?.map((product) => {
+                        {cartItems?.map((product) => {
                           return (
                             <CartMenuItem key={product._id} product={product} />
                           );
@@ -68,7 +70,7 @@ const CartMenu = () => {
                   </div>
                   <div
                     onClick={() => {
-                      //dispatch(setIsCartOpen());
+                      setIsCartOpen(!isCartOpen);
                     }}
                     className="flex justify-center mt-6 text-sm text-center text-gray-500"
                   >
