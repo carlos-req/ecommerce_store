@@ -1,21 +1,10 @@
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { setSearchOptions } from "../../features/products/productsSlice";
 import Spinner from "../../components/Spinner";
 import ProductCard from "../../components/ProductCard";
-import { useFetchProductBySearch } from "../../hooks/useFetchProductBySearch";
 
 const Mens = () => {
-  const dispatch = useDispatch();
-  const { products, isLoading } = useSelector((state) => state.products);
-
-  // Setting search options
-  useEffect(() => {
-    dispatch(setSearchOptions({ group: ["men", "both"] }));
-  }, [dispatch]);
-
-  // Call custom hook
-  useFetchProductBySearch();
+  const products = [];
+  const isLoading = true;
 
   if (isLoading) {
     return <Spinner />;

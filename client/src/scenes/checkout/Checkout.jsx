@@ -1,16 +1,7 @@
 import CartMenuItem from "../../components/CartMenuItem";
-import { useSelector, useDispatch } from "react-redux";
-import { setIsCartOpen } from "../../features/cart/cartSlice";
-import { useEffect } from "react";
 
 const Checkout = () => {
-  const dispatch = useDispatch();
-
-  const { isCartOpen, cart } = useSelector((state) => state.cart);
-
-  useEffect(() => {
-    dispatch(setIsCartOpen());
-  }, [dispatch, isCartOpen]);
+  const cart = [];
 
   return (
     <main className="flex-1 w-full h-screen mt-20 mb-20">

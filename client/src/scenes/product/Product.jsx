@@ -1,16 +1,14 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
 import { FaAngleLeft, FaTimes, FaPlus } from "react-icons/fa";
-import { addToCart } from "../../features/cart/cartSlice";
 
 const Product = () => {
   const { id } = useParams();
-  const { products } = useSelector((state) => state.products);
+
+  const { products } = [];
   const selectedProduct = products.find((product) => product._id === id);
 
   const navigate = useNavigate();
-  const dispatch = useDispatch();
 
   const count = 1;
   const [toggleDesc, setToggleDesc] = useState(false);
@@ -146,7 +144,7 @@ const Product = () => {
           <div className="w-full my-2">
             <button
               onClick={() => {
-                dispatch(addToCart({ ...selectedProduct, count }));
+                //addToCart({ ...selectedProduct, count });
               }}
               className="w-full px-10 py-4 font-black tracking-tighter uppercase transition duration-200 ease-in-out bg-primary text-secondary text-md rounded-2xl hover:bg-subtitle hover:drop-shadow-md"
             >

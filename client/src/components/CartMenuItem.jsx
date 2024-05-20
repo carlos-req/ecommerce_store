@@ -1,11 +1,8 @@
 import PropTypes from "prop-types";
 import { FaTrashAlt } from "react-icons/fa";
-import { useDispatch } from "react-redux";
-import { removeFromCart } from "../features/cart/cartSlice";
 
 const CartMenuItem = ({ product }) => {
   const { name, price, count, imageSrc, description, color } = product;
-  const dispatch = useDispatch();
 
   return (
     <section className="flex px-3 py-2 my-2 border rounded-2xl">
@@ -32,7 +29,9 @@ const CartMenuItem = ({ product }) => {
 
           <div
             className="flex p-1 rounded-lg cursor-pointer hover:text-red-400 hover:bg-gray-200 hover:bg-opacity-10"
-            onClick={() => dispatch(removeFromCart(product))}
+            onClick={() => {
+              /* TODO: remove from cart*/
+            }}
           >
             <FaTrashAlt className="text-red-500" />
           </div>

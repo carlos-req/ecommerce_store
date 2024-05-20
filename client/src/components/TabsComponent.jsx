@@ -1,22 +1,15 @@
 import PropTypes from "prop-types";
-import { useState, useEffect } from "react";
-//import { useDispatch, useSelector } from "react-redux";
-//import { fetchAllProducts } from "../features/products/productsSlice";
+import { useState, useEffect, useContext } from "react";
 import ProductThumbnail from "../components/ProductThumbnail";
 import { useNavigate } from "react-router-dom";
+import { ShopContext } from "../context/ShopContext";
+import Spinner from "../components/Spinner";
 
 const TabsComponent = ({ items, title, secTitle, path }) => {
   const [selectedTab, setSelectedTab] = useState(items[0]);
   const [focusedButton, setFocusedButton] = useState(items[0]);
-  //const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  /* useEffect(() => {
-    dispatch(fetchAllProducts());
-  }, [dispatch]); 
-  
-  const { products } = useSelector((state) => state.products);*/
-  const products = [];
+  const { products, loading } = useContext(ShopContext);
 
   useEffect(() => {
     setFocusedButton(selectedTab);
@@ -43,31 +36,39 @@ const TabsComponent = ({ items, title, secTitle, path }) => {
       <div className="flex items-start pt-3 pb-12 text-xs">
         <div className="flex flex-col w-full max-w-[13rem] gap-y-2">
           <div className="flex items-center justify-between p-1 font-bold border-2 border-red-800 text-primary rounded-3xl gap-x-2">
-            {items.map((item) => (
-              <button
-                key={item}
-                onClick={() => {
-                  setSelectedTab(item);
-                  setFocusedButton(item);
-                }}
-                className={`outline-none w-full py-1 rounded-3xl text-center uppercase ease-in-out  transition-all duration-500${
-                  focusedButton === item ? " bg-red-800 text-primary " : ""
-                } `}
-              >
-                {item}
-              </button>
-            ))}
+            {items.map((item) => {
+              return (
+                <button
+                  key={item}
+                  onClick={() => {
+                    setSelectedTab(item);
+                    setFocusedButton(item);
+                  }}
+                  className={`outline-none w-full py-1 rounded-3xl text-center uppercase ease-in-out  transition-all duration-500${
+                    focusedButton === item ? " bg-red-800 text-primary " : ""
+                  } `}
+                >
+                  {item}
+                </button>
+              );
+            })}
           </div>
 
-          <div className="flex flex-row flex-wrap gap-3 product--thumbnail-container">
-            {products.map((product) => (
-              <ProductThumbnail
-                key={product._id}
-                product={product}
-                selectedTab={selectedTab}
-              />
-            ))}
-          </div>
+          {loading ? (
+            <Spinner />
+          ) : (
+            <div className="flex flex-row flex-wrap gap-3 product--thumbnail-container">
+              {products?.map((product) => {
+                return (
+                  <ProductThumbnail
+                    key={product._id}
+                    product={product}
+                    selectedTab={selectedTab}
+                  />
+                );
+              })}
+            </div>
+          )}
         </div>
       </div>
     </section>

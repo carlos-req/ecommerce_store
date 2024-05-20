@@ -68,7 +68,7 @@ const CartMenu = () => {
                   </div>
                   <div
                     onClick={() => {
-                      dispatch(setIsCartOpen());
+                      //dispatch(setIsCartOpen());
                     }}
                     className="flex justify-center mt-6 text-sm text-center text-gray-500"
                   >
