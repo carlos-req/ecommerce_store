@@ -17,8 +17,9 @@ const getProducts = async (req, res) => {
 //POST /public
 const getProductsBySearch = async (req, res) => {
   try {
-    const { name, catalog, group } = req.body;
+    const { _id, name, catalog, group } = req.body;
     const query = {};
+    if (_id) query._id = _id;
     if (name) query.name = { $in: name };
     if (catalog) query.catalog = catalog;
     if (group) query.group = group;

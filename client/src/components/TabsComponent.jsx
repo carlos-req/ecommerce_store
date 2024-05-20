@@ -1,21 +1,22 @@
 import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchAllProducts } from "../features/products/productsSlice";
+//import { useDispatch, useSelector } from "react-redux";
+//import { fetchAllProducts } from "../features/products/productsSlice";
 import ProductThumbnail from "../components/ProductThumbnail";
 import { useNavigate } from "react-router-dom";
 
 const TabsComponent = ({ items, title, secTitle, path }) => {
   const [selectedTab, setSelectedTab] = useState(items[0]);
   const [focusedButton, setFocusedButton] = useState(items[0]);
-  const dispatch = useDispatch();
+  //const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  useEffect(() => {
+  /* useEffect(() => {
     dispatch(fetchAllProducts());
-  }, [dispatch]);
-
-  const { products } = useSelector((state) => state.products);
+  }, [dispatch]); 
+  
+  const { products } = useSelector((state) => state.products);*/
+  const products = [];
 
   useEffect(() => {
     setFocusedButton(selectedTab);

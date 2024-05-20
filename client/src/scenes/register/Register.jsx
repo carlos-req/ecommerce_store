@@ -1,10 +1,8 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { register } from "../../features/auth/authSlice";
 import Spinner from "../../components/Spinner";
 import { FormField } from "../../components/FormField";
-import { useAuthEffect } from "../../hooks/useAuthEffect";
+import { AuthContext } from "../../context/AuthContext";
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -13,7 +11,8 @@ const Register = () => {
     email: "",
     password: "",
   });
-  const dispatch = useDispatch();
+
+  const { register, loading } = useContext(AuthContext);
 
   //destructure form data
   const { firstName, lastName, email, password } = formData;
@@ -35,13 +34,11 @@ const Register = () => {
       email,
       password,
     };
-    dispatch(register(userData));
+    register(userData);
   };
 
-  const { isLoading } = useAuthEffect();
-
   // return a spinner if loading
-  if (isLoading) {
+  if (loading) {
     return <Spinner />;
   }
 

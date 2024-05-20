@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { FaAngleLeft, FaTimes, FaPlus } from "react-icons/fa";
@@ -7,13 +7,21 @@ import { addToCart } from "../../features/cart/cartSlice";
 const Product = () => {
   const { id } = useParams();
   const { products } = useSelector((state) => state.products);
-  const navigate = useNavigate();
+  const selectedProduct = products.find((product) => product._id === id);
 
+  const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [count, setCount] = useState(1);
+
+  const count = 1;
   const [toggleDesc, setToggleDesc] = useState(false);
 
-  const selectedProduct = products.find((product) => product._id === id);
+  useEffect(() => {
+    if (!selectedProduct) {
+      navigate("/");
+    }
+    return () => {};
+  }, [selectedProduct, navigate]);
+
   const {
     name,
     description,

@@ -4,6 +4,7 @@ import productsService from "./productsService";
 const initialState = {
   products: [],
   searchOptions: {
+    _id: "",
     name: "",
     catalog: "",
     group: "",

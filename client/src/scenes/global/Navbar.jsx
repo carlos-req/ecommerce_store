@@ -1,14 +1,14 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { FaSearch, FaShoppingCart, FaUser } from "react-icons/fa";
 import { NavLink, useNavigate } from "react-router-dom";
-import { setIsCartOpen, setIsSearchOpen } from "../../features/cart/cartSlice";
+//import { setIsCartOpen, setIsSearchOpen } from "../../features/cart/cartSlice";
 
 const Navbar = () => {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { cart } = useSelector((state) => state.cart);
-  const { user } = useSelector((state) => state.auth);
+  //const { cart } = useSelector((state) => state.cart);
+  //const { user } = useSelector((state) => state.auth);
+  const user = false;
+  const cart = [];
 
   //handle behavior of user icon
   const handleClick = () => {
@@ -41,21 +41,9 @@ const Navbar = () => {
             </NavLink>
           </section>
           <section className="flex gap-5 cursor-pointer">
-            <FaSearch
-              color="#e2e8f0"
-              size={20}
-              onClick={() => {
-                dispatch(setIsSearchOpen());
-              }}
-            />
+            <FaSearch color="#e2e8f0" size={20} onClick={() => {}} />
             <FaUser color="#e2e8f0" size={20} onClick={handleClick} />
-            <FaShoppingCart
-              color="#e2e8f0"
-              size={20}
-              onClick={() => {
-                dispatch(setIsCartOpen());
-              }}
-            />
+            <FaShoppingCart color="#e2e8f0" size={20} onClick={() => {}} />
 
             {cart.length > 0 && (
               <section>

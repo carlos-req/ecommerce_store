@@ -1,13 +1,15 @@
-import { useDispatch, useSelector } from "react-redux";
 import { FaTimes } from "react-icons/fa";
-import { setIsCartOpen } from "../../features/cart/cartSlice";
+// import { setIsCartOpen } from "../../features/cart/cartSlice";
 import CartMenuItem from "../../components/CartMenuItem";
 import { Link } from "react-router-dom";
 
 const CartMenu = () => {
-  const dispatch = useDispatch();
+  //const dispatch = useDispatch();
 
-  const { isCartOpen, cart } = useSelector((state) => state.cart);
+  //const { isCartOpen, cart } = useSelector((state) => state.cart);
+
+  const cart = [];
+  const isCartOpen = false;
 
   const subtotal = cart.reduce((acc, item) => acc + item.price * item.count, 0);
 
@@ -29,9 +31,7 @@ const CartMenu = () => {
                     </h2>
                     <div
                       className="flex items-center px-2 py-1 ml-3 cursor-pointer h-7 hover:bg-gray-200 hover:bg-opacity-10 rounded-xl"
-                      onClick={() => {
-                        dispatch(setIsCartOpen());
-                      }}
+                      onClick={() => {}}
                     >
                       <FaTimes className="text-primary hover:text-primary200" />
                     </div>

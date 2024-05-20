@@ -1,17 +1,18 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { login } from "../../features/auth/authSlice";
 import Spinner from "../../components/Spinner";
 import { FormField } from "../../components/FormField";
-import { useAuthEffect } from "../../hooks/useAuthEffect";
+import { AuthContext } from "../../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
-  const dispatch = useDispatch();
+
+  const { login, loading } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   //destructure form data
   const { email, password } = formData;
@@ -25,19 +26,17 @@ const Login = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const userData = {
-      email,
-      password,
-    };
-    dispatch(login(userData));
+    const userData = { email, password };
+    const success = await login(userData);
+    if (success) {
+      navigate("/");
+    }
   };
 
-  const { isLoading } = useAuthEffect();
-
   //return a spinner if loading
-  if (isLoading) {
+  if (loading) {
     return <Spinner />;
   }
 
