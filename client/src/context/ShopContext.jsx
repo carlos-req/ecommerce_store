@@ -80,6 +80,7 @@ export const ShopContextProvider = ({ children }) => {
   //Search Functions
   const setSearchOpen = () => {
     setIsSearchOpen(!isSearchOpen);
+    console.log(isSearchOpen);
   };
 
   const contextValue = {
@@ -97,6 +98,7 @@ export const ShopContextProvider = ({ children }) => {
     setSearchOpen,
     isSearchOpen,
   };
+
   return (
     <ShopContext.Provider value={contextValue}>{children}</ShopContext.Provider>
   );

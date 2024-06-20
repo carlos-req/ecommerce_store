@@ -85,8 +85,16 @@ const newProduct = async (req, res) => {
 };
 
 // GET/public
-const getProduct = (req, res) => {
-  res.status(200).json({ message: "User profile found" });
+const getProduct = async (req, res) => {
+  const { _id } = req.body;
+  try {
+    const product = await ProductModel.find({ _id });
+    if (!product) res.status(400).json({ message: "product not found" });
+  } catch (err) {
+    res.status(500).json({ message: err });
+  }
+
+  res.status(200).json({ message: "Product found" });
 };
 
 // PUT/private
