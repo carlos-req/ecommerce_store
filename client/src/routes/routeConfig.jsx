@@ -5,11 +5,16 @@ import { Route, createRoutesFromElements } from "react-router-dom";
 import Login from "../scenes/login/Login";
 import Register from "../scenes/register/Register";
 import Profile from "../scenes/profile/Profile";
-import Admin from "../scenes/admin/Admin";
 import Product from "../scenes/product/Product";
 import Mens from "../scenes/mens/Mens";
 import Womens from "../scenes/womens/Womens";
 import Checkout from "../scenes/checkout/Checkout";
+import AdminLayout from "../AdminLayout";
+import Dashboard from "../scenes/admin/dashboard/Dashboard";
+import Products from "../scenes/admin/product/Products";
+import ProductEdit from "../scenes/admin/productedit/ProductEdit";
+import ProductUpload from "../scenes/admin/productUpload/ProductUpload";
+import Stats from "../scenes/admin/stats/Stats";
 
 export const routes = createRoutesFromElements(
   <Route>
@@ -21,8 +26,14 @@ export const routes = createRoutesFromElements(
       <Route path="/men" element={<Mens />} />
       <Route path="/women" element={<Womens />} />
       <Route path="/:id" element={<Product />} />
-      <Route path="/admin" element={<Admin />} />
       <Route path="/checkout" element={<Checkout />} />
+    </Route>
+    <Route path="admin" element={<AdminLayout />}>
+      <Route index element={<Dashboard />} />
+      <Route index element={<Products />} />
+      <Route index element={<ProductEdit />} />
+      <Route index element={<ProductUpload />} />
+      <Route index element={<Stats />} />
     </Route>
     <Route path="*" element={<Error />} />
   </Route>

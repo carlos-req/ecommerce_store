@@ -13,7 +13,7 @@ const Navbar = () => {
   //handle behavior of user icon
   const handleClick = () => {
     if (user) {
-      navigate("/profile");
+      user.role === "admin" ? navigate("/admin") : navigate("/profile");
     } else {
       navigate("login");
     }
@@ -41,13 +41,10 @@ const Navbar = () => {
             </NavLink>
           </section>
           <section className="flex gap-5 cursor-pointer">
-            <FaSearch
-              color="#e2e8f0"
-              size={20}
-              onClick={() => {
+            <FaSearch color="#e2e8f0" size={20} />
+            {/*onClick={() => {
                 setSearchOpen();
-              }}
-            />
+              }} */}
             <FaUser color="#e2e8f0" size={20} onClick={handleClick} />
             <FaShoppingCart
               color="#e2e8f0"

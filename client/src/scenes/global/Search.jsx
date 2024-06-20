@@ -18,13 +18,10 @@ const Search = () => {
   const { isSearchOpen, setSearchOpen } = useContext(ShopContext);
 
   return (
-    <div
-      className={
-        isSearchOpen
-          ? "fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
-          : "hidden"
-      }
-    >
+    <div className="hidden">
+      {/* isSearchOpen
+        ? "fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
+        : "hidden" */}
       <div className="relative w-full max-w-3xl p-4 rounded-lg shadow-lg bg-subtitle">
         <button className="absolute text-gray-500 top-4 right-4 hover:text-gray-700">
           <FaTimes size={20} onClick={setSearchOpen()} />
