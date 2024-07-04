@@ -11,7 +11,7 @@ import Womens from "../scenes/womens/Womens";
 import Checkout from "../scenes/checkout/Checkout";
 import AdminLayout from "../AdminLayout";
 import Dashboard from "../scenes/admin/dashboard/Dashboard";
-import Products from "../scenes/admin/product/Products";
+import ProductList from "../scenes/admin/productlist/ProductList";
 import ProductEdit from "../scenes/admin/productedit/ProductEdit";
 import ProductUpload from "../scenes/admin/productUpload/ProductUpload";
 import Stats from "../scenes/admin/stats/Stats";
@@ -30,10 +30,10 @@ export const routes = createRoutesFromElements(
     </Route>
     <Route path="admin" element={<AdminLayout />}>
       <Route index element={<Dashboard />} />
-      <Route path="/products" element={<Products />} />
-      <Route path="/products/:id" element={<ProductEdit />} />
-      <Route path="/products/upload" element={<ProductUpload />} />
-      <Route path="/stats" element={<Stats />} />
+      <Route path="admin/products" element={<ProductList />} />
+      <Route path="admin/products/:id" element={<ProductEdit />} />
+      <Route path="admin/products/upload" element={<ProductUpload />} />
+      <Route path="admin/stats" element={<Stats />} />
     </Route>
     <Route path="*" element={<Error />} />
   </Route>
