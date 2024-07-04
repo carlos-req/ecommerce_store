@@ -30,10 +30,10 @@ export const routes = createRoutesFromElements(
     </Route>
     <Route path="admin" element={<AdminLayout />}>
       <Route index element={<Dashboard />} />
-      <Route index element={<Products />} />
-      <Route index element={<ProductEdit />} />
-      <Route index element={<ProductUpload />} />
-      <Route index element={<Stats />} />
+      <Route path="/products" element={<Products />} />
+      <Route path="/products/:id" element={<ProductEdit />} />
+      <Route path="/products/upload" element={<ProductUpload />} />
+      <Route path="/stats" element={<Stats />} />
     </Route>
     <Route path="*" element={<Error />} />
   </Route>
