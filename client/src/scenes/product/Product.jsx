@@ -1,11 +1,12 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { FaAngleLeft, FaTimes, FaPlus } from "react-icons/fa";
+import { ShopContext } from "../../context/ShopContext";
 
 const Product = () => {
   const { id } = useParams();
+  const { products } = useContext(ShopContext);
 
-  const { products } = [];
   const selectedProduct = products.find((product) => product._id === id);
 
   const navigate = useNavigate();
