@@ -1,16 +1,31 @@
-import { useState } from "react";
+import { useState, useContext, useEffect } from "react";
 import { FaSearch, FaTimes } from "react-icons/fa";
-import { useContext } from "react";
 import { ShopContext } from "../../context/ShopContext";
 import { useNavigate } from "react-router-dom";
 
 const Search = () => {
-  const [query, setQuery] = useState("");
+  //context
   const { products } = useContext(ShopContext);
-  const results = products.slice(4);
+  const { isSearchOpen, setSearchOpen } = useContext(ShopContext);
+
+  //state
+  const [query, setQuery] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
+  const trending = products.slice(4);
+
   const navigate = useNavigate();
 
-  const { isSearchOpen, setSearchOpen } = useContext(ShopContext);
+  //search
+  useEffect(() => {
+    if (query) {
+      const results = products.filter((product) =>
+        product.name.toLowerCase().includes(query.toLowerCase())
+      );
+      setSearchResults(results);
+    } else {
+      setSearchResults([]);
+    }
+  }, [query, products]);
 
   return (
     <div
@@ -26,6 +41,7 @@ const Search = () => {
             size={20}
             onClick={() => {
               setSearchOpen();
+              setQuery("");
             }}
           />
         </button>
@@ -44,34 +60,66 @@ const Search = () => {
           Popular Searches
         </h3>
         <ul className="mb-4 cursor-pointer text-primary200">
-          <li onClick={() => setQuery("Amplify")}>Amplify</li>
-          <li onClick={() => setQuery("Amplify Shorts")}>Amplify Shorts</li>
-          <li onClick={() => setQuery("Amplify Leggings")}>Amplify Leggings</li>
-          <li onClick={() => setQuery("Amplify Bra")}>Amplify Bra</li>
+          <li onClick={() => setQuery("amp")}>Amp</li>
+          <li onClick={() => setQuery("tee")}>Tee</li>
+          <li onClick={() => setQuery("graphic")}>Graphic</li>
+          <li onClick={() => setQuery("sweatshort")}>Sweatshorts</li>
         </ul>
-        <h3 className="mb-2 text-lg font-bold text-primary">
-          Trending Products
-        </h3>
-        <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
-          {results.map((product) => (
-            <div
-              key={product._id}
-              className="p-2 bg-gray-200 rounded-lg shadow-sm"
-              onClick={() => {
-                navigate(`/${product._id}`);
-                setSearchOpen();
-              }}
-            >
-              <img
-                src={product.imageSrc}
-                alt={product.name}
-                className="object-contain w-full h-40 mb-2 rounded-lg"
-              />
-              <h4 className="font-bold">{product.name}</h4>
-              <p className="text-black">${product.price}</p>
+        {query == "" ? (
+          <div>
+            <h3 className="mb-2 text-lg font-bold text-primary">
+              Trending Products
+            </h3>
+            <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+              {trending.map((product) => (
+                <div
+                  key={product._id}
+                  className="p-2 bg-gray-200 rounded-lg shadow-sm"
+                  onClick={() => {
+                    navigate(`/${product._id}`);
+                    setSearchOpen();
+                    setQuery("");
+                  }}
+                >
+                  <img
+                    src={product.imageSrc}
+                    alt={product.name}
+                    className="object-contain w-full h-40 mb-2 rounded-lg"
+                  />
+                  <h4 className="font-bold">{product.name}</h4>
+                  <p className="text-black">${product.price}</p>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
+          </div>
+        ) : (
+          <div>
+            <h3 className="mb-2 text-lg font-bold text-primary">
+              Search Results
+            </h3>
+            <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+              {searchResults.map((product) => (
+                <div
+                  key={product._id}
+                  className="p-2 bg-gray-200 rounded-lg shadow-sm"
+                  onClick={() => {
+                    navigate(`/${product._id}`);
+                    setSearchOpen();
+                    setQuery("");
+                  }}
+                >
+                  <img
+                    src={product.imageSrc}
+                    alt={product.name}
+                    className="object-contain w-full h-40 mb-2 rounded-lg"
+                  />
+                  <h4 className="font-bold">{product.name}</h4>
+                  <p className="text-black">${product.price}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
