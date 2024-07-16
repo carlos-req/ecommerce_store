@@ -6,13 +6,13 @@ import { ShopContext } from "../../context/ShopContext";
 const Product = () => {
   const { id } = useParams();
   const { products } = useContext(ShopContext);
-
-  const selectedProduct = products.find((product) => product._id === id);
-
   const navigate = useNavigate();
 
-  const count = 1;
+  //State
   const [toggleDesc, setToggleDesc] = useState(false);
+  const selectedProduct = products.find((product) => product._id === id);
+
+  const count = 1;
 
   useEffect(() => {
     if (!selectedProduct) {

@@ -1,13 +1,34 @@
-# Todo
+# Todo - Frontend
 
 1. [ ] Profile Page
-2. [ ] Admin Page
-3. [ ] Display Products
-4. [ ] Products Page - Filter and all products
-5. [ ] Mens Page
-6. [] Womens Page
+
+   - Add Orders table
+
+2. [] Product Page
+
+- Add quantity
+- Add size selection
+- Add image carousel? (requires api enhancement)
+
+3. [ ] All Products Page - Filter and all products
+
+- Display all products
+
+4. [x] Mens Page
+5. [x] Womens Page
+6. [ ] Admin Page
 7. [ ] Checkout
 8. [ ] Cart Page
+
+# Todo - Server
+
+1. [] Fix JWT Auth
+
+- Store differently
+- Use middleware on all admin request
+
+2. [] Add Stripe route
+3. [] Add additional images for products
 
 ##Enchancements
 
