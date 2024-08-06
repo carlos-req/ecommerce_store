@@ -8,7 +8,7 @@ const CartMenu = () => {
     const { isCartOpen, cartItems, setCartOpen } = useContext(ShopContext);
 
     const subtotal = cartItems.reduce(
-        (acc, item) => acc + item.price * item.count,
+        (acc, item) => acc + item.price * item.quantity,
         0
     );
 

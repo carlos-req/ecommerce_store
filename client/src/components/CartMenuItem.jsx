@@ -4,7 +4,15 @@ import { FaTrashAlt } from "react-icons/fa";
 import { ShopContext } from "../context/ShopContext";
 
 const CartMenuItem = ({ product }) => {
-    const { name, price, quantity, imageSrc, description, color } = product;
+    const {
+        name,
+        price,
+        quantity,
+        imageSrc,
+        description,
+        color,
+        selectedSize,
+    } = product;
     const { removeFromCart } = useContext(ShopContext);
 
     return (
@@ -25,7 +33,9 @@ const CartMenuItem = ({ product }) => {
                         </h3>
                         <p className="pr-2 text-sm text-subtitle">${price}</p>
                     </div>
-                    <p className="mt-1 text-sm text-subtitle">{color}</p>
+                    <p className="mt-1 text-sm text-subtitle">
+                        {color}, {selectedSize.toUpperCase()}
+                    </p>
                 </div>
                 <div className="flex items-end justify-between flex-1 text-sm">
                     <p className="text-slate-50">Qty: {quantity} </p>
