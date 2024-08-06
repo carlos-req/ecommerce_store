@@ -41,42 +41,31 @@ export const ShopContextProvider = ({ children }) => {
 
     //Cart Functions
     const addToCart = (product, selectedSize, count) => {
-        // Find if product exists in cartItems
-        const productExists = cartItems.find(
-            (item) => item._id === product._id
+        // Find if product exists in cartItems with the same _id and selectedSize
+        const productExistsWithSameSize = cartItems.find(
+            (item) =>
+                item._id === product._id && item.selectedSize === selectedSize
         );
-        console.log(productExists);
-        if (productExists) {
+
+        if (productExistsWithSameSize) {
+            // If the product with the same size exists, update the quantity
             setCartItems((prevCart) =>
                 prevCart.map((item) => {
                     if (
-                        item._id === product.id &&
+                        item._id === product._id &&
                         item.selectedSize === selectedSize
                     ) {
-                        // returns existing item with count increased
-                        console.log("hello");
                         return {
-                            ...productExists,
-                            quantity: productExists.quantity + count,
-                        };
-                    } else if (item._id === product.id) {
-                        // returns existing item ,addeds new selectedSize
-                        // could cause bug if same product exists with different size
-                        console.log(productExists);
-                        return {
-                            ...productExists,
-                            [selectedSize]: selectedSize,
-                            quantity: productExists.quantity + count,
+                            ...item,
+                            quantity: item.quantity + count,
                         };
                     } else {
                         return item;
                     }
                 })
             );
-            console.log(cartItems);
-            console.log(productExists);
-            console.log(selectedSize);
         } else {
+            // If the product with the same size does not exist, add it as a new item
             setCartItems((prevCart) => [
                 ...prevCart,
                 { ...product, quantity: count, selectedSize },
@@ -84,18 +73,26 @@ export const ShopContextProvider = ({ children }) => {
         }
     };
 
-    const removeFromCart = (productId) => {
+    const removeFromCart = (cartItem) => {
+        // Remove the item from the cart if it has the same _id and selectedSize
+        console.log(cartItem);
         setCartItems((prevCart) =>
-            prevCart.filter((product) => product._id !== productId)
+            prevCart.filter(
+                (item) =>
+                    !(
+                        item._id === cartItem._id &&
+                        item.selectedSize === cartItem.selectedSize
+                    )
+            )
         );
     };
 
     const increaseCartItemCount = (productId) => {
         setCartItems((prevCart) =>
-            prevCart.map((product) =>
-                product._id === productId
-                    ? { ...product, quantity: product.quantity + 1 }
-                    : product
+            prevCart.map((item) =>
+                item._id === productId
+                    ? { ...item, quantity: item.quantity + 1 }
+                    : item
             )
         );
     };

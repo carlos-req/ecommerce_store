@@ -21,6 +21,8 @@ const Product = () => {
             toast.error("Please select a size");
         } else {
             addToCart(selectedProduct, selectedSize, count);
+            setCount(1);
+            setSelectedSize(null);
         }
     };
 

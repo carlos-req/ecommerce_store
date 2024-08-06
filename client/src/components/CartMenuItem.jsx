@@ -1,8 +1,11 @@
 import PropTypes from "prop-types";
+import { useContext } from "react";
 import { FaTrashAlt } from "react-icons/fa";
+import { ShopContext } from "../context/ShopContext";
 
 const CartMenuItem = ({ product }) => {
     const { name, price, quantity, imageSrc, description, color } = product;
+    const { removeFromCart } = useContext(ShopContext);
 
     return (
         <section className="flex px-3 py-2 my-2 border rounded-2xl">
