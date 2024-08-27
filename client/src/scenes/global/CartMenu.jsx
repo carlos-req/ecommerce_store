@@ -69,7 +69,12 @@ const CartMenu = () => {
                                         Shipping and taxes calculated at
                                         checkout.
                                     </p>
-                                    <div className="mt-6">
+                                    <div
+                                        className="mt-6"
+                                        onClick={() => {
+                                            setCartOpen();
+                                        }}
+                                    >
                                         <Link
                                             to="/checkout"
                                             className="flex items-center justify-center px-6 py-3 text-base font-black uppercase border border-transparent rounded-md shadow-sm bg-primary text-secondary hover:bg-subtitle"
