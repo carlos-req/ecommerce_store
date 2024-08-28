@@ -1,22 +1,24 @@
-import CartMenuItem from "../../components/CartMenuItem";
 import { useState, useEffect, useContext } from "react";
 import { ShopContext } from "../../context/ShopContext";
 import axios from "axios";
 import ButtonOutlined from "../../components/ButtonOutlined";
-import ProductCard from "../../components/ProductCard";
 import tempImage from "../../../public/gray.jpg";
 
 const ProductDisplay = () => {
     const { cartItems } = useContext(ShopContext);
 
-    const handleCheckout = async () => {
+    const handleCheckout = async (e) => {
+        e.preventDefault();
         try {
-            console.log(cart);
-            const response = await axios.post("/create-checkout-session", {
-                cartItems,
-            });
-            // Redirect to Stripe Checkout
-            window.location = response.data.url;
+            console.log(cartItems);
+            const response = await axios.post(
+                `${import.meta.env.VITE_SERVER_URL_BASE}/create-checkout-session`,
+                {
+                    items: cartItems,
+                }
+            );
+            //console.log(response);
+            window.location = response.data;
         } catch (error) {
             console.error("Error creating checkout session:", error);
             alert(

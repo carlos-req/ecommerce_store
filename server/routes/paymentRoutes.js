@@ -6,6 +6,6 @@ const router = express.Router();
 // All the routes related to payments
 
 //Create payment session
-router.post("", paymentHandling);
+router.post("/", paymentHandling);
 
 export default router;

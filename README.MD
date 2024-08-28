@@ -4,27 +4,27 @@ Mentality is a Ecommerce store with Vite, React, Redux, Node, Express, MongoDB a
 
 ## 🚀 Features
 
-- 🗝 Sign in & Register using JWT
-- 👤 View your own profile, email, name, orders, etc.
-- 🗨 Selection of clothing
-- 📬 Admins can edit:
-  - 📁 Product Name
-  - 🖼 Product Images
-  - 📝 Product Description
-  - 👥 User roles
-- 🔎 Search for products
-- 📥 Drag and drop to upload files and images
-- 🌓 Toggle between light mode and dark mode
+-   🗝 Sign in & Register using JWT
+-   👤 View your own profile, email, name, orders, etc.
+-   🗨 Selection of clothing
+-   📬 Admins can edit:
+    -   📁 Product Name
+    -   🖼 Product Images
+    -   📝 Product Description
+    -   👥 User roles
+-   🔎 Search for products
+-   📥 Drag and drop to upload files and images
+-   🌓 Toggle between light mode and dark mode
 
 ## 🛠️ Main Technologies
 
-- `React`
-- `Redux`
-- `Node`
-- `Express`
-- `MongoBD`
-- `TailwindCSS`
-- `Vite`
+-   `React`
+-   `Redux`
+-   `Node`
+-   `Express`
+-   `MongoBD`
+-   `TailwindCSS`
+-   `Vite`
 
 ## 📝 Process
 
