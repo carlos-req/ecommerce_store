@@ -3,12 +3,15 @@ import { ShopContext } from "../../context/ShopContext";
 import axios from "axios";
 import ButtonOutlined from "../../components/ButtonOutlined";
 import tempImage from "../../../public/gray.jpg";
+import { useLocation } from "react-router-dom";
 
 const ProductDisplay = () => {
     const { cartItems } = useContext(ShopContext);
 
     const handleCheckout = async (e) => {
         e.preventDefault();
+        //setting cart items to local storage incase canceled
+        localStorage.setItem("cartItems", JSON.stringify(cartItems));
         try {
             console.log(cartItems);
             const response = await axios.post(
@@ -17,8 +20,8 @@ const ProductDisplay = () => {
                     items: cartItems,
                 }
             );
-            //console.log(response);
-            window.location = response.data;
+            console.log(response);
+            window.location.href = response.data.url;
         } catch (error) {
             console.error("Error creating checkout session:", error);
             alert(
@@ -101,10 +104,12 @@ const Message = ({ message }) => (
 
 export default function Checkout() {
     const [message, setMessage] = useState(null);
+    const location = useLocation();
+    const { addToCart } = useContext(ShopContext);
 
     useEffect(() => {
         // Check to see if this is a redirect back from Checkout
-        const query = new URLSearchParams(window.location.search);
+        const query = new URLSearchParams(location.search);
 
         if (query.get("success")) {
             setMessage("Order placed! You will receive an email confirmation.");
@@ -114,8 +119,25 @@ export default function Checkout() {
             setMessage(
                 "Order canceled -- continue to shop around and checkout when you're ready."
             );
+
+            // Retrieve cart items from localStorage
+            let cartItems = localStorage.getItem("cartItems");
+
+            if (cartItems) {
+                // Parse cart items and add them to the cart
+                const parsedCartItems = JSON.parse(cartItems);
+                parsedCartItems.forEach((item) => {
+                    // Assuming the item structure has properties: product, selectedSize, count
+                    addToCart(item, item.selectedSize, item.quantity);
+                });
+            }
+
+            // Clear cart items from localStorage
+            localStorage.removeItem("cartItems");
         }
-    }, []);
+
+        return () => {};
+    }, [location]);
 
     return message ? <Message message={message} /> : <ProductDisplay />;
 }

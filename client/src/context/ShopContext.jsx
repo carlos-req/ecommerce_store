@@ -66,6 +66,7 @@ export const ShopContextProvider = ({ children }) => {
             );
         } else {
             // If the product with the same size does not exist, add it as a new item
+            console.log(product);
             setCartItems((prevCart) => [
                 ...prevCart,
                 { ...product, quantity: count, selectedSize },
@@ -120,6 +121,7 @@ export const ShopContextProvider = ({ children }) => {
         setCartOpen,
         setSearchOpen,
         isSearchOpen,
+        setCartItems,
     };
 
     return (
