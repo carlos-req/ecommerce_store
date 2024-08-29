@@ -24,7 +24,8 @@ dist-ssr
 *.sw?
 
 # local env files
-.env*.local
+**/.env*.local
+**/.env
 
 # vercel
 .vercel
