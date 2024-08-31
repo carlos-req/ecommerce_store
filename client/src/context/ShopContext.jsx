@@ -107,6 +107,10 @@ export const ShopContextProvider = ({ children }) => {
         setIsSearchOpen(!isSearchOpen);
     };
 
+    const clearCart = () => {
+        setCartItems([]);
+    };
+
     const contextValue = {
         products,
         cartItems,
@@ -122,6 +126,7 @@ export const ShopContextProvider = ({ children }) => {
         setSearchOpen,
         isSearchOpen,
         setCartItems,
+        clearCart,
     };
 
     return (

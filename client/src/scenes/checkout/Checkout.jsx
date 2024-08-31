@@ -10,7 +10,7 @@ const stripePromise = loadStripe(
     "pk_test_51KZYccCoOZF2UhtOwdXQl3vcizup20zqKqT9hVUIsVzsdBrhqbUI2fE0ZdEVLdZfeHjeyFXtqaNsyCJCmZWnjNZa00PzMAjlcL"
 );
 
-const ProductDisplay = () => {
+const Checkout = () => {
     const { cartItems } = useContext(ShopContext);
 
     const handleCheckout = async (e) => {
@@ -20,7 +20,7 @@ const ProductDisplay = () => {
         //setting cart items to local storage incase canceled
         localStorage.setItem("cartItems", JSON.stringify(cartItems));
         const response = await axios.post(
-            `${import.meta.env.VITE_SERVER_URL}/create-checkout-session`,
+            `${import.meta.env.VITE_SERVER_URL}/payments/create-checkout-session`,
             {
                 products: cartItems,
             }
@@ -101,12 +101,6 @@ const ProductDisplay = () => {
     );
 };
 
-const Message = ({ message }) => (
-    <section>
-        <p>{message}</p>
-    </section>
-);
-
 export default function Checkout() {
     const [message, setMessage] = useState(null);
     const location = useLocation();
@@ -143,6 +137,4 @@ export default function Checkout() {
 
         return () => {};
     }, [location]);
-
-    return message ? <Message message={message} /> : <ProductDisplay />;
 }
