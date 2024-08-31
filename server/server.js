@@ -6,7 +6,7 @@ import userRoutes from "./routes/userRoutes.js";
 import productRoutes from "./routes/productRoutes.js";
 import orderRoutes from "./routes/orderRoutes.js";
 import paymentRoutes from "./routes/paymentRoutes.js";
-const port = process.env.PORT || 3500;
+const PORT = process.env.PORT || 3500;
 
 const app = express();
 
@@ -24,7 +24,7 @@ app.use("/api/products", productRoutes);
 app.use("/api/orders", orderRoutes);
 
 //using paymentRoutes
-app.use("/create-checkout-session", paymentRoutes);
+app.use("/api/payments", paymentRoutes);
 
 //initial route
 app.get("/api", (req, res) => {
@@ -33,5 +33,5 @@ app.get("/api", (req, res) => {
 });
 
 app.listen(port, () => {
-    console.log(`I am listening on ${port}`);
+    console.log(`I am listening on ${PORT}`);
 });

@@ -4,29 +4,34 @@ import axios from "axios";
 import ButtonOutlined from "../../components/ButtonOutlined";
 import tempImage from "../../../public/gray.jpg";
 import { useLocation } from "react-router-dom";
+import { loadStripe } from "@stripe/stripe-js";
+
+const stripePromise = loadStripe(
+    "pk_test_51KZYccCoOZF2UhtOwdXQl3vcizup20zqKqT9hVUIsVzsdBrhqbUI2fE0ZdEVLdZfeHjeyFXtqaNsyCJCmZWnjNZa00PzMAjlcL"
+);
 
 const ProductDisplay = () => {
     const { cartItems } = useContext(ShopContext);
 
     const handleCheckout = async (e) => {
         e.preventDefault();
+        const stripe = await stripePromise;
+
         //setting cart items to local storage incase canceled
         localStorage.setItem("cartItems", JSON.stringify(cartItems));
-        try {
-            console.log(cartItems);
-            const response = await axios.post(
-                `${import.meta.env.VITE_SERVER_URL_BASE}/create-checkout-session`,
-                {
-                    items: cartItems,
-                }
-            );
-            console.log(response);
-            window.location.href = response.data.url;
-        } catch (error) {
-            console.error("Error creating checkout session:", error);
-            alert(
-                "There was an error processing your checkout. Please try again."
-            );
+        const response = await axios.post(
+            `${import.meta.env.VITE_SERVER_URL}/create-checkout-session`,
+            {
+                products: cartItems,
+            }
+        );
+        const session = response.data;
+        const result = await stripe.redirectToCheckout({
+            sessionId: session.id,
+        });
+
+        if (result.error) {
+            console.error("Error:", result.error);
         }
     };
 
