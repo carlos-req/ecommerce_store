@@ -1,14 +1,11 @@
-import { useState, useEffect, useContext } from "react";
+import { useContext } from "react";
 import { ShopContext } from "../../context/ShopContext";
 import axios from "axios";
 import ButtonOutlined from "../../components/ButtonOutlined";
 import tempImage from "../../../public/gray.jpg";
-import { useLocation } from "react-router-dom";
 import { loadStripe } from "@stripe/stripe-js";
 
-const stripePromise = loadStripe(
-    "pk_test_51KZYccCoOZF2UhtOwdXQl3vcizup20zqKqT9hVUIsVzsdBrhqbUI2fE0ZdEVLdZfeHjeyFXtqaNsyCJCmZWnjNZa00PzMAjlcL"
-);
+const stripePromise = loadStripe(import.meta.env.VITE_PRIVATE_STRIPE);
 
 const Checkout = () => {
     const { cartItems } = useContext(ShopContext);
@@ -20,19 +17,22 @@ const Checkout = () => {
         //setting cart items to local storage incase canceled
         localStorage.setItem("cartItems", JSON.stringify(cartItems));
         const response = await axios.post(
-            `${import.meta.env.VITE_SERVER_URL}/payments/create-checkout-session`,
+            `${import.meta.env.VITE_SERVER_URL}payments/create-checkout-session`,
             {
                 products: cartItems,
             }
         );
         const session = response.data;
-        const result = await stripe.redirectToCheckout({
+
+        console.log(session);
+
+        /* const result = await stripe.redirectToCheckout({
             sessionId: session.id,
         });
 
-        if (result.error) {
+         if (result.error) {
             console.error("Error:", result.error);
-        }
+        } */
     };
 
     return (
@@ -101,7 +101,7 @@ const Checkout = () => {
     );
 };
 
-export default function Checkout() {
+/* export default function CheckoutV2() {
     const [message, setMessage] = useState(null);
     const location = useLocation();
     const { addToCart } = useContext(ShopContext);
@@ -137,4 +137,6 @@ export default function Checkout() {
 
         return () => {};
     }, [location]);
-}
+} */
+
+export default Checkout;

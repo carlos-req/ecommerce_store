@@ -1,5 +1,5 @@
 import Stripe from "stripe";
-import OrderModel from "../models/orderModel.js";
+import Order from "../models/orderModel.js";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
@@ -8,13 +8,15 @@ const createCheckoutSession = async (req, res) => {
     try {
         const { products } = req.body;
 
-        if (!Array.isArray(items) || items.length === 0) {
+        if (!Array.isArray(products) || products.length === 0) {
             return res
                 .status(400)
                 .json({ error: "Invalid or empty products array" });
         }
 
         let totalAmount = 0;
+
+        
 
         const lineItems = products.map((product) => {
             const amount = Math.round(product.price * 100);
@@ -33,6 +35,8 @@ const createCheckoutSession = async (req, res) => {
             };
         });
 
+        //console.log(lineItems[0].price_data.product_data);
+
         const session = await stripe.checkout.sessions.create({
             payment_method_types: ["card"],
             line_items: lineItems,
@@ -40,9 +44,9 @@ const createCheckoutSession = async (req, res) => {
             success_url: `${process.env.CLIENT_URL}/checkout-success?session_id={CHECKOUT_SESSION_ID}`,
             cancel_url: `${process.env.CLIENT_URL}/checkout-cancel`,
             metadata: {
-                userId: req.user._id.toString(),
+                /* userId: req.user._id.toString(), */
                 items: JSON.stringify(
-                    items.map((product) => ({
+                    products.map((product) => ({
                         id: product._id,
                         quantity: product.quantity,
                         price: product.price,
@@ -50,6 +54,8 @@ const createCheckoutSession = async (req, res) => {
                 ),
             },
         });
+
+        console.log(session);
         res.status(200).json({
             id: session.id,
             totalAmount: totalAmount / 100,
@@ -66,11 +72,14 @@ const createCheckoutSession = async (req, res) => {
 const checkoutSuccess = async (req, res) => {
     try {
         const { session_id } = req.body;
+        console.log(session_id);
         const session = await stripe.checkout.sessions.retrieve(session_id);
+
+        console.log(session);
 
         // new order
         const products = JSON.parse(session.metadata.products);
-        const newOrder = new OrderModel({
+        const newOrder = new Order({
             user: session.metadata.userId,
             products: products.map((product) => ({
                 product: product.id,

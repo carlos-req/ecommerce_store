@@ -32,6 +32,6 @@ app.get("/api", (req, res) => {
     console.log("server is active");
 });
 
-app.listen(port, () => {
+app.listen(PORT, () => {
     console.log(`I am listening on ${PORT}`);
 });
