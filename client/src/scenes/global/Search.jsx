@@ -86,7 +86,7 @@ const Search = () => {
                             {trending.map((product) => (
                                 <section key={product._id}>
                                     <div
-                                        className="w-full overflow-hidden bg-secondary rounded-2xl"
+                                        className="w-full overflow-hidden cursor-pointer bg-secondary rounded-2xl group"
                                         onClick={() => {
                                             navigate(`/${product._id}`);
                                             setSearchOpen();
@@ -96,7 +96,7 @@ const Search = () => {
                                         <img
                                             src={product.imageSrc}
                                             alt={product.name}
-                                            className="object-cover object-center w-full h-full group-hover:opacity-75"
+                                            className="object-cover object-center w-full h-full transition group-hover:opacity-75"
                                         />
                                     </div>
                                     <h4 className="mt-2 text-sm font-bold text-primary">

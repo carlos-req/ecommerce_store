@@ -1,48 +1,16 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
-import axios from "../../lib/axios";
 import { ShopContext } from "../../context/ShopContext";
 import CartMenuItem from "../../components/CartMenuItem";
 import { FaTimes } from "react-icons/fa";
-import { AuthContext } from "../../context/AuthContext";
 
 const CartMenu = () => {
     const { isCartOpen, cartItems, setCartOpen } = useContext(ShopContext);
-    const { user } = useContext(AuthContext);
 
     const subtotal = cartItems.reduce(
         (acc, item) => acc + item.price * item.quantity,
         0
     );
-
-    const handleCheckout = async (e) => {
-        e.preventDefault();
-
-        let reqUser = null;
-        user !== null ? (reqUser = user) : (reqUser = null);
-
-        //setting cart items to local storage incase canceled
-        localStorage.setItem("cartItems", JSON.stringify(cartItems));
-
-        try {
-            const response = await axios.post(
-                `payments/create-checkout-session`,
-                {
-                    products: cartItems,
-                    user: reqUser,
-                }
-            );
-            const session = response.data;
-
-            if (!session || !session.url) {
-                throw new Error("Session URL not found");
-            }
-
-            window.location.href = session.url;
-        } catch (error) {
-            console.error("Error during checkout:", error);
-        }
-    };
 
     return (
         <div className={isCartOpen ? "relative z-20" : "hidden"}>
@@ -101,17 +69,17 @@ const CartMenu = () => {
                                         Shipping and taxes calculated at
                                         checkout.
                                     </p>
-                                    <div
-                                        className="mt-6"
-                                        onClick={handleCheckout}
+                                    <Link
+                                        to="/checkout"
+                                        onClick={() => {
+                                            setCartOpen();
+                                        }}
                                     >
-                                        <Link
-                                            to="/checkout"
-                                            className="flex items-center justify-center px-6 py-3 text-base font-black uppercase border border-transparent rounded-md shadow-sm bg-primary text-secondary hover:bg-subtitle"
-                                        >
+                                        <button className="flex items-center justify-center w-full px-6 py-3 mt-6 text-base font-black uppercase border border-transparent rounded-md shadow-sm bg-primary text-secondary hover:bg-subtitle">
                                             Checkout
-                                        </Link>
-                                    </div>
+                                        </button>
+                                    </Link>
+
                                     <div
                                         onClick={() => {
                                             setCartOpen();

@@ -11,7 +11,7 @@
     - [x]Add size selection
     - [x]Add Validation to selecting a size that the product has in stock
 
-3. [ ] All Products Page - Filter and all products
+3. [ ] Catalog Page - Filter and all products
 
 -   Display all products
 
@@ -20,9 +20,9 @@
 6. [ ] Admin Page
 7. [ ] Checkout
 
-    - [] Finish the Summary Page setup.
-    - [] Work on Success setup
-    - [] Work on Cancel setup
+    - [] Finish the Summary Page setup - Missing Price summary
+    - [] Work on Success setup - Test
+    - [x] Work on Cancel setup
 
 8. [x] Cart Menu Component
 
@@ -34,7 +34,6 @@
 -   Use middleware on all admin request
 
 2. [x] Add Stripe route
-3. [] Add additional images for products | No longer needed, Feature canceled.
 
 ##Enchancements
 
