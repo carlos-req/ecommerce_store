@@ -102,7 +102,7 @@ const ProfilePage = () => {
                         <Link to="/">
                             <button
                                 type="submit"
-                                className="w-full px-12 py-4 text-xl font-black tracking-tighter uppercase duration-200 ease-in-out lg:px-4 lg:py-2 lg:rounded-lg bg-primary bg-opacity-80 text-secondary lg:text-base rounded-2xl transation hover:bg-opacity-100 hover:drop-shadow-md hover:text-gray-600"
+                                className="px-12 py-4 text-xl font-black tracking-tighter uppercase duration-200 ease-in-out  lg:px-4 lg:py-2 lg:rounded-lg bg-primary bg-opacity-80 text-secondary lg:text-base rounded-2xl transation hover:bg-opacity-100 hover:drop-shadow-md hover:text-gray-600"
                             >
                                 Home
                             </button>

@@ -6,7 +6,9 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 // POST /public
 const createCheckoutSession = async (req, res) => {
     try {
-        const { products } = req.body;
+        const { products, user } = req.body;
+
+        console.log(req.body);
 
         if (!Array.isArray(products) || products.length === 0) {
             return res
@@ -33,6 +35,11 @@ const createCheckoutSession = async (req, res) => {
             };
         });
 
+        let reqUserId = null;
+        if (user !== null) {
+            reqUserId = user._id.toString();
+        }
+
         const session = await stripe.checkout.sessions.create({
             payment_method_types: ["card"],
             line_items: lineItems,
@@ -40,7 +47,7 @@ const createCheckoutSession = async (req, res) => {
             success_url: `${process.env.CLIENT_URL}/checkout-success?session_id={CHECKOUT_SESSION_ID}`,
             cancel_url: `${process.env.CLIENT_URL}/checkout-cancel`,
             metadata: {
-                /* userId: req.user._id.toString(), */
+                userId: reqUserId,
                 items: JSON.stringify(
                     products.map((product) => ({
                         id: product._id,
@@ -51,7 +58,6 @@ const createCheckoutSession = async (req, res) => {
             },
         });
 
-        console.log(session.id);
         res.status(200).json({
             id: session.id,
             url: session.url,

@@ -29,7 +29,7 @@ const Womens = () => {
             </section>
             <div className="max-w-2xl px-4 py-16 mx-auto sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
                 <div className="grid grid-cols-1 gap-x-10 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-5">
-                    {filteredProducts?.map((product) => (
+                    {filteredProducts.map((product) => (
                         <ProductCard key={product._id} product={product} />
                     ))}
                 </div>

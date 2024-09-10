@@ -1,6 +1,6 @@
 import { useEffect, useState, useContext } from "react";
 import { ShopContext } from "../../context/ShopContext";
-import axios from "axios";
+import axios from "../../lib/axios";
 
 const CheckoutSuccess = () => {
     const { clearCart } = useContext(ShopContext);
@@ -10,12 +10,9 @@ const CheckoutSuccess = () => {
     useEffect(() => {
         const handleCheckoutSuccess = async (sessionId) => {
             try {
-                await axios.post(
-                    `${import.meta.env.VITE_SERVER_URL}payments/checkout-success`,
-                    {
-                        sessionId,
-                    }
-                );
+                await axios.post(`payments/checkout-success`, {
+                    sessionId,
+                });
                 //create a clear cart function
                 clearCart();
             } catch (error) {

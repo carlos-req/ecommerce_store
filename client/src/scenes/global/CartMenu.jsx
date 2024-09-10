@@ -1,38 +1,38 @@
 import { useContext } from "react";
-import { loadStripe } from "@stripe/stripe-js";
-import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
+import { Link } from "react-router-dom";
+import axios from "../../lib/axios";
 import { ShopContext } from "../../context/ShopContext";
 import CartMenuItem from "../../components/CartMenuItem";
 import { FaTimes } from "react-icons/fa";
-
-const stripePromise = loadStripe(import.meta.env.VITE_PRIVATE_STRIPE);
+import { AuthContext } from "../../context/AuthContext";
 
 const CartMenu = () => {
     const { isCartOpen, cartItems, setCartOpen } = useContext(ShopContext);
-    const navigate = useNavigate();
+    const { user } = useContext(AuthContext);
 
     const subtotal = cartItems.reduce(
         (acc, item) => acc + item.price * item.quantity,
         0
     );
+
     const handleCheckout = async (e) => {
         e.preventDefault();
-        //const stripe = await stripePromise;
+
+        let reqUser = null;
+        user !== null ? (reqUser = user) : (reqUser = null);
 
         //setting cart items to local storage incase canceled
         localStorage.setItem("cartItems", JSON.stringify(cartItems));
 
         try {
             const response = await axios.post(
-                `${import.meta.env.VITE_SERVER_URL}payments/create-checkout-session`,
+                `payments/create-checkout-session`,
                 {
                     products: cartItems,
+                    user: reqUser,
                 }
             );
             const session = response.data;
-
-            console.log("session", session);
 
             if (!session || !session.url) {
                 throw new Error("Session URL not found");
@@ -72,7 +72,7 @@ const CartMenu = () => {
 
                                     <div className="mt-2">
                                         <div className="flow-root">
-                                            <ul className="">
+                                            <ul>
                                                 {cartItems?.map((product) => {
                                                     return (
                                                         <CartMenuItem
