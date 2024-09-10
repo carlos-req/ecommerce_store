@@ -11,7 +11,7 @@ const CheckoutSuccess = () => {
         const handleCheckoutSuccess = async (sessionId) => {
             try {
                 await axios.post(
-                    `${import.meta.env.VITE_SERVER_URL}/payments/checkout-success`,
+                    `${import.meta.env.VITE_SERVER_URL}payments/checkout-success`,
                     {
                         sessionId,
                     }

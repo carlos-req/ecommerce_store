@@ -16,8 +16,6 @@ const createCheckoutSession = async (req, res) => {
 
         let totalAmount = 0;
 
-        
-
         const lineItems = products.map((product) => {
             const amount = Math.round(product.price * 100);
             totalAmount += amount * product.quantity;
@@ -34,8 +32,6 @@ const createCheckoutSession = async (req, res) => {
                 quantity: product.quantity || 1,
             };
         });
-
-        //console.log(lineItems[0].price_data.product_data);
 
         const session = await stripe.checkout.sessions.create({
             payment_method_types: ["card"],
@@ -55,9 +51,10 @@ const createCheckoutSession = async (req, res) => {
             },
         });
 
-        console.log(session);
+        console.log(session.id);
         res.status(200).json({
             id: session.id,
+            url: session.url,
             totalAmount: totalAmount / 100,
         });
     } catch (error) {

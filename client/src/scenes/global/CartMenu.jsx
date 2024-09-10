@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { loadStripe } from "@stripe/stripe-js";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { ShopContext } from "../../context/ShopContext";
 import CartMenuItem from "../../components/CartMenuItem";
@@ -10,6 +10,7 @@ const stripePromise = loadStripe(import.meta.env.VITE_PRIVATE_STRIPE);
 
 const CartMenu = () => {
     const { isCartOpen, cartItems, setCartOpen } = useContext(ShopContext);
+    const navigate = useNavigate();
 
     const subtotal = cartItems.reduce(
         (acc, item) => acc + item.price * item.quantity,
@@ -17,27 +18,30 @@ const CartMenu = () => {
     );
     const handleCheckout = async (e) => {
         e.preventDefault();
-        const stripe = await stripePromise;
+        //const stripe = await stripePromise;
 
         //setting cart items to local storage incase canceled
         localStorage.setItem("cartItems", JSON.stringify(cartItems));
-        const response = await axios.post(
-            `${import.meta.env.VITE_SERVER_URL}payments/create-checkout-session`,
-            {
-                products: cartItems,
+
+        try {
+            const response = await axios.post(
+                `${import.meta.env.VITE_SERVER_URL}payments/create-checkout-session`,
+                {
+                    products: cartItems,
+                }
+            );
+            const session = response.data;
+
+            console.log("session", session);
+
+            if (!session || !session.url) {
+                throw new Error("Session URL not found");
             }
-        );
-        const session = response.data;
 
-        console.log(session);
-
-        /* const result = await stripe.redirectToCheckout({
-          sessionId: session.id,
-      });
-
-       if (result.error) {
-          console.error("Error:", result.error);
-      } */
+            window.location.href = session.url;
+        } catch (error) {
+            console.error("Error during checkout:", error);
+        }
     };
 
     return (
