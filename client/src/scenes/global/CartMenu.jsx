@@ -1,8 +1,12 @@
-import { FaTimes } from "react-icons/fa";
-import CartMenuItem from "../../components/CartMenuItem";
-import { Link } from "react-router-dom";
 import { useContext } from "react";
+import { loadStripe } from "@stripe/stripe-js";
+import { Link } from "react-router-dom";
+import axios from "axios";
 import { ShopContext } from "../../context/ShopContext";
+import CartMenuItem from "../../components/CartMenuItem";
+import { FaTimes } from "react-icons/fa";
+
+const stripePromise = loadStripe(import.meta.env.VITE_PRIVATE_STRIPE);
 
 const CartMenu = () => {
     const { isCartOpen, cartItems, setCartOpen } = useContext(ShopContext);
@@ -11,6 +15,30 @@ const CartMenu = () => {
         (acc, item) => acc + item.price * item.quantity,
         0
     );
+    const handleCheckout = async (e) => {
+        e.preventDefault();
+        const stripe = await stripePromise;
+
+        //setting cart items to local storage incase canceled
+        localStorage.setItem("cartItems", JSON.stringify(cartItems));
+        const response = await axios.post(
+            `${import.meta.env.VITE_SERVER_URL}payments/create-checkout-session`,
+            {
+                products: cartItems,
+            }
+        );
+        const session = response.data;
+
+        console.log(session);
+
+        /* const result = await stripe.redirectToCheckout({
+          sessionId: session.id,
+      });
+
+       if (result.error) {
+          console.error("Error:", result.error);
+      } */
+    };
 
     return (
         <div className={isCartOpen ? "relative z-20" : "hidden"}>
@@ -71,9 +99,7 @@ const CartMenu = () => {
                                     </p>
                                     <div
                                         className="mt-6"
-                                        onClick={() => {
-                                            setCartOpen();
-                                        }}
+                                        onClick={handleCheckout}
                                     >
                                         <Link
                                             to="/checkout"

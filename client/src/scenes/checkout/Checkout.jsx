@@ -101,42 +101,4 @@ const Checkout = () => {
     );
 };
 
-/* export default function CheckoutV2() {
-    const [message, setMessage] = useState(null);
-    const location = useLocation();
-    const { addToCart } = useContext(ShopContext);
-
-    useEffect(() => {
-        // Check to see if this is a redirect back from Checkout
-        const query = new URLSearchParams(location.search);
-
-        if (query.get("success")) {
-            setMessage("Order placed! You will receive an email confirmation.");
-        }
-
-        if (query.get("canceled")) {
-            setMessage(
-                "Order canceled -- continue to shop around and checkout when you're ready."
-            );
-
-            // Retrieve cart items from localStorage
-            let cartItems = localStorage.getItem("cartItems");
-
-            if (cartItems) {
-                // Parse cart items and add them to the cart
-                const parsedCartItems = JSON.parse(cartItems);
-                parsedCartItems.forEach((item) => {
-                    // Assuming the item structure has properties: product, selectedSize, count
-                    addToCart(item, item.selectedSize, item.quantity);
-                });
-            }
-
-            // Clear cart items from localStorage
-            localStorage.removeItem("cartItems");
-        }
-
-        return () => {};
-    }, [location]);
-} */
-
 export default Checkout;
