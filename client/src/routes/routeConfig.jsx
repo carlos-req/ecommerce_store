@@ -17,6 +17,7 @@ import Stats from "../scenes/admin/stats/Stats";
 import Checkout from "../scenes/checkout/Checkout";
 import CheckoutSuccess from "../scenes/checkoutSuccess/checkoutSuccess";
 import CheckoutCancel from "../scenes/checkoutCancel/CheckoutCancel";
+import Catalog from "../scenes/catalog/Catalog";
 
 export const routes = createRoutesFromElements(
     <Route>
@@ -28,6 +29,7 @@ export const routes = createRoutesFromElements(
             <Route path="/men" element={<Mens />} />
             <Route path="/women" element={<Womens />} />
             <Route path="/:id" element={<Product />} />
+            <Route path="/catalog" element={<Catalog />} />
             <Route path="/checkout" element={<Checkout />} />
             <Route path="/checkout-success" element={<CheckoutSuccess />} />
             <Route path="/checkout-cancel" element={<CheckoutCancel />} />

@@ -8,6 +8,21 @@ import {
     FaYoutube,
 } from "react-icons/fa";
 
+const helpLinks = [
+    { path: "/", name: "Help Center" },
+    { path: "/", name: "Contact us" },
+    { path: "/", name: "Shipping Info" },
+    { path: "/", name: "Track My Order" },
+    { path: "/", name: "Returns & Exchanges" },
+];
+
+const moreLinks = [
+    { path: "/", name: "Share The Look" },
+    { path: "/", name: "About Us" },
+    { path: "/", name: "Careers" },
+    { path: "/", name: "Mentality Gym" },
+    { path: "/", name: "Shows" },
+];
 export const FooterLinks = ({ name, path }) => {
     return (
         <Link to={path}>
@@ -55,25 +70,23 @@ const Footer = () => {
                 <section className="flex flex-col gap-8 text-left text-primary md:flex-row ">
                     <section className="w-full px-4 py-4 border-2 border-ctaborder md:border-0 rounded-3xl">
                         <h3 className="font-extrabold uppercase">Help</h3>
-                        <FooterLinks path="/help" name="Help Center" />
-                        <FooterLinks path="/contactus" name="Contact us" />
-                        <FooterLinks
-                            path="/shipping_info"
-                            name="Shipping Info"
-                        />
-                        <FooterLinks path="/track" name="Track My Order" />
-                        <FooterLinks
-                            path="/returns_exchanges"
-                            name="Returns & Exchanges"
-                        />
+                        {helpLinks.map((link) => (
+                            <FooterLinks
+                                key={link.name}
+                                path={link.path}
+                                name={link.name}
+                            />
+                        ))}
                     </section>
                     <section className="w-full px-4 py-4 border-2 border-ctaborder md:border-0 rounded-3xl">
                         <h3 className="font-extrabold uppercase">More</h3>
-                        <FooterLinks path="/share" name="Share The Look" />
-                        <FooterLinks path="/about" name="About Us" />
-                        <FooterLinks path="/careers" name="Careers" />
-                        <FooterLinks path="/gym" name="Mentality Gym" />
-                        <FooterLinks path="/shows" name="Shows" />
+                        {moreLinks.map((link) => (
+                            <FooterLinks
+                                key={link.name}
+                                path={link.path}
+                                name={link.name}
+                            />
+                        ))}
                     </section>
                 </section>
             </section>
