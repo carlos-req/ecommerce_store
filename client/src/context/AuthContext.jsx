@@ -1,11 +1,9 @@
 /* eslint-disable react/prop-types */
 import { createContext, useEffect, useState } from "react";
-import axios from "axios";
+import axios from "../lib/axios";
 import { toast } from "react-toastify";
 
 export const AuthContext = createContext(null);
-
-const API_URL = "http://localhost:5080/api/users/";
 
 export const AuthContextProvider = ({ children }) => {
     const [user, setUser] = useState(null);
@@ -14,7 +12,7 @@ export const AuthContextProvider = ({ children }) => {
     const register = async (userData) => {
         setLoading(true);
         try {
-            const response = await axios.post(`${API_URL}register`, userData);
+            const response = await axios.post("users/register", userData);
             localStorage.setItem("user", JSON.stringify(response.data));
             setUser(response.data);
             return response.data;
@@ -30,7 +28,7 @@ export const AuthContextProvider = ({ children }) => {
     const login = async (userData) => {
         setLoading(true);
         try {
-            const response = await axios.post(`${API_URL}login`, userData);
+            const response = await axios.post("users/login", userData);
             localStorage.setItem("user", JSON.stringify(response.data));
             setUser(response.data);
             return response.data;
