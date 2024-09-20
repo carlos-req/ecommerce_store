@@ -30,7 +30,7 @@ const Home = () => {
                 items={["Men's", "Women's"]}
                 title="Fall Collection"
                 secTitle="All"
-                path="/catalog/fall"
+                path="/catalog"
             />
             <div className="relative w-[96%] mx-auto h-[60vh] overflow-hidden rounded-3xl">
                 <img

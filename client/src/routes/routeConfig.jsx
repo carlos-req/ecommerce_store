@@ -26,8 +26,6 @@ export const routes = createRoutesFromElements(
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/profile" element={<Profile />} />
-            <Route path="/men" element={<Mens />} />
-            <Route path="/women" element={<Womens />} />
             <Route path="/:id" element={<Product />} />
             <Route path="/catalog" element={<Catalog />} />
             <Route path="/checkout" element={<Checkout />} />
