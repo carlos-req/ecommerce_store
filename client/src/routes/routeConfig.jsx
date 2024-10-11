@@ -6,14 +6,7 @@ import Login from "../scenes/login/Login";
 import Register from "../scenes/register/Register";
 import Profile from "../scenes/profile/Profile";
 import Product from "../scenes/product/Product";
-import Mens from "../scenes/mens/Mens";
-import Womens from "../scenes/womens/Womens";
-import AdminLayout from "../AdminLayout";
-import Dashboard from "../scenes/admin/dashboard/Dashboard";
-import ProductList from "../scenes/admin/productlist/ProductList";
-import ProductEdit from "../scenes/admin/productedit/ProductEdit";
-import ProductUpload from "../scenes/admin/productUpload/ProductUpload";
-import Stats from "../scenes/admin/stats/Stats";
+import Admin from "../scenes/admin/Admin";
 import Checkout from "../scenes/checkout/Checkout";
 import CheckoutSuccess from "../scenes/checkoutSuccess/checkoutSuccess";
 import CheckoutCancel from "../scenes/checkoutCancel/CheckoutCancel";
@@ -31,13 +24,7 @@ export const routes = createRoutesFromElements(
             <Route path="/checkout" element={<Checkout />} />
             <Route path="/checkout-success" element={<CheckoutSuccess />} />
             <Route path="/checkout-cancel" element={<CheckoutCancel />} />
-        </Route>
-        <Route path="admin" element={<AdminLayout />}>
-            <Route index element={<Dashboard />} />
-            <Route path="admin/products" element={<ProductList />} />
-            <Route path="admin/products/:id" element={<ProductEdit />} />
-            <Route path="admin/products/upload" element={<ProductUpload />} />
-            <Route path="admin/stats" element={<Stats />} />
+            <Route path="/admin" element={<Admin />} />
         </Route>
         <Route path="*" element={<Error />} />
     </Route>
