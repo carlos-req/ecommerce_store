@@ -9,6 +9,8 @@ export const ShopContextProvider = ({ children }) => {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [orders, setOrders] = useState([]);
+
 
     //Cart State
     const [cartItems, setCartItems] = useState([]);
@@ -127,6 +129,8 @@ export const ShopContextProvider = ({ children }) => {
         isSearchOpen,
         setCartItems,
         clearCart,
+        orders,
+        setOrders,
     };
 
     return (

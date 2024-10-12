@@ -7,6 +7,8 @@ import {
     LuX,
 } from "react-icons/lu";
 
+import ButtonOutlined from "../../components/ButtonOutlined";
+
 export default function AdminPortal() {
     const [activeTab, setActiveTab] = useState("new-product");
     const [newProduct, setNewProduct] = useState({
@@ -67,8 +69,8 @@ export default function AdminPortal() {
             onClick={() => setActiveTab(value)}
             className={`flex items-center justify-center py-2 px-4 rounded-3xl ${
                 activeTab === value
-                    ? "bg-gray-800 text-white"
-                    : "text-gray-400 hover:text-white"
+                    ? "bg-secondary text-primary"
+                    : "text-ctabutton hover:text-primary"
             }`}
         >
             {icon}
@@ -77,10 +79,11 @@ export default function AdminPortal() {
     );
 
     return (
-        <div className="min-h-screen p-8 mt-10 text-white ">
+        <div className="min-h-screen p-8 mt-16 text-primary">
             <h1 className="mb-6 text-3xl font-bold">E-commerce Admin Portal</h1>
+            {/* Tabs */}
             <div className="mb-6">
-                <div className="flex justify-center">
+                <div className="flex flex-col justify-center md:flex-row">
                     <TabButton
                         value="new-product"
                         icon={<LuPlus className="w-5 h-5" />}
@@ -94,7 +97,7 @@ export default function AdminPortal() {
                         All Products
                     </TabButton>
                     <TabButton
-                        value="manage-users"
+                        value="view-users"
                         icon={<LuUsers className="w-5 h-5" />}
                     >
                         Manage Users
@@ -109,7 +112,7 @@ export default function AdminPortal() {
             </div>
 
             {activeTab === "new-product" && (
-                <div className="p-6 bg-gray-900 rounded-lg">
+                <div className="p-6 ">
                     <h2 className="mb-4 text-xl font-semibold">
                         Create New Product
                     </h2>
@@ -120,7 +123,7 @@ export default function AdminPortal() {
                             name="name"
                             value={newProduct.name}
                             onChange={handleInputChange}
-                            className="w-full p-2 text-white bg-gray-800 border border-gray-700 rounded"
+                            className="w-full p-2 border border-gray-700 rounded bg-[#2a2a2a] text-primary placeholder-slate-100"
                             required
                         />
                         <p>Price:</p>
@@ -130,7 +133,7 @@ export default function AdminPortal() {
                             name="price"
                             value={newProduct.price}
                             onChange={handleInputChange}
-                            className="w-full p-2 text-white bg-gray-800 border border-gray-700 rounded"
+                            className="w-full p-2 border border-gray-700 rounded bg-[#2a2a2a] text-primary placeholder-slate-100"
                             required
                         />
                         <input
@@ -139,7 +142,7 @@ export default function AdminPortal() {
                             name="imageSrc"
                             value={newProduct.imageSrc}
                             onChange={handleInputChange}
-                            className="w-full p-2 text-white bg-gray-800 border border-gray-700 rounded"
+                            className="w-full p-2 border border-gray-700 rounded bg-[#2a2a2a] text-primary placeholder-slate-100"
                             required
                         />
                         <input
@@ -148,7 +151,7 @@ export default function AdminPortal() {
                             name="imageAlt"
                             value={newProduct.imageAlt}
                             onChange={handleInputChange}
-                            className="w-full p-2 text-white bg-gray-800 border border-gray-700 rounded"
+                            className="w-full p-2 border border-gray-700 rounded bg-[#2a2a2a] text-primary placeholder-slate-100"
                         />
                         <input
                             type="text"
@@ -156,14 +159,14 @@ export default function AdminPortal() {
                             name="type"
                             value={newProduct.type}
                             onChange={handleInputChange}
-                            className="w-full p-2 text-white bg-gray-800 border border-gray-700 rounded"
+                            className="w-full p-2 border border-gray-700 rounded bg-[#2a2a2a] text-primary placeholder-slate-100"
                         />
                         <textarea
                             placeholder="Description"
                             name="description"
                             value={newProduct.description}
                             onChange={handleInputChange}
-                            className="w-full p-2 text-white bg-gray-800 border border-gray-700 rounded"
+                            className="w-full p-2 border border-gray-700 rounded bg-[#2a2a2a] text-primary placeholder-slate-100"
                             required
                         />
                         <input
@@ -174,7 +177,7 @@ export default function AdminPortal() {
                             onChange={(e) =>
                                 handleArrayInputChange(e, "highlights")
                             }
-                            className="w-full p-2 text-white bg-gray-800 border border-gray-700 rounded"
+                            className="w-full p-2 border border-gray-700 rounded bg-[#2a2a2a] text-primary placeholder-slate-100"
                         />
                         <input
                             type="text"
@@ -182,7 +185,7 @@ export default function AdminPortal() {
                             name="color"
                             value={newProduct.color}
                             onChange={handleInputChange}
-                            className="w-full p-2 text-white bg-gray-800 border border-gray-700 rounded"
+                            className="w-full p-2 border border-gray-700 rounded bg-[#2a2a2a] text-primary placeholder-slate-100"
                         />
                         <input
                             type="text"
@@ -190,7 +193,7 @@ export default function AdminPortal() {
                             name="series"
                             value={newProduct.series}
                             onChange={handleInputChange}
-                            className="w-full p-2 text-white bg-gray-800 border border-gray-700 rounded"
+                            className="w-full p-2 border border-gray-700 rounded bg-[#2a2a2a] text-primary placeholder-slate-100"
                         />
                         <input
                             type="text"
@@ -198,7 +201,7 @@ export default function AdminPortal() {
                             name="materials"
                             value={newProduct.materials}
                             onChange={handleInputChange}
-                            className="w-full p-2 text-white bg-gray-800 border border-gray-700 rounded"
+                            className="w-full p-2 border border-gray-700 rounded bg-[#2a2a2a] text-primary placeholder-slate-100"
                         />
                         <input
                             type="text"
@@ -206,13 +209,14 @@ export default function AdminPortal() {
                             name="tags"
                             value={newProduct.tags.join(", ")}
                             onChange={(e) => handleArrayInputChange(e, "tags")}
-                            className="w-full p-2 text-white bg-gray-800 border border-gray-700 rounded"
+                            className="w-full p-2 border border-gray-700 rounded bg-[#2a2a2a] text-primary placeholder-slate-100"
                         />
+                        <p>Group:</p>
                         <select
                             name="group"
                             value={newProduct.group}
                             onChange={handleInputChange}
-                            className="w-full p-2 text-white bg-gray-800 border border-gray-700 rounded"
+                            className="w-full p-2 border border-gray-700 rounded bg-[#2a2a2a] text-primary placeholder-slate-100"
                         >
                             <option value="both">Both</option>
                             <option value="men">Men</option>
@@ -238,10 +242,11 @@ export default function AdminPortal() {
                                                 e.target.value
                                             )
                                         }
-                                        className="flex-1 p-2 text-white bg-gray-800 border border-gray-700 rounded"
+                                        className="flex-1 p-2 border border-gray-700 rounded bg-[#2a2a2a] text-primary placeholder-slate-100"
                                     />
                                     <input
                                         type="number"
+                                        min="0"
                                         placeholder="Stock"
                                         value={size.stock}
                                         onChange={(e) =>
@@ -251,7 +256,7 @@ export default function AdminPortal() {
                                                 e.target.value
                                             )
                                         }
-                                        className="flex-1 p-2 text-white bg-gray-800 border border-gray-700 rounded"
+                                        className="flex-1 p-2 border border-gray-700 rounded bg-[#2a2a2a] text-primary placeholder-slate-100"
                                     />
                                     <button
                                         type="button"
@@ -262,26 +267,31 @@ export default function AdminPortal() {
                                     </button>
                                 </div>
                             ))}
+                            <div className="max-w-full lg:max-w-[12rem]">
+                                <button
+                                    type="button"
+                                    onClick={addSize}
+                                    className="w-full px-12 py-2 mt-2 font-black tracking-tight uppercase duration-200 ease-in-out text-md lg:px-4 lg:py-2 lg:rounded-lg bg-primary bg-opacity-80 text-secondary rounded-2xl transation hover:bg-opacity-100 hover:drop-shadow-md"
+                                >
+                                    Add Size
+                                </button>
+                            </div>
+                        </div>
+
+                        <div className="max-w-full lg:max-w-[13rem]">
                             <button
-                                type="button"
-                                onClick={addSize}
-                                className="p-2 mt-2 text-white bg-blue-600 rounded hover:bg-blue-700"
+                                onClick={handleSubmit}
+                                className="w-full px-12 py-2 font-black tracking-tight uppercase transition duration-150 ease-in-out border-2 border-solid border-slate-100 text-slate-100 text-md rounded-xl active:translate-y-1 active:scale-90"
                             >
-                                Add Size
+                                Add Product
                             </button>
                         </div>
-                        <button
-                            type="submit"
-                            className="w-full px-4 py-2 text-white bg-blue-600 rounded hover:bg-blue-700"
-                        >
-                            Add Product
-                        </button>
                     </form>
                 </div>
             )}
 
             {activeTab === "all-products" && (
-                <div className="p-6 bg-gray-900 rounded-lg">
+                <div className="p-6 ">
                     <h2 className="mb-4 text-xl font-semibold">All Products</h2>
                     <table className="w-full">
                         <thead>
@@ -320,8 +330,8 @@ export default function AdminPortal() {
                 </div>
             )}
 
-            {activeTab === "manage-users" && (
-                <div className="p-6 bg-gray-900 rounded-lg">
+            {activeTab === "view-users" && (
+                <div className="p-6 ">
                     <h2 className="mb-4 text-xl font-semibold">Manage Users</h2>
                     <table className="w-full">
                         <thead>
@@ -348,7 +358,7 @@ export default function AdminPortal() {
             )}
 
             {activeTab === "all-orders" && (
-                <div className="p-6 bg-gray-900 rounded-lg">
+                <div className="p-6 ">
                     <h2 className="mb-4 text-xl font-semibold">All Orders</h2>
                     <table className="w-full">
                         <thead>
@@ -356,21 +366,18 @@ export default function AdminPortal() {
                                 <th className="py-2">Order ID</th>
                                 <th className="py-2">Customer</th>
                                 <th className="py-2">Total</th>
-                                <th className="py-2">Status</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody className="">
                             <tr>
                                 <td className="py-2">#1001</td>
                                 <td className="py-2">Alice Johnson</td>
                                 <td className="py-2">$124.99</td>
-                                <td className="py-2">Shipped</td>
                             </tr>
                             <tr>
                                 <td className="py-2">#1002</td>
                                 <td className="py-2">Bob Williams</td>
                                 <td className="py-2">$89.00</td>
-                                <td className="py-2">Processing</td>
                             </tr>
                         </tbody>
                     </table>
